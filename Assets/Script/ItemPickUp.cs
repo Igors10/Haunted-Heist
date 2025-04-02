@@ -32,7 +32,7 @@ public class ItemPickUp : MonoBehaviour
 
     void ItemPicking()
     {
-        if (is_picking && Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == true)
+        if (is_picking && Game.Instance.robber != null && Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == true)
         {
             float pick_up_speed = pick_up_speed_default;
             switch (closest_item.GetComponent<Item>().level)
@@ -49,7 +49,7 @@ public class ItemPickUp : MonoBehaviour
             if (picking_progress < 0) FinishPicking();
             else SelectionAura.GetComponent<Image>().fillAmount = picking_progress;
         }
-        else if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == false) 
+        else if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == false) 
         {
             if (closest_item != null && closest_item.tag != "Vent")
             {

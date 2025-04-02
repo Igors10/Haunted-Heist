@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
     private void Update()
     {
         // Check if the flashlight is off and disable the pickup image
-        if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == false)
+        if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == false)
         {
             pickUp_image.SetActive(false);
         }
