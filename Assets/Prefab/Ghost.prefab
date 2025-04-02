@@ -460,6 +460,9 @@ MonoBehaviour:
   dash_duration: 0.5
   dash_length: 8
   dash_delay_time: 0.3
+  boundaryLayer:
+    serializedVersion: 2
+    m_Bits: 0
   laughing_duration: 50
 --- !u!50 &4216343954045900820
 Rigidbody2D:
@@ -487,7 +490,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &674950313668253436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1155,7 @@ GameObject:
   - component: {fileID: 5257183380063970371}
   - component: {fileID: 5073025455822619268}
   - component: {fileID: 7563545704372446208}
+  - component: {fileID: 3618910129008116375}
   m_Layer: 6
   m_Name: HidingGhost
   m_TagString: Ghost
@@ -1237,7 +1241,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7272600033158285140}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1288,6 +1292,43 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &3618910129008116375
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272600033158285140}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.02315338, y: -0.5977919}
+  m_Size: {x: 1.3966472, y: 0.5366587}
+  m_Direction: 1
 --- !u!1 &8254208411718246037
 GameObject:
   m_ObjectHideFlags: 0
