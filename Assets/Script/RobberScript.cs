@@ -72,7 +72,7 @@ public class RobberScript : NetworkBehaviour
     {
         item_pick_up_aura.SetActive(is_enabled);
         GetComponent<SpriteRenderer>().enabled = is_enabled;
-        GetComponent<CircleCollider2D>().enabled = is_enabled;
+        GetComponent<CapsuleCollider2D>().enabled = is_enabled;
         if (IsOwner) GetComponent<InputController>().enabled = is_enabled;
         else natural_light.SetActive(is_enabled);
     }
@@ -158,7 +158,7 @@ public class RobberScript : NetworkBehaviour
     void SyncFlashlightObserversRpc(bool is_on)
     {
         flashlight.SetActive(is_on);
-        Game.Instance.ghost.Value.GetComponent<Player>().Indication(is_on);
+        if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().Indication(is_on);
     }
 
     // ===============================================================================
