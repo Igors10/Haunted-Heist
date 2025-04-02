@@ -43,6 +43,10 @@ public class GhostScript : NetworkBehaviour
     SpriteRenderer hiding_sprite;
     Color hiding_color;
 
+    // Ghost particle effects
+    public ParticleSystem ghostParticleZoomIn;
+    public ParticleSystem ghostParticleZoomOut;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -192,6 +196,16 @@ public class GhostScript : NetworkBehaviour
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
 
+        //ghost particle
+        ghostParticleZoomIn.Stop();
+        if (ghostParticleZoomIn.isStopped)
+        {
+            ghostParticleZoomIn.Play();
+            Debug.Log("ZoomIn activated");
+        }
+
+
+
         SyncHideServerRpc(false);
         is_aiming = false;
 
@@ -227,6 +241,22 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
+
+        //ghost particle
+        if (ghostParticleZoomIn.isEmitting)
+        {
+            ghostParticleZoomIn.Clear();
+            Debug.Log("ZoomIn cleared");
+        }
+
+        ghostParticleZoomOut.Stop();
+        if (ghostParticleZoomOut.isStopped)
+        {
+            ghostParticleZoomOut.Play();
+            Debug.Log("ZoomOut activated");
+        }
+
+
 
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
