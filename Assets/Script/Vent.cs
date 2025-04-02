@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-// TO FIX: make it go to the direction it is pointing at
+// TO FIX: script is being disabled when you start the game (because its network behaviour)
 
 public class Vent : NetworkBehaviour
 {
@@ -24,6 +24,11 @@ public class Vent : NetworkBehaviour
     [SerializeField] Sprite[] vent_sprites;
     [SerializeField] GameObject open_aura;
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        this.enabled = true; // Re-enable the script when the client joins the scene.
+    }
     void Awake()
     {
         // getting all the vent ui buttons and disabling them
@@ -36,7 +41,7 @@ public class Vent : NetworkBehaviour
         key_UI[0] = GameObject.Find("QKeyText");
         key_UI[1] = GameObject.Find("EKeyText");
 
-        ventUI = GameObject.Find("NewVentUI").GetComponent<VentArrows>();
+        ventUI = GameObject.Find("NewVentUI").GetComponent<VentArrows>(); // Add this object with arrows into the scene
     }
 
     private void Start()
@@ -53,6 +58,7 @@ public class Vent : NetworkBehaviour
 
     public void OpenVent(bool is_open)
     {
+        Debug.Log("VENTS: vent collision 222 ");
         //if (blocked) return;
         if (blocked) is_open = false;
         if (CheckToBlock()) BlockVentServerRpc();

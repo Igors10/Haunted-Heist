@@ -136,8 +136,18 @@ public class ItemPickUp : MonoBehaviour
         // Vents
         if (collision.gameObject.tag == "Vent")
         {
+            Debug.Log("VENTS: vent collision");
             // Experimental code where you press Q and E to use vents
-            collision.GetComponent<Vent>().OpenVent(true);
+           
+            Vent vent = collision.GetComponent<Vent>();
+            if (vent == null)
+            {
+                Debug.LogError("VENTS: Vent component is missing from the collided object!");
+            }
+            else
+            {
+                vent.OpenVent(true);
+            }
         }
     }
 
