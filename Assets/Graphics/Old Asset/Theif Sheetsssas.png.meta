@@ -1,0 +1,650 @@
+fileFormatVersion: 2
+guid: 7c45d57635012b0498e9a58b55cea49a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2307277241607545240
+    second: Theif Sheetsssas_0
+  - first:
+      213: -4818710649676790114
+    second: Theif Sheetsssas_1
+  - first:
+      213: -602823333794836905
+    second: Theif Sheetsssas_2
+  - first:
+      213: -6592809191620722369
+    second: Theif Sheetsssas_3
+  - first:
+      213: 6330913600593611888
+    second: Theif Sheetsssas_4
+  - first:
+      213: 5593181027365342452
+    second: Theif Sheetsssas_5
+  - first:
+      213: 4033707291096074495
+    second: Theif Sheetsssas_6
+  - first:
+      213: 5679819719626957609
+    second: Theif Sheetsssas_7
+  - first:
+      213: 5914880655850298491
+    second: Theif Sheetsssas_8
+  - first:
+      213: 3813791729886646960
+    second: Theif Sheetsssas_9
+  - first:
+      213: 5693980745455504582
+    second: Theif Sheetsssas_10
+  - first:
+      213: -888843654326528248
+    second: Theif Sheetsssas_11
+  - first:
+      213: 4957076962968274720
+    second: Theif Sheetsssas_12
+  - first:
+      213: 1053335722003437567
+    second: Theif Sheetsssas_13
+  - first:
+      213: 5587764105359878262
+    second: Theif Sheetsssas_14
+  - first:
+      213: 2343487668122945600
+    second: Theif Sheetsssas_15
+  - first:
+      213: -8470606171898560339
+    second: Theif Sheetsssas_16
+  - first:
+      213: -7003435539119188114
+    second: Theif Sheetsssas_17
+  - first:
+      213: -1848322242056274733
+    second: Theif Sheetsssas_18
+  - first:
+      213: 5544823106837830198
+    second: Theif Sheetsssas_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Theif Sheetsssas_0
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 3167
+        width: 130
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8916c504d68150020800000000000000
+      internalID: 2307277241607545240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_1
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 3167
+        width: 122
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e968f9ad130802db0800000000000000
+      internalID: -4818710649676790114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_2
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 3167
+        width: 122
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e87de2f5752a7f0800000000000000
+      internalID: -602823333794836905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_3
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 3167
+        width: 130
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f31448d68f2a184a0800000000000000
+      internalID: -6592809191620722369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_4
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 2783
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c421b806cebd750800000000000000
+      internalID: 6330913600593611888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_5
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 2783
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fcc09ca288fe9d40800000000000000
+      internalID: 5593181027365342452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_6
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 2783
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff84fa5e86b9af730800000000000000
+      internalID: 4033707291096074495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_7
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 2783
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 923af9821f5c2de40800000000000000
+      internalID: 5679819719626957609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_8
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 2399
+        width: 130
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c59cc3e90e51250800000000000000
+      internalID: 5914880655850298491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_9
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 2399
+        width: 122
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2573b3f5f4de430800000000000000
+      internalID: 3813791729886646960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_10
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 2399
+        width: 122
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cc0acae155150f40800000000000000
+      internalID: 5693980745455504582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_11
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 2399
+        width: 130
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 807d10bd7613aa3f0800000000000000
+      internalID: -888843654326528248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_12
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 2015
+        width: 130
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0270ffdeb331bc440800000000000000
+      internalID: 4957076962968274720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_13
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 2015
+        width: 122
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff79e3322433e9e00800000000000000
+      internalID: 1053335722003437567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_14
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 2015
+        width: 122
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67867ac39d9bb8d40800000000000000
+      internalID: 5587764105359878262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_15
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 2015
+        width: 130
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0480af92e9db58020800000000000000
+      internalID: 2343487668122945600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_16
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1631
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da041cbd09c527a80800000000000000
+      internalID: -8470606171898560339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_17
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 1631
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e675473ab7ccece90800000000000000
+      internalID: -7003435539119188114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_18
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 1631
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc38c3b6b07956e0800000000000000
+      internalID: -1848322242056274733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Theif Sheetsssas_19
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 1631
+        width: 114
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63a5279ec3b23fc40800000000000000
+      internalID: 5544823106837830198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Theif Sheetsssas_0: 2307277241607545240
+      Theif Sheetsssas_1: -4818710649676790114
+      Theif Sheetsssas_10: 5693980745455504582
+      Theif Sheetsssas_11: -888843654326528248
+      Theif Sheetsssas_12: 4957076962968274720
+      Theif Sheetsssas_13: 1053335722003437567
+      Theif Sheetsssas_14: 5587764105359878262
+      Theif Sheetsssas_15: 2343487668122945600
+      Theif Sheetsssas_16: -8470606171898560339
+      Theif Sheetsssas_17: -7003435539119188114
+      Theif Sheetsssas_18: -1848322242056274733
+      Theif Sheetsssas_19: 5544823106837830198
+      Theif Sheetsssas_2: -602823333794836905
+      Theif Sheetsssas_3: -6592809191620722369
+      Theif Sheetsssas_4: 6330913600593611888
+      Theif Sheetsssas_5: 5593181027365342452
+      Theif Sheetsssas_6: 4033707291096074495
+      Theif Sheetsssas_7: 5679819719626957609
+      Theif Sheetsssas_8: 5914880655850298491
+      Theif Sheetsssas_9: 3813791729886646960
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
