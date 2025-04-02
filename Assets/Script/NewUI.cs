@@ -24,7 +24,7 @@ public class NewUI : MonoBehaviour
     {
         for (int i = 0; i < heartObjects.Length; i++)
         {
-            // Setting the heart object active based on the current health
+            // currentHealth here is a variable I just made up, this needs to be replaced with the actual player health.
             heartObjects[i].SetActive(i < currentHealth);
         }
     }
@@ -36,8 +36,9 @@ public class NewUI : MonoBehaviour
 
     private void Update()
     {
+        // This will start to countdown as soon as the scene is loaded, so trigger this after both players are loaded in.
         CountDownTimer();
-        // For debugging purposes only
+        // For debugging purposes only - Can remove once the player health is properly implemented
         ControlHealth();
     }
 
@@ -46,7 +47,7 @@ public class NewUI : MonoBehaviour
     public void DecreaseHealth()
     {
         UpdateHealth(currentHealth - 1);
-        BlinkTheHearts();
+        BlinkTheHearts(); // Blink the hearts when health is decreased, so you can reuse this method in update maybe, when player health is decreased.
     }
 
     public void IncreaseHealth()
@@ -106,7 +107,7 @@ public class NewUI : MonoBehaviour
 
         for (int j = 0; j < 5; j++) // Number of times the hearts blink
         {
-            // Toggle only hearts OFF
+            // Toggle hearts OFF
             for (int i = 0; i < heartObjects.Length; i++)
             {
                 heartObjects[i].SetActive(false);
@@ -115,7 +116,7 @@ public class NewUI : MonoBehaviour
 
             yield return new WaitForSeconds(0.2f);
 
-            // Toggle only hearts ON
+            // Toggle hearts ON
             for (int i = 0; i < heartObjects.Length; i++)
             {
                 heartObjects[i].SetActive(originalFilledStates[i]);
