@@ -410,7 +410,7 @@ public class GhostScript : NetworkBehaviour
         float current_alpha = hiding_color.a;
 
         // Blinking collected souls
-        if (IsOwner) StartCoroutine(player.BlinkingLives());
+        if (IsOwner) ghostUI.souls.IncreaseHealth();
 
         while (current_laughing_duration > 0)
         {
