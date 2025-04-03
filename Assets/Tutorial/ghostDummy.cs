@@ -12,7 +12,10 @@ public class ghostDummy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(TutorialProgress.part == 6)
+        {
+            Despawn(0);
+        }
     }
 
     IEnumerator Despawn(int time)
@@ -21,7 +24,8 @@ public class ghostDummy : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         this.gameObject.SetActive(false);
-    }    
+    }   
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,11 +33,11 @@ public class ghostDummy : MonoBehaviour
         {
             if (collision.gameObject.TryGetComponent(out robberTutorial component))
             {
-                component.lossOfLife = true;
+                //component.lossOfLife = true;
             }
 
-            this.gameObject.SetActive(false);
-            Despawn(2);
+            //this.gameObject.SetActive(false);
+            //Despawn(2);
         }
     }
 }

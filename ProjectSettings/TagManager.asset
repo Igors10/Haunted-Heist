@@ -12,6 +12,7 @@ TagManager:
   - MapBoundary
   - Pusher
   - Robber
+  - spawnPointTutorial
   layers:
   - Default
   - TransparentFX

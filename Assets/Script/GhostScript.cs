@@ -196,15 +196,6 @@ public class GhostScript : NetworkBehaviour
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
 
-        //ghost particle
-        ghostParticleZoomIn.Stop();
-        if (ghostParticleZoomIn.isStopped)
-        {
-            ghostParticleZoomIn.Play();
-            Debug.Log("ZoomIn activated");
-        }
-
-
 
         SyncHideServerRpc(false);
         is_aiming = false;
@@ -241,21 +232,6 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
-
-        //ghost particle
-        if (ghostParticleZoomIn.isEmitting)
-        {
-            ghostParticleZoomIn.Clear();
-            Debug.Log("ZoomIn cleared");
-        }
-
-        ghostParticleZoomOut.Stop();
-        if (ghostParticleZoomOut.isStopped)
-        {
-            ghostParticleZoomOut.Play();
-            Debug.Log("ZoomOut activated");
-        }
-
 
 
         // Check if ghost is inside a pusher object when dash ends
@@ -353,6 +329,7 @@ public class GhostScript : NetworkBehaviour
     public void SyncHideServerRpc(bool is_hiding)
     {
         SyncHideObserversRpc(is_hiding);
+
     }
 
     [ObserversRpc]
@@ -363,6 +340,33 @@ public class GhostScript : NetworkBehaviour
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
         Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
+
+        //ghost particle effects for charging
+        if (is_hiding)
+        {
+            if (ghostParticleZoomIn.isEmitting)
+            {
+                ghostParticleZoomIn.Clear();
+                Debug.Log("ZoomIn cleared");
+            }
+
+            ghostParticleZoomOut.Stop();
+            if (ghostParticleZoomOut.isStopped)
+            {
+                ghostParticleZoomOut.Play();
+                Debug.Log("ZoomOut activated");
+            }
+        }
+        else
+        {
+            ghostParticleZoomIn.Stop();
+            if (ghostParticleZoomIn.isStopped)
+            {
+                ghostParticleZoomIn.Play();
+                Debug.Log("ZoomIn activated");
+            }
+        }
+
     }
 
     // ==========================================================================

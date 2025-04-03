@@ -16,8 +16,8 @@ public class robberTutorial : MonoBehaviour
     //did the player use flashlight
     public bool flashlight;
 
-    //did the robber loose a life
-    public bool lossOfLife;
+    //did the robber sees a Ghost
+    public bool seenAGhost;
 
     //did the player use vent mechanic
     public bool ventUsed;
@@ -35,7 +35,7 @@ public class robberTutorial : MonoBehaviour
 
         flashlight = false;
 
-        lossOfLife = false;
+        seenAGhost = false;
 
         ventUsed = false;
     }
@@ -73,9 +73,10 @@ public class robberTutorial : MonoBehaviour
             }
         }
 
-        float mouseButton = Input.GetAxis("Fire1");
+        float mouseLeftButton = Input.GetAxis("Fire1");
+        float mouseRightButton = Input.GetAxis("Fire2");
 
-        if (TutorialProgress.part == 2 && mouseButton == 1)
+        if (TutorialProgress.part == 2 && mouseLeftButton == 1)
         {
             flashlight = true;
         }
@@ -109,7 +110,7 @@ public class robberTutorial : MonoBehaviour
         }
 
         //part 5
-        if (lossOfLife && TutorialProgress.part == 5)
+        if (seenAGhost && mouseRightButton == 1 && TutorialProgress.part == 5)
         {
             TutorialProgress.part = 6;
         }

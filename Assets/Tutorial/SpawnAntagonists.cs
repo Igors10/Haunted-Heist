@@ -38,19 +38,16 @@ public class SpawnAntagonists : MonoBehaviour
             secondRobber = true;
         }
 
-        if (TutorialProgress.part == 5 && !thirdRobber)
+        if (TutorialProgress.part == 5)
         {
-
-            Instantiate(robberObject, thirdInstance.position, Quaternion.identity);
             footsteps.SetActive(false);
-            footsteps2.SetActive(true);
-            thirdRobber = true;
         }
 
-        if(TutorialProgress.part == 6)
+        if(TutorialProgress.part == 6 && !thirdRobber)
         {
-            footsteps2.SetActive(false);
-            //ghost wins
+            Instantiate(robberObject, thirdInstance.position, Quaternion.identity);
+            footsteps2.SetActive(true);
+            thirdRobber = true;
         }
     }
 }

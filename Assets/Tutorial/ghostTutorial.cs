@@ -18,9 +18,6 @@ public class ghostTutorial : MonoBehaviour
     public bool throughWall;
     public bool finishSteps;
 
-    //teleportation back for the ghost
-    public Transform ghostTeleportBack;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -89,7 +86,6 @@ public class ghostTutorial : MonoBehaviour
         if (robberKills == 1 && TutorialProgress.part == 3)
         {
             TutorialProgress.part = 4;
-            this.gameObject.transform.position = ghostTeleportBack.GetChild(0).position;
         }
 
         //part 4
@@ -102,14 +98,12 @@ public class ghostTutorial : MonoBehaviour
         if (robberKills == 2 && TutorialProgress.part == 5)
         {
             TutorialProgress.part = 6;
-            this.gameObject.transform.position = ghostTeleportBack.GetChild(0).position;
         }
 
         //part 6
         if (robberKills == 3 && TutorialProgress.part == 6)
         {
             TutorialProgress.part = 7;
-            this.gameObject.transform.position = ghostTeleportBack.GetChild(0).position;
         }
 
     }
