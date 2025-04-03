@@ -11645,7 +11645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &528786810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13582,6 +13582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbef141abd393e449a9e24ff7f2c23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elements_UI: {fileID: 0}
+  timer: {fileID: 0}
   dash_fill: {fileID: 345888349}
   stepvision_fill: {fileID: 1646002716}
   ghostVision: {fileID: 528786809}
@@ -38839,6 +38841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dba11c0a1ab1894284fcd9528ab37ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elements_UI: {fileID: 0}
+  timer: {fileID: 0}
   item_coupon: {fileID: 544600156}
   energy_bar: {fileID: 1047028826}
   full_energy_color: {r: 0.8701162, g: 0.9169811, b: 0.40658593, a: 1}
