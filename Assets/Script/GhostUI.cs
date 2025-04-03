@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class GhostUI : MonoBehaviour
 {
+    [SerializeField] GameObject elements_UI;
+    [SerializeField] GameObject timer;
+
     public Image dash_fill;
     public Image stepvision_fill;
     public GameObject ghostVision;
@@ -35,8 +38,10 @@ public class GhostUI : MonoBehaviour
 
     public void EnableUI()
     {
-        dash_fill.gameObject.SetActive(true);
-        stepvision_fill.gameObject.SetActive(true);
-        ghostVision.SetActive(true);
+        elements_UI.SetActive(true);
+        timer.SetActive(true);
+        //dash_fill.gameObject.SetActive(true);
+        //stepvision_fill.gameObject.SetActive(true);
+        //ghostVision.SetActive(true);
     }
 }
