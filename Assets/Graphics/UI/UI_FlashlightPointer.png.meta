@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_FlashlightPointer_0: -196025451381807129
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
