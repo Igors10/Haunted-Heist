@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class RobberUI : MonoBehaviour
 {
+    [SerializeField] GameObject elements_UI;
+    [SerializeField] GameObject timer;
+
     [SerializeField] GameObject item_coupon;
     [SerializeField] GameObject energy_bar;
 
@@ -29,8 +32,10 @@ public class RobberUI : MonoBehaviour
 
     public void EnableUI()
     {
-        item_coupon.SetActive(true);
-        energy_bar.SetActive(true);
+        elements_UI.SetActive(true);
+        timer.SetActive(true);
+        //item_coupon.SetActive(true);
+        //energy_bar.SetActive(true);
     }
 
     private void FixedUpdate()
