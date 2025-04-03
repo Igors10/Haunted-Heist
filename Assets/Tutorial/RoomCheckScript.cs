@@ -12,7 +12,8 @@ public class RoomCheckScript : MonoBehaviour
 
     public bool ghostRoom;
     public bool ghostVent;
-    public bool robber;
+    public bool robberVent;
+    public bool robberSeeGhost;
 
     bool kill = false;
 
@@ -60,12 +61,33 @@ public class RoomCheckScript : MonoBehaviour
             }
         }
 
-        if (collider.gameObject.CompareTag("Robber") && robber)
+        if (collider.gameObject.CompareTag("Robber") && robberVent)
         {
             //checking the position of the robber in the tutorial
             if (collider.gameObject.TryGetComponent(out robberTutorial component))
             {
                 component.ventUsed = true;
+            }
+        }
+
+        if (collider.gameObject.CompareTag("Robber") && robberSeeGhost)
+        {
+            //checking the position of the robber in the tutorial
+            if (collider.gameObject.TryGetComponent(out robberTutorial component))
+            {
+                component.seenAGhost = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Robber") && robberSeeGhost)
+        {
+            //checking the position of the robber in the tutorial
+            if (collider.gameObject.TryGetComponent(out robberTutorial component))
+            {
+                component.seenAGhost = false;
             }
         }
     }
