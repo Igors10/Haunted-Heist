@@ -195,7 +195,7 @@ public class RobberScript : NetworkBehaviour
         AudioManager.instance.PlaySFX("Damage");
 
         //HP blinking
-        if (IsOwner && player.is_blinking == false) StartCoroutine(player.BlinkingLives());
+        if (IsOwner) robberUI.hp.DecreaseHealth();
 
         while (current_jumpscare_duration > 0)
         {
