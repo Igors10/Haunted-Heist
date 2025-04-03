@@ -42,6 +42,6 @@ public class GhostUI : MonoBehaviour
         timer.SetActive(true);
         //dash_fill.gameObject.SetActive(true);
         //stepvision_fill.gameObject.SetActive(true);
-        //ghostVision.SetActive(true);
+        ghostVision.SetActive(true);
     }
 }
