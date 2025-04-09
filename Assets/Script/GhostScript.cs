@@ -358,6 +358,7 @@ public class GhostScript : NetworkBehaviour
         ghost_hiding.SetActive(is_hiding);
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
+        if (Game.Instance.robber.Value != null)
         Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
 
         //ghost particle effects for charging

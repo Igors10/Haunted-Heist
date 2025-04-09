@@ -67,7 +67,7 @@ public class Vent : NetworkBehaviour
 
         // Enabling/disabling arrows
         bool left_arrow_active = (is_open && !connected_vents[0].blocked) ? true : false;
-        bool right_arrow_active = (is_open && !connected_vents[1].blocked) ? true : false;
+        bool right_arrow_active = ((connected_vents.Length > 1) && is_open && !connected_vents[1].blocked) ? true : false;
         ventUI.left_arrow.SetActive(left_arrow_active);
         ventUI.right_arrow.SetActive(right_arrow_active);
 

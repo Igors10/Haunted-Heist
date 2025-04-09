@@ -11093,7 +11093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements_UI: {fileID: 166061084}
   timer: {fileID: 631129097}
-  souls: {fileID: 0}
+  souls: {fileID: 1387436448}
   dash_fill: {fileID: 704851738}
   stepvision_fill: {fileID: 1050676331}
   dash_icons:
