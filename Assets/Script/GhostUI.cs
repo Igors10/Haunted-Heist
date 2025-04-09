@@ -13,7 +13,8 @@ public class GhostUI : MonoBehaviour
     [SerializeField] Image[] dash_icons;
     public Image[] stepvision_icons;
     public GameObject ghostVision;
-    [SerializeField] Color charged_color;
+    [SerializeField] Color charged_color_dash;
+    [SerializeField] Color charged_color_stepvision;
     [SerializeField] Color cooldown_color;
     [HideInInspector] public bool is_dash_ready = true;
     [HideInInspector] public bool is_stepvision_ready = true;
@@ -36,7 +37,7 @@ public class GhostUI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        ability_fill.color = charged_color;
+        ability_fill.color = (is_dash) ? charged_color_dash : charged_color_stepvision;
         if (is_dash) is_dash_ready = true;
         else is_stepvision_ready = true;
         ability_fill.fillAmount = 1;

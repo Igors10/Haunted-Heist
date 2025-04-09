@@ -5497,7 +5497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &166061085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11105,7 +11105,8 @@ MonoBehaviour:
   - {fileID: 833186576}
   - {fileID: 892807494}
   ghostVision: {fileID: 528786809}
-  charged_color: {r: 0.7660377, g: 0.1141829, b: 0.7349415, a: 1}
+  charged_color_dash: {r: 0.6039216, g: 0.2627451, b: 0.3137255, a: 1}
+  charged_color_stepvision: {r: 0.3254902, g: 0.35686275, b: 0.5686275, a: 1}
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
   is_dash_ready: 0
   is_stepvision_ready: 0
