@@ -400,7 +400,7 @@ public class GhostScript : NetworkBehaviour
         return teleportation_locations[chosen_point];
     }
 
-    IEnumerator Catch()
+    public IEnumerator Catch()
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
 

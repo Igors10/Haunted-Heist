@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ghostTutorial : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class ghostTutorial : MonoBehaviour
 
         throughWall = false;
         finishSteps = false;
+
+        
 
     }
 

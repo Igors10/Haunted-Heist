@@ -11608,6 +11608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528786811}
   - component: {fileID: 528786810}
+  - component: {fileID: 528786812}
   m_Layer: 0
   m_Name: GhostVision
   m_TagString: Untagged
@@ -11622,7 +11623,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528786809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -11682,6 +11683,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 683222165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &528786812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528786809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c288f261c48583429ee95b8295b19a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TroubleshootingFilter: {fileID: 528786810}
 --- !u!1 &530643214
 GameObject:
   m_ObjectHideFlags: 0
@@ -13553,6 +13567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements_UI: {fileID: 0}
   timer: {fileID: 0}
+  souls: {fileID: 0}
   dash_fill: {fileID: 345888349}
   stepvision_fill: {fileID: 1646002716}
   ghostVision: {fileID: 528786809}
@@ -16249,7 +16264,7 @@ Transform:
   m_GameObject: {fileID: 887677077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.8, y: 10, z: 0}
+  m_LocalPosition: {x: -12.98, y: 5.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38811,6 +38826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements_UI: {fileID: 0}
   timer: {fileID: 0}
+  hp: {fileID: 0}
   item_coupon: {fileID: 544600156}
   energy_bar: {fileID: 1047028826}
   full_energy_color: {r: 0.8701162, g: 0.9169811, b: 0.40658593, a: 1}
@@ -39110,7 +39126,8 @@ MonoBehaviour:
   tutorial_part_7: 0
   ghostRoom: 0
   ghostVent: 1
-  robber: 0
+  robberVent: 0
+  robberSeeGhost: 0
 --- !u!61 &1548787683
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40452,7 +40469,8 @@ MonoBehaviour:
   tutorial_part_7: 0
   ghostRoom: 1
   ghostVent: 0
-  robber: 0
+  robberVent: 0
+  robberSeeGhost: 0
 --- !u!61 &1686618849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46003,7 +46021,8 @@ MonoBehaviour:
   tutorial_part_7: 0
   ghostRoom: 1
   ghostVent: 0
-  robber: 0
+  robberVent: 0
+  robberSeeGhost: 0
 --- !u!61 &1815313085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51325,7 +51344,8 @@ MonoBehaviour:
   tutorial_part_7: 0
   ghostRoom: 1
   ghostVent: 0
-  robber: 0
+  robberVent: 0
+  robberSeeGhost: 0
 --- !u!61 &2113975130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51825,7 +51845,8 @@ MonoBehaviour:
   tutorial_part_7: 0
   ghostRoom: 1
   ghostVent: 0
-  robber: 0
+  robberVent: 0
+  robberSeeGhost: 0
 --- !u!61 &2134121188
 BoxCollider2D:
   m_ObjectHideFlags: 0

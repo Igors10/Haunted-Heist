@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class robberDummy : MonoBehaviour
 {
-    public Transform teleportSpot;
-
+    
     private void Start()
     {
-        teleportSpot = GameObject.FindGameObjectWithTag("spawnPointTutorial").GetComponent<Transform>();
+        
     }
 
     // Update is called once per frame
@@ -26,7 +25,12 @@ public class robberDummy : MonoBehaviour
             {
                 //increase the killcount and teleport the ghost back
                 component.robberKills += 1;
-                ghost.transform.position = teleportSpot.position;
+
+                if(ghost.TryGetComponent(out GhostScript script))
+                {
+                    StartCoroutine(script.Catch());
+                }
+                
             }
 
             Destroy(this.gameObject);
