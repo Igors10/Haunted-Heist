@@ -47,6 +47,10 @@ public class GhostScript : NetworkBehaviour
     public ParticleSystem ghostParticleZoomIn;
     public ParticleSystem ghostParticleZoomOut;
 
+    // Input
+
+    [SerializeField] float joystickDeadZone = 0.2f;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -85,14 +89,29 @@ public class GhostScript : NetworkBehaviour
     {
         if (IsOwner)
         {
-            Vector3 screen_mouse_position = Input.mousePosition;
+            Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            mouse_position = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
+            bool usingJoystick = joystickInput.magnitude > joystickDeadZone;
 
-            if (is_aiming) AimForCharge(mouse_position);
+            Vector2 targetPosition;
+
+            if (usingJoystick)
+            {
+                // Joystick
+                Vector2 direction = joystickInput.normalized;
+                targetPosition = (Vector2)transform.position + direction * 3f; // Scalar distance, can be increased.
+            }
+            else
+            {
+                // Mouse fallback
+                Vector3 screen_mouse_position = Input.mousePosition;
+                targetPosition = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
+            }
+
+            if (is_aiming) AimForCharge(targetPosition);
             if (charge_target_position != Vector2.zero) Charging();
 
-            // If not dashing, continuously update the last valid position to the current position
             if (!is_dashing)
             {
                 last_valid_position = transform.position;
