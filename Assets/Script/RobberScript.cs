@@ -1,6 +1,7 @@
 using FishNet.Object;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RobberScript : NetworkBehaviour
 {
@@ -106,16 +107,45 @@ public class RobberScript : NetworkBehaviour
 
         float distance_to_ghost = Vector2.Distance(Game.Instance.ghost.Value.transform.position, transform.position);
 
-        // Light shaking effect
+        // Shaking effect
         Vector2 shake_vector = ShakeEffect(distance_to_ghost);
         natural_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, natural_light.transform.position.z);
         flashlight.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, flashlight.transform.position.z);
 
-        // Growing Audio effect
+        // White noise audio effect
         AudioSource white_noise = GetComponent<AudioSource>();
-        if (distance_to_ghost > white_noise_range) white_noise.volume = 0;
-        else white_noise.volume = (white_noise_range - distance_to_ghost) * white_noise_volume / white_noise_range;
+        if (distance_to_ghost > white_noise_range)
+            white_noise.volume = 0;
+        else
+            white_noise.volume = (white_noise_range - distance_to_ghost) * white_noise_volume / white_noise_range;
+
+        // Controller rumble
+        HandleVibration(distance_to_ghost);
     }
+
+    void HandleVibration(float distance)
+    {
+        if (Gamepad.current == null)
+            return;
+
+        // No rumble outside of white noise range
+        if (distance > white_noise_range)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+            return;
+        }
+
+        // Intensity
+        float proximity = (white_noise_range - distance) / white_noise_range;
+        float intensityScale = 0.1f; // Overall
+
+        float lowFreq = proximity * 0.3f * intensityScale;
+        float highFreq = proximity * 0.6f * intensityScale;
+
+        Gamepad.current.SetMotorSpeeds(lowFreq, highFreq);
+    }
+
+
 
     Vector2 ShakeEffect(float distance_to_ghost)
     {
@@ -131,6 +161,13 @@ public class RobberScript : NetworkBehaviour
         return new Vector2(x, y);
 
     }
+
+    private void OnDisable()
+    {
+        if (Gamepad.current != null)
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
