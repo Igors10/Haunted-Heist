@@ -1400,7 +1400,7 @@ MonoBehaviour:
   sprite: {fileID: 3241090622462452788}
   aura_sprite: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
-  indication: {fileID: 5194409885436731392}
+  indication: {fileID: 6152226289140729521}
   indication_sprite: {fileID: 1963028166546097948}
   indication_hide_distance: 8
   hp_bar: {fileID: 4367471191611299958}
@@ -1775,6 +1775,7 @@ MonoBehaviour:
   goDown: 0
   goLeft: 0
   goRight: 0
+  moveRoom: 0
   flashlight: 0
   seenAGhost: 0
   ventUsed: 0
@@ -2178,8 +2179,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9133360506481942872, guid: cb5a02d055d266f409577a986965a716, type: 3}
   m_PrefabInstance: {fileID: 8368032463249580064}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5194409885436731392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4339070311826079776, guid: cb5a02d055d266f409577a986965a716, type: 3}
+--- !u!114 &6152226289140729521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2395950213092091537, guid: cb5a02d055d266f409577a986965a716, type: 3}
   m_PrefabInstance: {fileID: 8368032463249580064}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7d6be9edc115b44b986f09f7a506dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

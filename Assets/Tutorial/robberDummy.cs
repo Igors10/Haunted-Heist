@@ -19,21 +19,24 @@ public class robberDummy : MonoBehaviour
     {
         if(collision.CompareTag("Ghost"))
         {
-            GameObject ghost = collision.gameObject.transform.parent.gameObject;
+            collision.TryGetComponent(out GhostScript ghostScript);
 
-            if (ghost.TryGetComponent(out ghostTutorial component))
+            if (ghostScript.is_dashing)
             {
-                //increase the killcount and teleport the ghost back
-                component.robberKills += 1;
 
-                if(ghost.TryGetComponent(out GhostScript script))
+                GameObject ghost = collision.gameObject.transform.parent.gameObject;
+
+                if (ghost.TryGetComponent(out ghostTutorial component))
                 {
-                    StartCoroutine(script.Catch());
-                }
-                
-            }
+                    //increase the killcount and teleport the ghost back
+                    component.robberKills += 1;
+                    StartCoroutine(ghostScript.Catch());
+                    
 
-            Destroy(this.gameObject);
+                }
+
+                Destroy(this.gameObject);
+            }
         }
     }
 }

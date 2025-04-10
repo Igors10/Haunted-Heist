@@ -14,10 +14,10 @@ public class RobberScript : NetworkBehaviour
     public ArrowPointer[] exit_pointer;
 
     // Shake variables
-    [SerializeField] float radar_range;
-    [SerializeField] float white_noise_range;
-    [SerializeField] float shake_intensity;
-    [SerializeField] float white_noise_volume;
+    [SerializeField] public float radar_range;
+    [SerializeField] public float white_noise_range;
+    [SerializeField] public float shake_intensity;
+    [SerializeField] public float white_noise_volume;
     GameObject level_light;
 
     // Beign caught variables 

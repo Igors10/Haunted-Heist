@@ -94,10 +94,8 @@ public class RoomCheckScript : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Robber") && robberMoveRoom)
         {
-            GameObject ghost = collider.gameObject.transform.parent.gameObject;
-
-            //checking the position of the ghost in the tutorial
-            if (ghost.TryGetComponent(out ghostTutorial component))
+            //checking the position of the robber in the tutorial
+            if (collider.TryGetComponent(out robberTutorial component))
             {
                 component.moveRoom = true;
             }

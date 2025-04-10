@@ -13,6 +13,7 @@ TagManager:
   - Pusher
   - Robber
   - spawnPointTutorial
+  - GhostDummy
   layers:
   - Default
   - TransparentFX
