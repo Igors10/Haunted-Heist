@@ -21,7 +21,7 @@ public class GhostScript : NetworkBehaviour
 
     // Dashing Variables
     bool is_aiming;
-    bool is_dashing;
+    [HideInInspector] public bool is_dashing;
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
     float charge_time;

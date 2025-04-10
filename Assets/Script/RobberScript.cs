@@ -11,6 +11,7 @@ public class RobberScript : NetworkBehaviour
     [HideInInspector] public bool items_collected;
     public GameObject item_pick_up_aura;
     RobberUI robberUI;
+    public ArrowPointer[] exit_pointer;
 
     // Shake variables
     [SerializeField] float radar_range;
@@ -37,6 +38,8 @@ public class RobberScript : NetworkBehaviour
     private void Start()
     {
         level_light = GameObject.Find("Candels");
+        exit_pointer[0].target = GameObject.Find("FrontDoor_Close").transform.position;
+        exit_pointer[1].target = GameObject.Find("BackDoor_Close").transform.position;
     }
     public void Flashlight(bool is_on)
     {
@@ -103,11 +106,10 @@ public class RobberScript : NetworkBehaviour
 
         float distance_to_ghost = Vector2.Distance(Game.Instance.ghost.Value.transform.position, transform.position);
 
-        // Shaking effect
+        // Light shaking effect
         Vector2 shake_vector = ShakeEffect(distance_to_ghost);
         natural_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, natural_light.transform.position.z);
         flashlight.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, flashlight.transform.position.z);
-        //level_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, level_light.transform.position.z);
 
         // Growing Audio effect
         AudioSource white_noise = GetComponent<AudioSource>();
@@ -132,7 +134,7 @@ public class RobberScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsServer && collision.gameObject.tag == "Ghost")
+        if (IsServer && collision.gameObject.tag == "Ghost" && collision.gameObject.GetComponent<GhostScript>().is_dashing)
         {
             SyncCatchRobberServerRpc();
         }
@@ -196,6 +198,13 @@ public class RobberScript : NetworkBehaviour
 
         //HP blinking
         if (IsOwner) robberUI.hp.DecreaseHealth();
+
+        // Check if there are lives left
+        if (robberUI.hp.currentHealth < 1)
+        {
+            player.GameOverServerRpc(false);
+            if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().GameOverServerRpc(true);
+        }
 
         while (current_jumpscare_duration > 0)
         {
