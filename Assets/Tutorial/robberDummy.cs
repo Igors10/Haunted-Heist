@@ -19,7 +19,7 @@ public class robberDummy : MonoBehaviour
     {
         if(collision.CompareTag("Ghost"))
         {
-            collision.TryGetComponent(out GhostScript ghostScript);
+            collision.gameObject.transform.parent.TryGetComponent(out GhostScript ghostScript);
 
             if (ghostScript.is_dashing)
             {
