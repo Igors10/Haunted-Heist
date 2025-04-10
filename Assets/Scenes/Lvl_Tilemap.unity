@@ -5497,7 +5497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &166061085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33203,7 +33203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements_UI: {fileID: 2069475551}
   timer: {fileID: 631129097}
-  hp: {fileID: 0}
+  hp: {fileID: 1101106162}
   item_coupon: {fileID: 544600156}
   energy_bar: {fileID: 1347821992}
   full_energy_color: {r: 0.28627452, g: 0.6156863, b: 0.34509805, a: 1}
