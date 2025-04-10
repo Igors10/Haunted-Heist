@@ -76,6 +76,7 @@ public class GhostScript : NetworkBehaviour
             if (ghostUI == null) Debug.Log("Couldnt find ghost UI");
             else ghostUI.EnableUI();
         }
+        
     }
 
     void FindTeleportationPoint(GameObject teleport_point)
