@@ -13,6 +13,8 @@ public class robberTutorial : MonoBehaviour
     public bool goLeft;
     public bool goRight;
 
+    public bool moveRoom;
+
     //did the player use flashlight
     public bool flashlight;
 
@@ -32,6 +34,8 @@ public class robberTutorial : MonoBehaviour
         goDown = false;
         goLeft = false;
         goRight = false;
+
+        moveRoom = false;
 
         flashlight = false;
 
@@ -84,7 +88,7 @@ public class robberTutorial : MonoBehaviour
 
 
         //part 1
-        if (goUp && goDown && goLeft && goRight && TutorialProgress.part == 1)
+        if (moveRoom && TutorialProgress.part == 1)
         {
             TutorialProgress.part = 2;
         }

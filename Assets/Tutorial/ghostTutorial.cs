@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class ghostTutorial : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ghostTutorial : MonoBehaviour
     public bool goDown;
     public bool goLeft;
     public bool goRight;
+
+    public bool moveRoom;
 
     //did the player use step vision
     public bool stepVision;
@@ -28,6 +31,8 @@ public class ghostTutorial : MonoBehaviour
         goDown = false;
         goLeft = false;
         goRight = false;
+
+        moveRoom = false;
 
         stepVision = false;
 
@@ -72,7 +77,7 @@ public class ghostTutorial : MonoBehaviour
 
 
         //part 1
-        if (goUp && goDown && goLeft && goRight && TutorialProgress.part == 1)
+        if (moveRoom && TutorialProgress.part == 1)
         {
             TutorialProgress.part = 2;
         }
