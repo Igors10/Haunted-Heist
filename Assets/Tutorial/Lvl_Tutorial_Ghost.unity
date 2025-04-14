@@ -13385,8 +13385,8 @@ MonoBehaviour:
   - {fileID: 1389764691}
   - {fileID: 761670239}
   ghostVision: {fileID: 2016768425}
-  charged_color_dash: {r: 0, g: 0, b: 0, a: 0}
-  charged_color_stepvision: {r: 0, g: 0, b: 0, a: 0}
+  charged_color_dash: {r: 0.5921569, g: 0.25490198, b: 0.3019608, a: 1}
+  charged_color_stepvision: {r: 0.31764707, g: 0.34901962, b: 0.54509807, a: 1}
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
   is_dash_ready: 0
   is_stepvision_ready: 0
@@ -19305,6 +19305,9 @@ MonoBehaviour:
   firstInstance: {fileID: 981519683}
   secondInstance: {fileID: 1844181577}
   thirdInstance: {fileID: 1666701377}
+  firstRobberInstance: {fileID: 0}
+  secondRobberInstance: {fileID: 0}
+  thirdRobberInstance: {fileID: 0}
 --- !u!1 &887832798
 GameObject:
   m_ObjectHideFlags: 0
