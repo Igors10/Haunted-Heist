@@ -20,4 +20,9 @@ public class ChooseTutorialScript : MonoBehaviour
         SceneManager.LoadScene("Lvl_Tutorial_Ghost", LoadSceneMode.Single);
     }
 
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
