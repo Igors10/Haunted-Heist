@@ -1,7 +1,6 @@
 using FishNet.Object;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class RobberScript : NetworkBehaviour
 {
@@ -12,13 +11,12 @@ public class RobberScript : NetworkBehaviour
     [HideInInspector] public bool items_collected;
     public GameObject item_pick_up_aura;
     RobberUI robberUI;
-    public ArrowPointer[] exit_pointer;
 
     // Shake variables
-    [SerializeField] public float radar_range;
-    [SerializeField] public float white_noise_range;
-    [SerializeField] public float shake_intensity;
-    [SerializeField] public float white_noise_volume;
+    [SerializeField] float radar_range;
+    [SerializeField] float white_noise_range;
+    [SerializeField] float shake_intensity;
+    [SerializeField] float white_noise_volume;
     GameObject level_light;
 
     // Beign caught variables 
@@ -39,8 +37,6 @@ public class RobberScript : NetworkBehaviour
     private void Start()
     {
         level_light = GameObject.Find("Candels");
-        exit_pointer[0].target = GameObject.Find("FrontDoor_Close").transform.position;
-        exit_pointer[1].target = GameObject.Find("BackDoor_Close").transform.position;
     }
     public void Flashlight(bool is_on)
     {
@@ -76,7 +72,7 @@ public class RobberScript : NetworkBehaviour
     {
         item_pick_up_aura.SetActive(is_enabled);
         GetComponent<SpriteRenderer>().enabled = is_enabled;
-        GetComponent<CapsuleCollider2D>().enabled = is_enabled;
+        GetComponent<CircleCollider2D>().enabled = is_enabled;
         if (IsOwner) GetComponent<InputController>().enabled = is_enabled;
         else natural_light.SetActive(is_enabled);
     }
@@ -111,41 +107,13 @@ public class RobberScript : NetworkBehaviour
         Vector2 shake_vector = ShakeEffect(distance_to_ghost);
         natural_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, natural_light.transform.position.z);
         flashlight.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, flashlight.transform.position.z);
+        //level_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, level_light.transform.position.z);
 
-        // White noise audio effect
+        // Growing Audio effect
         AudioSource white_noise = GetComponent<AudioSource>();
-        if (distance_to_ghost > white_noise_range)
-            white_noise.volume = 0;
-        else
-            white_noise.volume = (white_noise_range - distance_to_ghost) * white_noise_volume / white_noise_range;
-
-        // Controller rumble
-        HandleVibration(distance_to_ghost);
+        if (distance_to_ghost > white_noise_range) white_noise.volume = 0;
+        else white_noise.volume = (white_noise_range - distance_to_ghost) * white_noise_volume / white_noise_range;
     }
-
-    void HandleVibration(float distance)
-    {
-        if (Gamepad.current == null)
-            return;
-
-        // No rumble outside of white noise range
-        if (distance > white_noise_range)
-        {
-            Gamepad.current.SetMotorSpeeds(0f, 0f);
-            return;
-        }
-
-        // Intensity
-        float proximity = (white_noise_range - distance) / white_noise_range;
-        float intensityScale = 0.1f; // Overall
-
-        float lowFreq = proximity * 0.3f * intensityScale;
-        float highFreq = proximity * 0.6f * intensityScale;
-
-        Gamepad.current.SetMotorSpeeds(lowFreq, highFreq);
-    }
-
-
 
     Vector2 ShakeEffect(float distance_to_ghost)
     {
@@ -162,16 +130,9 @@ public class RobberScript : NetworkBehaviour
 
     }
 
-    private void OnDisable()
-    {
-        if (Gamepad.current != null)
-            Gamepad.current.SetMotorSpeeds(0f, 0f);
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsServer && collision.gameObject.tag == "Ghost" && collision.gameObject.GetComponent<GhostScript>().is_dashing)
+        if (IsServer && collision.gameObject.tag == "Ghost")
         {
             SyncCatchRobberServerRpc();
         }
@@ -197,7 +158,7 @@ public class RobberScript : NetworkBehaviour
     void SyncFlashlightObserversRpc(bool is_on)
     {
         flashlight.SetActive(is_on);
-        if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().Indication(is_on);
+        Game.Instance.ghost.Value.GetComponent<Player>().Indication(is_on);
     }
 
     // ===============================================================================
@@ -234,14 +195,7 @@ public class RobberScript : NetworkBehaviour
         AudioManager.instance.PlaySFX("Damage");
 
         //HP blinking
-        if (IsOwner) robberUI.hp.DecreaseHealth();
-
-        // Check if there are lives left
-        if (robberUI.hp.currentHealth < 1)
-        {
-            player.GameOverServerRpc(false);
-            if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().GameOverServerRpc(true);
-        }
+        if (IsOwner && player.is_blinking == false) StartCoroutine(player.BlinkingLives());
 
         while (current_jumpscare_duration > 0)
         {

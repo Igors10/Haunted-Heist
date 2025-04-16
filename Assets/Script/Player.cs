@@ -22,7 +22,7 @@ public class Player : NetworkBehaviour
     public Color color;
 
     // indication varialbes
-    public ArrowPointer indication;
+    [SerializeField] GameObject indication;
     [SerializeField] SpriteRenderer indication_sprite;
     [SerializeField] float indication_hide_distance;
 
@@ -86,25 +86,74 @@ public class Player : NetworkBehaviour
     private void Update()
     {
         if (main_camera != null && this.gameObject.activeSelf) main_camera.GetComponent<CameraBehavior>().to_follow = transform.position;
-
-        UpdateIndication();
     }
 
+    private void FixedUpdate()
+    {
+        IndicationRotation();
+    }
+
+    void IndicationRotation()
+    {
+        // indication
+        if (indication.activeSelf && TryGetComponent(out GhostScript ghost))
+        {
+            Vector3 robber_direction = (Game.Instance.robber.Value.transform.position - transform.position).normalized;
+            indication.transform.rotation = Quaternion.FromToRotation(Vector3.up, robber_direction);
+
+            if (Vector2.Distance(Game.Instance.robber.Value.transform.position, transform.position) < indication_hide_distance)
+            {
+                indication_sprite.enabled = false;
+            }
+            else indication_sprite.enabled = true;
+        }
+        else
+        {
+            if (indication.activeSelf && TryGetComponent(out RobberScript robber))
+            {
+                Vector3 robber_direction = (Game.Instance.ghost.Value.transform.position - transform.position).normalized;
+                indication.transform.rotation = Quaternion.FromToRotation(Vector3.up, robber_direction);
+
+                if (Vector2.Distance(Game.Instance.ghost.Value.transform.position, transform.position) < indication_hide_distance)
+                {
+                    indication_sprite.enabled = false;
+                }
+                else indication_sprite.enabled = true;
+            }
+        }
+    } // Optimize this
     public void Indication(bool is_on)
     {
-        if (IsOwner) indication.gameObject.SetActive(is_on);
+        if (IsOwner) indication.SetActive(is_on);
     }
 
-    void UpdateIndication()
+    public IEnumerator BlinkingLives()
     {
-        if (TryGetComponent(out RobberScript robber))
+        hp_bar.SetActive(true);
+        float timer = blinking_duration;
+        is_blinking = true;
+
+        current_hp--;
+        lives[current_hp].color = wasted_life_color;
+
+        //check for game over
+        if (current_hp == 0 && TryGetComponent(out RobberScript robber))
         {
-            if (Game.Instance.ghost.Value != null) indication.target = Game.Instance.ghost.Value.transform.position;
+            GameOverServerRpc(false);
+            if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().GameOverServerRpc(true);
         }
-        else if (TryGetComponent(out GhostScript ghost))
+
+        while (timer > 0)
         {
-            if (Game.Instance.robber.Value != null) indication.target = Game.Instance.robber.Value.transform.position;
+            timer -= blinking_interval;
+
+            hp_bar.SetActive(!hp_bar.activeSelf);
+
+            yield return new WaitForSeconds(blinking_interval);
         }
+
+        is_blinking = false;
+        hp_bar.SetActive(false);
     }
 
     void SetUpUI()

@@ -1,18 +1,13 @@
+using Newtonsoft.Json.Bson;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class RobberUI : MonoBehaviour
 {
-    // UI elements
-    [SerializeField] GameObject elements_UI;
-    [SerializeField] GameObject timer;
-    public HealthBar hp;
-
     [SerializeField] GameObject item_coupon;
     [SerializeField] GameObject energy_bar;
 
-    // Nightvision energy bar variables
+    // Maybe have a low energy mode later
     [SerializeField] Color full_energy_color;
     [SerializeField] Color low_energy_color;
     [SerializeField] Image energy_bar_sprite;
@@ -22,9 +17,8 @@ public class RobberUI : MonoBehaviour
     [SerializeField] float burst_decrease;
     [SerializeField] float energy_decrease;
     [SerializeField] float energy_regeneration;
+    //[SerializeField] float use_threshold;
     bool recharging = false;
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,8 +29,8 @@ public class RobberUI : MonoBehaviour
 
     public void EnableUI()
     {
-        elements_UI.SetActive(true);
-        timer.SetActive(true);
+        item_coupon.SetActive(true);
+        energy_bar.SetActive(true);
     }
 
     private void FixedUpdate()
@@ -63,6 +57,12 @@ public class RobberUI : MonoBehaviour
                 Game.Instance.robber.Value.GetComponent<RobberScript>().NightVision(false); // turning night vision off if energy is at 0
                 RechargeMode(true);
             }
+            /*
+            else if (current_energy < use_threshold && energy_bar_sprite.color == full_energy_color)
+            {
+                energy_bar_sprite.color = low_energy_color;
+                Debug.Log("low energy level");
+            }*/
         }
         else
         {
@@ -71,6 +71,7 @@ public class RobberUI : MonoBehaviour
             {
                 current_energy = 1f;
             }
+            //else if (current_energy > use_threshold && energy_bar_sprite.color == low_energy_color) energy_bar_sprite.color = full_energy_color;
         }
 
         energy_bar_sprite.fillAmount = current_energy;

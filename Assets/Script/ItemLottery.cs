@@ -69,10 +69,11 @@ public class ItemLottery : MonoBehaviour
             if (item_coupon_sprites[i].color.a != 0) return false;
         }
 
+        items_collected_message.SetActive(true);
+
         for (int a = 0; a < escape_zone.Count(); a++)
         {
             escape_zone[a].SetActive(true);
-            Game.Instance.robber.Value.GetComponent<RobberScript>().exit_pointer[a].gameObject.SetActive(true);
         }
 
         return true;
