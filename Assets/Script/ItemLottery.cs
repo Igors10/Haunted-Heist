@@ -90,7 +90,7 @@ public class ItemLottery : MonoBehaviour
             random_item = all_items[Random.Range(0, all_items.Length)];
             while_stop++;
 
-        } while (random_item.GetComponent<SpriteRenderer>().color.a == 0f || while_stop < 5);
+        } while (random_item.GetComponent<SpriteRenderer>().color.r == 1f || while_stop < 5);
 
         return random_item;
     }
@@ -103,7 +103,7 @@ public class ItemLottery : MonoBehaviour
 
             else if (item_coupon_sprites[i].sprite == item_sprite)
             {
-                item_coupon_sprites[i].color = new Color(0, 0, 0, 0);
+                item_coupon_sprites[i].color = new Color(1f, 1f, 1f, 1f);
 
                 Game.Instance.robber.Value.GetComponent<RobberScript>().ResetItemRadar();
                 // if all the items are collected, it will set correcsponding robber's boolean to true.
