@@ -77,6 +77,24 @@ public class ItemLottery : MonoBehaviour
 
         return true;
     }
+
+    public GameObject GetRandomItem()
+    {
+        GameObject random_item;
+        float while_stop = 0;
+
+        GameObject[] all_items = GameObject.FindGameObjectsWithTag("Item");
+
+        do
+        {
+            random_item = all_items[Random.Range(0, all_items.Length)];
+            while_stop++;
+
+        } while (random_item.GetComponent<SpriteRenderer>().color.a == 0f || while_stop < 5);
+
+        return random_item;
+    }
+
     public void ItemPicked(Sprite item_sprite)
     {
         for (int i = 0; i < item_coupon_ids.Length; i++)
@@ -87,6 +105,7 @@ public class ItemLottery : MonoBehaviour
             {
                 item_coupon_sprites[i].color = new Color(0, 0, 0, 0);
 
+                Game.Instance.robber.Value.GetComponent<RobberScript>().ResetItemRadar();
                 // if all the items are collected, it will set correcsponding robber's boolean to true.
                 Game.Instance.robber.Value.GetComponent<RobberScript>().items_collected = AllItemsCollectedCheck();
                 break;
