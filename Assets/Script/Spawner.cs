@@ -166,8 +166,10 @@ public class Spawner : NetworkBehaviour
     [ObserversRpc]
     void UpdatePlayerObserversRpc(bool is_robber)
     {
+        if (new_player == null) Debug.Log("SPAWNER: failed to assign the character");
+
         if (is_robber)
-            Game.Instance.robber.Value = new_player; 
+            Game.Instance.robber.Value = new_player;
         else
             Game.Instance.ghost.Value = new_player;
 

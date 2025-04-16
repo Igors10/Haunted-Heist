@@ -57,5 +57,21 @@ public class Game : NetworkBehaviour
             is_robber_connected = true;
             is_ghost_connected = true;
         }
+
+        // Debug to see if robber and ghost variables are in ===================
+
+        if (robber.Value == null)
+        {
+            Debug.Log("robber is not assigned");
+        }
+        else Debug.Log("robber is assigned");
+
+        if (ghost.Value == null)
+        {
+            Debug.Log("ghost is not assigned");
+        }
+        else Debug.Log("ghost is assigned");
+
+        // ======================================================================
     }
 }

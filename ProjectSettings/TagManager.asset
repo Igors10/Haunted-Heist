@@ -12,6 +12,9 @@ TagManager:
   - MapBoundary
   - Pusher
   - Robber
+  - spawnPointTutorial
+  - GhostDummy
+  - RobberDummy
   layers:
   - Default
   - TransparentFX
@@ -78,3 +81,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  - VFX

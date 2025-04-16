@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class robberDummy : MonoBehaviour
 {
+    
+    private void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -14,14 +19,24 @@ public class robberDummy : MonoBehaviour
     {
         if(collision.CompareTag("Ghost"))
         {
-            GameObject ghost = collision.gameObject.transform.parent.gameObject;
+            collision.gameObject.transform.parent.TryGetComponent(out GhostScript ghostScript);
 
-            if (ghost.TryGetComponent(out ghostTutorial component))
+            if (ghostScript.is_dashing)
             {
-                component.robberKills += 1;
-            }
 
-            Destroy(this.gameObject);
+                GameObject ghost = collision.gameObject.transform.parent.gameObject;
+
+                if (ghost.TryGetComponent(out ghostTutorial component))
+                {
+                    //increase the killcount and teleport the ghost back
+                    component.robberKills += 1;
+                    StartCoroutine(ghostScript.Catch());
+                    
+
+                }
+
+                Destroy(this.gameObject);
+            }
         }
     }
 }
