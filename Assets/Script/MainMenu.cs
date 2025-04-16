@@ -105,7 +105,7 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
-        // "Fast dial" ip adresses 
+        // "Fast dial" IP addresses 
         if (Input.GetKeyDown(KeyCode.I)) // Igor's
         {
             input_field.text = "192.168.195.190";
@@ -114,5 +114,32 @@ public class MainMenu : MonoBehaviour
         {
             input_field.text = "192.168.195.36";
         }
+
+        // Call input check for going back to main menu
+        CheckForBackToMainMenu();
     }
+<<<<<<< Updated upstream
+=======
+
+
+    public void LoadPlayScene()
+    {
+        SceneManager.LoadScene("Play");
+    }
+
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    // If on Play or Tutorial scene, and "B" or "Circle" is pressed on controller, go back to main menu
+    public void CheckForBackToMainMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.JoystickButton2))
+        {
+            Debug.Log("Back to main menu");
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+>>>>>>> Stashed changes
 }
