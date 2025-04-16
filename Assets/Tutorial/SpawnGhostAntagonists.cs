@@ -28,9 +28,9 @@ public class SpawnGhostAntagonists : MonoBehaviour
 
         if (TutorialProgress.part == 6 && !ghostSpawned2)
         {
-            Instantiate(ghostObject, secondInstance.position, Quaternion.identity);
-            ghostSpawned2 = true;
-            ghostObject.GetComponent<Collider>().isTrigger = false;
+            //Instantiate(ghostObject, secondInstance.position, Quaternion.identity);
+            //ghostSpawned2 = true;
+            //ghostObject.GetComponent<Collider>().isTrigger = false;
         }
 
         if (TutorialProgress.part == 7)

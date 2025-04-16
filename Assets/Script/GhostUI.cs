@@ -11,7 +11,7 @@ public class GhostUI : MonoBehaviour
     [SerializeField] Color cooldown_color;
     [HideInInspector] public bool is_dash_ready = true;
     [HideInInspector] public bool is_stepvision_ready = true;
-    public IEnumerator Cooldown(float cooldown_time, bool is_dash)
+     public IEnumerator Cooldown(float cooldown_time, bool is_dash)
     {
         Image ability_fill = (is_dash) ? dash_fill : stepvision_fill;
 

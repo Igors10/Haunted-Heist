@@ -1,14 +1,11 @@
 using FishNet.Managing;
-using FishNet.Managing.Server;
-using FishNet.Object;
 using FishNet.Transporting.Tugboat;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 //using FishNet.Managing.Scened;
-using FishNet;
-using Unity.Mathematics;
 
 public class MainMenu : MonoBehaviour
 {
@@ -19,6 +16,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Color server_text_color;
     [SerializeField] GameObject tutorial_window;
     [SerializeField] GameObject credits_window;
+
+    public Button nextButton;
+
     bool server_created = false;
 
     private void Start()
@@ -33,6 +33,9 @@ public class MainMenu : MonoBehaviour
 
         tutorial_window.SetActive(!is_tutorial_open);
         tutorial_window.GetComponent<Tutorial>().EnableTutorial(!is_tutorial_open);
+
+        EventSystem.current.SetSelectedGameObject(null); // Clear first
+        EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
 
         // closing credits in case they are open
         credits_window.SetActive(false);
@@ -105,7 +108,7 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
-        // "Fast dial" IP addresses 
+        // "Fast dial" ip adresses 
         if (Input.GetKeyDown(KeyCode.I)) // Igor's
         {
             input_field.text = "192.168.195.190";
@@ -114,11 +117,7 @@ public class MainMenu : MonoBehaviour
         {
             input_field.text = "192.168.195.36";
         }
-
-        // Call input check for going back to main menu
-        CheckForBackToMainMenu();
     }
-
 
     public void LoadPlayScene()
     {
@@ -129,6 +128,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
 
     // If on Play or Tutorial scene, and "B" or "Circle" is pressed on controller, go back to main menu
     public void CheckForBackToMainMenu()
