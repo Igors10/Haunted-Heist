@@ -123,4 +123,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Play");
     }
+
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
