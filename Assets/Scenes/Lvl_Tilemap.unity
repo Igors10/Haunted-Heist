@@ -11094,6 +11094,9 @@ MonoBehaviour:
   elements_UI: {fileID: 166061084}
   timer: {fileID: 631129097}
   souls: {fileID: 1387436448}
+  ghostVision: {fileID: 528786809}
+  stepvision_filter_intensity: 0.85
+  stepvision_filter_color: {r: 0.14027049, g: 0.7509433, b: 0.6642498, a: 1}
   dash_fill: {fileID: 704851738}
   stepvision_fill: {fileID: 1050676331}
   dash_icons:
@@ -11104,7 +11107,6 @@ MonoBehaviour:
   - {fileID: 17048408}
   - {fileID: 833186576}
   - {fileID: 892807494}
-  ghostVision: {fileID: 528786809}
   charged_color_dash: {r: 0.6039216, g: 0.2627451, b: 0.3137255, a: 1}
   charged_color_stepvision: {r: 0.3254902, g: 0.35686275, b: 0.5686275, a: 1}
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
