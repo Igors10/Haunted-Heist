@@ -11948,7 +11948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: You goal is to find and catch the Robber. Use your Dash to catch him
+      value: Your goal is to find and catch the Robber. Use your Dash to catch him
         (Left Mouse Button).
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
@@ -13390,6 +13390,9 @@ MonoBehaviour:
   elements_UI: {fileID: 887832798}
   timer: {fileID: 1173038515}
   souls: {fileID: 527202534}
+  ghostVision: {fileID: 2016768425}
+  stepvision_filter_intensity: 0
+  stepvision_filter_color: {r: 0, g: 0, b: 0, a: 0}
   dash_fill: {fileID: 1624755798}
   stepvision_fill: {fileID: 753691139}
   dash_icons:
@@ -13400,7 +13403,6 @@ MonoBehaviour:
   - {fileID: 1346083874}
   - {fileID: 1389764691}
   - {fileID: 761670239}
-  ghostVision: {fileID: 2016768425}
   charged_color_dash: {r: 0.5921569, g: 0.25490198, b: 0.3019608, a: 1}
   charged_color_stepvision: {r: 0.31764707, g: 0.34901962, b: 0.54509807, a: 1}
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
@@ -15684,11 +15686,13 @@ MonoBehaviour:
   elements_UI: {fileID: 0}
   timer: {fileID: 0}
   souls: {fileID: 0}
+  ghostVision: {fileID: 528786809}
+  stepvision_filter_intensity: 0
+  stepvision_filter_color: {r: 0, g: 0, b: 0, a: 0}
   dash_fill: {fileID: 345888349}
   stepvision_fill: {fileID: 1646002716}
   dash_icons: []
   stepvision_icons: []
-  ghostVision: {fileID: 528786809}
   charged_color_dash: {r: 0, g: 0, b: 0, a: 0}
   charged_color_stepvision: {r: 0, g: 0, b: 0, a: 0}
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
@@ -16638,7 +16642,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 05:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16704,7 +16708,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &744267349
