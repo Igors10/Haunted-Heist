@@ -118,8 +118,6 @@ public class MainMenu : MonoBehaviour
         // Call input check for going back to main menu
         CheckForBackToMainMenu();
     }
-<<<<<<< Updated upstream
-=======
 
 
     public void LoadPlayScene()
@@ -141,5 +139,5 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
     }
->>>>>>> Stashed changes
+
 }
