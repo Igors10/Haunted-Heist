@@ -285,6 +285,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+=======
 --- !u!1 &346151862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5577748773944989052, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
@@ -726,11 +728,14 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686915145}
   m_CullTransparentMesh: 1
+>>>>>>> Stashed changes
 --- !u!224 &754812179 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
   m_PrefabInstance: {fileID: 2069042408}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
 --- !u!114 &754812183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +888,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761480811}
   m_CullTransparentMesh: 1
+>>>>>>> Stashed changes
 --- !u!1 &828749217
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,11 +986,14 @@ RectTransform:
   - {fileID: 1712711900}
   - {fileID: 754812179}
   - {fileID: 1034873478}
+<<<<<<< Updated upstream
+=======
   - {fileID: 648186416}
   - {fileID: 1500624225}
   - {fileID: 1106690665}
   - {fileID: 467519175}
   - {fileID: 686915146}
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
