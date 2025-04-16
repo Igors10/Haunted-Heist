@@ -25,6 +25,9 @@ public class ChooseTutorialScript : MonoBehaviour
         Debug.Log("FRANEK::Twoja stara to duch");
         SceneManager.LoadScene("Lvl_Tutorial_Ghost", LoadSceneMode.Single);
     }
+
+<<<<<<< Updated upstream
+=======
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
@@ -40,4 +43,5 @@ public class ChooseTutorialScript : MonoBehaviour
         }
     }
 
+>>>>>>> Stashed changes
 }

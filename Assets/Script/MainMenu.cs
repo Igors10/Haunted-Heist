@@ -1,9 +1,14 @@
 using FishNet.Managing;
+using FishNet.Managing.Server;
+using FishNet.Object;
 using FishNet.Transporting.Tugboat;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 //using FishNet.Managing.Scened;
+using FishNet;
+using Unity.Mathematics;
 
 public class MainMenu : MonoBehaviour
 {
@@ -113,6 +118,10 @@ public class MainMenu : MonoBehaviour
         // Call input check for going back to main menu
         CheckForBackToMainMenu();
     }
+<<<<<<< Updated upstream
+=======
+
+
     public void LoadPlayScene()
     {
         SceneManager.LoadScene("Play");
@@ -132,4 +141,5 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
     }
+>>>>>>> Stashed changes
 }
