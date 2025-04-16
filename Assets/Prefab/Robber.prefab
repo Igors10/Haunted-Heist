@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closest_item: {fileID: 0}
-  pick_up_speed_default: 0.009
+  pick_up_speed_default: 0.02
   pickupVFXPrefab: {fileID: 1967835574231978638, guid: 3e196c9e632c76841a71cb6e2dc6d010, type: 3}
 --- !u!1 &2645106861058384243
 GameObject:
