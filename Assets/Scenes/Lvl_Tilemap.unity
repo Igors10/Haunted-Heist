@@ -11222,6 +11222,9 @@ MonoBehaviour:
   elements_UI: {fileID: 166061084}
   timer: {fileID: 631129097}
   souls: {fileID: 1387436448}
+  ghostVision: {fileID: 528786809}
+  stepvision_filter_intensity: 0.85
+  stepvision_filter_color: {r: 0.12093263, g: 0.8113208, b: 0.75088507, a: 1}
   dash_fill: {fileID: 704851738}
   stepvision_fill: {fileID: 1050676331}
   dash_icons:
@@ -11232,9 +11235,8 @@ MonoBehaviour:
   - {fileID: 17048408}
   - {fileID: 833186576}
   - {fileID: 892807494}
-  ghostVision: {fileID: 528786809}
-  charged_color_dash: {r: 0.6039216, g: 0.2627451, b: 0.3137255, a: 1}
-  charged_color_stepvision: {r: 0.3254902, g: 0.35686275, b: 0.5686275, a: 1}
+  charged_color_dash: {r: 0.5647059, g: 0.21568629, b: 0.27058825, a: 1}
+  charged_color_stepvision: {r: 0.3137255, g: 0.34509805, b: 0.54901963, a: 1}
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
   is_dash_ready: 0
   is_stepvision_ready: 0
@@ -11982,7 +11984,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 05:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12048,7 +12050,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &746077575

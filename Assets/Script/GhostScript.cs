@@ -336,6 +336,8 @@ public class GhostScript : NetworkBehaviour
     {
         if (ghostUI.stepvision_fill.fillAmount < 1) return;
 
+        ghostUI.StepVisionFilter(is_on);
+
         // Cooldown
         if (!is_on) StartCoroutine(ghostUI.Cooldown(stepvision_cooldown, false));
 
