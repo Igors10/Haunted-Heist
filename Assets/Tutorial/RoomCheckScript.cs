@@ -14,6 +14,7 @@ public class RoomCheckScript : MonoBehaviour
     public bool ghostVent;
     public bool ghostMoveRoom;
     public bool robberVent;
+    public bool robberLight;
     public bool robberSeeGhost;
     public bool robberMoveRoom;
 
@@ -100,6 +101,15 @@ public class RoomCheckScript : MonoBehaviour
                 component.moveRoom = true;
             }
         }
+
+        if (collider.gameObject.CompareTag("Robber") && robberLight)
+        {
+            //checking the position of the robber in the tutorial
+            if (collider.TryGetComponent(out robberTutorial component))
+            {
+                component.moveLight = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
@@ -110,6 +120,15 @@ public class RoomCheckScript : MonoBehaviour
             if (collider.gameObject.TryGetComponent(out robberTutorial component))
             {
                 component.seenAGhost = false;
+            }
+        }
+
+        if (collider.gameObject.CompareTag("Robber") && robberLight)
+        {
+            //checking the position of the robber in the tutorial
+            if (collider.TryGetComponent(out robberTutorial component))
+            {
+                component.moveLight = false;
             }
         }
     }

@@ -5924,6 +5924,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 308770743}
+  - {fileID: 1770729641}
   - {fileID: 1789202333}
   - {fileID: 1886628331}
   m_Father: {fileID: 1884943422}
@@ -7643,6 +7644,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 0
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 1
 --- !u!61 &308770745
@@ -44044,6 +44046,111 @@ Transform:
   - {fileID: 615317195}
   m_Father: {fileID: 1884943422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1770729640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1770729641}
+  - component: {fileID: 1770729643}
+  - component: {fileID: 1770729642}
+  m_Layer: 0
+  m_Name: LightCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1770729641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770729640}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.96, y: 0.17, z: 0}
+  m_LocalScale: {x: 1.1549631, y: 1.4196347, z: 5.331}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 167638029}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1770729642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770729640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2bc80d5660da9468e4ded821d8dedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorial_part_1: 0
+  tutorial_part_2: 1
+  tutorial_part_3: 0
+  tutorial_part_4: 0
+  tutorial_part_5: 0
+  tutorial_part_6: 0
+  tutorial_part_7: 0
+  ghostRoom: 0
+  ghostVent: 0
+  ghostMoveRoom: 0
+  robberVent: 0
+  robberLight: 1
+  robberSeeGhost: 0
+  robberMoveRoom: 0
+--- !u!61 &1770729643
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770729640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.64383876, y: -0.29976308}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.6827157, y: 1.1431503}
+  m_EdgeRadius: 0
 --- !u!1001 &1774559951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44416,6 +44523,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 0
   robberVent: 1
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 0
 --- !u!61 &1789202335
@@ -46687,6 +46795,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 0
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 1
   robberMoveRoom: 0
 --- !u!61 &1886628333
