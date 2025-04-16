@@ -26,6 +26,11 @@ public class RobberScript : NetworkBehaviour
     bool is_caught = false;
     [SerializeField] GameObject jumpscare;
 
+    // Item radar
+    [SerializeField] float time_before_item_help;
+    float item_radar_timer;
+    [SerializeField] ArrowPointer item_arrow;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -38,6 +43,7 @@ public class RobberScript : NetworkBehaviour
     }
     private void Start()
     {
+        item_radar_timer = time_before_item_help;
         level_light = GameObject.Find("Candels");
         exit_pointer[0].target = GameObject.Find("FrontDoor_Close").transform.position;
         exit_pointer[1].target = GameObject.Find("BackDoor_Close").transform.position;
@@ -99,6 +105,26 @@ public class RobberScript : NetworkBehaviour
     private void Update()
     {
         GhostRadar();
+        ItemRadar();
+    }
+
+    public void ResetItemRadar()
+    {
+        item_radar_timer = time_before_item_help;
+        item_arrow.gameObject.SetActive(false);
+    }
+    void ItemRadar()
+    {
+        if (item_arrow.gameObject.activeSelf) return;
+
+        item_radar_timer -= Time.deltaTime;
+
+        if (item_radar_timer < 0)
+        {
+            // activate the arrow
+            item_arrow.gameObject.SetActive(true);
+            item_arrow.target = Game.Instance.item_lottery.GetRandomItem().transform.position;
+        }
     }
 
     void GhostRadar()
