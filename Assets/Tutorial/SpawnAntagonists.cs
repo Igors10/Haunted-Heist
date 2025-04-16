@@ -25,18 +25,18 @@ public class SpawnAntagonists : MonoBehaviour
     {
 
 
-        if(TutorialProgress.part == 4 && !secondRobber)
+        if(TutorialProgress.part == 5 && !secondRobber)
         {
 
             GameObject robber = Instantiate(robberObject, secondInstance.position, Quaternion.identity);
             secondRobberInstance = robber.GetComponent<robberDummy>(); // Store the reference
-            footsteps.SetActive(true);
             secondRobber = true;
+            footsteps.SetActive(false);
         }
 
-        if (TutorialProgress.part == 5)
+        if (TutorialProgress.part == 4)
         {
-            footsteps.SetActive(false);
+            footsteps.SetActive(true);
         }
 
     }
