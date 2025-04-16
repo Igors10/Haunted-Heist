@@ -90,7 +90,9 @@ public class ItemLottery : MonoBehaviour
             random_item = all_items[Random.Range(0, all_items.Length)];
             while_stop++;
 
+
         } while (random_item.GetComponent<SpriteRenderer>().color.r == 1f || while_stop < 5);
+
 
         return random_item;
     }
