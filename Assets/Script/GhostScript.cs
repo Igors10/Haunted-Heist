@@ -21,8 +21,7 @@ public class GhostScript : NetworkBehaviour
 
     // Dashing Variables
     bool is_aiming;
-    [HideInInspector] public bool is_dashing;
-
+    bool is_dashing;
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
     float charge_time;
@@ -43,14 +42,6 @@ public class GhostScript : NetworkBehaviour
     List<Vector3> teleportation_locations = new List<Vector3>();
     SpriteRenderer hiding_sprite;
     Color hiding_color;
-
-    // Ghost particle effects
-    public ParticleSystem ghostParticleZoomIn;
-    public ParticleSystem ghostParticleZoomOut;
-
-    // Input
-
-    [SerializeField] float joystickDeadZone = 0.2f;
 
     public override void OnStartClient()
     {
@@ -76,7 +67,6 @@ public class GhostScript : NetworkBehaviour
             if (ghostUI == null) Debug.Log("Couldnt find ghost UI");
             else ghostUI.EnableUI();
         }
-        
     }
 
     void FindTeleportationPoint(GameObject teleport_point)
@@ -91,29 +81,14 @@ public class GhostScript : NetworkBehaviour
     {
         if (IsOwner)
         {
-            Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector3 screen_mouse_position = Input.mousePosition;
 
-            bool usingJoystick = joystickInput.magnitude > joystickDeadZone;
+            mouse_position = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
 
-            Vector2 targetPosition;
-
-            if (usingJoystick)
-            {
-                // Joystick
-                Vector2 direction = joystickInput.normalized;
-                targetPosition = (Vector2)transform.position + direction * 3f; // Scalar distance, can be increased.
-            }
-            else
-            {
-                // Mouse fallback
-                Vector3 screen_mouse_position = Input.mousePosition;
-                targetPosition = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
-            }
-
-            if (is_aiming) AimForCharge(targetPosition);
+            if (is_aiming) AimForCharge(mouse_position);
             if (charge_target_position != Vector2.zero) Charging();
 
+            // If not dashing, continuously update the last valid position to the current position
             if (!is_dashing)
             {
                 last_valid_position = transform.position;
@@ -217,7 +192,6 @@ public class GhostScript : NetworkBehaviour
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
 
-
         SyncHideServerRpc(false);
         is_aiming = false;
 
@@ -253,7 +227,6 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
-
 
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
@@ -350,7 +323,6 @@ public class GhostScript : NetworkBehaviour
     public void SyncHideServerRpc(bool is_hiding)
     {
         SyncHideObserversRpc(is_hiding);
-
     }
 
     [ObserversRpc]
@@ -360,35 +332,7 @@ public class GhostScript : NetworkBehaviour
         ghost_hiding.SetActive(is_hiding);
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
-        if (Game.Instance.robber.Value != null)
         Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
-
-        //ghost particle effects for charging
-        if (is_hiding)
-        {
-            if (ghostParticleZoomIn.isEmitting)
-            {
-                ghostParticleZoomIn.Clear();
-                Debug.Log("ZoomIn cleared");
-            }
-
-            ghostParticleZoomOut.Stop();
-            if (ghostParticleZoomOut.isStopped)
-            {
-                ghostParticleZoomOut.Play();
-                Debug.Log("ZoomOut activated");
-            }
-        }
-        else
-        {
-            ghostParticleZoomIn.Stop();
-            if (ghostParticleZoomIn.isStopped)
-            {
-                ghostParticleZoomIn.Play();
-                Debug.Log("ZoomIn activated");
-            }
-        }
-
     }
 
     // ==========================================================================
@@ -422,7 +366,7 @@ public class GhostScript : NetworkBehaviour
         return teleportation_locations[chosen_point];
     }
 
-    public IEnumerator Catch()
+    IEnumerator Catch()
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
 
@@ -436,7 +380,7 @@ public class GhostScript : NetworkBehaviour
         float current_alpha = hiding_color.a;
 
         // Blinking collected souls
-        if (IsOwner) ghostUI.souls.IncreaseHealth();
+        if (IsOwner) StartCoroutine(player.BlinkingLives());
 
         while (current_laughing_duration > 0)
         {

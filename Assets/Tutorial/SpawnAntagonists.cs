@@ -16,47 +16,41 @@ public class SpawnAntagonists : MonoBehaviour
     bool secondRobber = false;
     bool thirdRobber = false;
 
-    public robberDummy firstRobberInstance;
-    public robberDummy secondRobberInstance;
-    public robberDummy thirdRobberInstance;
 
     // Update is called once per frame
     void Update()
     {
 
 
+        if (TutorialProgress.part == 3 && !firstRobber)
+        {
+
+            Instantiate(robberObject, firstInstance.position, Quaternion.identity);
+            firstRobber = true;
+        }
+
+
         if(TutorialProgress.part == 4 && !secondRobber)
         {
 
-            GameObject robber = Instantiate(robberObject, secondInstance.position, Quaternion.identity);
-            secondRobberInstance = robber.GetComponent<robberDummy>(); // Store the reference
+            Instantiate(robberObject, secondInstance.position, Quaternion.identity);
             footsteps.SetActive(true);
             secondRobber = true;
         }
 
-        if (TutorialProgress.part == 5)
+        if (TutorialProgress.part == 5 && !thirdRobber)
         {
+
+            Instantiate(robberObject, thirdInstance.position, Quaternion.identity);
             footsteps.SetActive(false);
+            footsteps2.SetActive(true);
+            thirdRobber = true;
         }
 
+        if(TutorialProgress.part == 6)
+        {
+            footsteps2.SetActive(false);
+            //ghost wins
+        }
     }
-
-    public void SpawnFirstRobber()
-    {
-
-        GameObject robber = Instantiate(robberObject, firstInstance.position, Quaternion.identity);
-        firstRobberInstance = robber.GetComponent<robberDummy>(); // Store the reference
-        Debug.Log("RF:" + firstRobberInstance);
-        firstRobber = true;
-    }
-
-    public void SpawnThirdRobber()
-    {
-
-        GameObject robber = Instantiate(robberObject, thirdInstance.position, Quaternion.identity);
-        thirdRobberInstance = robber.GetComponent<robberDummy>(); // Store the reference
-        footsteps2.SetActive(true);
-        thirdRobber = true;
-    }
-
 }

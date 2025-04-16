@@ -39,10 +39,6 @@ public class Tutorial : MonoBehaviour
         previos_button.gameObject.SetActive(true);
         next_button.gameObject.SetActive(true);
         tutorial_main.SetActive(false);
-
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(next_button.gameObject);
-
     }
 
     public void OpenTutorialGhost()
@@ -52,10 +48,6 @@ public class Tutorial : MonoBehaviour
         previos_button.gameObject.SetActive(true);
         next_button.gameObject.SetActive(true);
         tutorial_main.SetActive(false);
-
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(next_button.gameObject);
-
     }
 
     bool NextPageCheck(int current_page, int total_page_count)
@@ -73,7 +65,6 @@ public class Tutorial : MonoBehaviour
 
             // Disabling next button if last page
             next_button.gameObject.SetActive(NextPageCheck(current_robber_tutorial_page, robber_tutorial_pages.Length));
-            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(previos_button.gameObject);
         }
         else // Next page Ghost
         {
@@ -83,7 +74,6 @@ public class Tutorial : MonoBehaviour
 
             // Disabling next button if last page
             next_button.gameObject.SetActive(NextPageCheck(current_ghost_tutorial_page, ghost_tutorial_pages.Length));
-            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(previos_button.gameObject);
         }
     }
 
