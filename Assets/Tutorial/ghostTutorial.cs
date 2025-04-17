@@ -141,6 +141,8 @@ public class ghostTutorial : MonoBehaviour
         {
             TutorialProgress.part = 7;
             ghostScript.player.Indication(false);
+
+            this.gameObject.GetComponent<Player>().GameOverServerRpc(true);
         }
 
     }
