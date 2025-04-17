@@ -46,12 +46,13 @@ public class TutorialUI : MonoBehaviour
 
         if (TutorialProgress.part == 4)
         {
-            RightButtonAction.SetActive(true);
+            if(ghost) RightButtonAction.SetActive(true);
         }
 
         if (TutorialProgress.part == 5)
         {
             if (ghost) ItemCoupon.SetActive(true);
+            if (robber) RightButtonAction.SetActive(true);
         }
 
         if (TutorialProgress.part == 6)
