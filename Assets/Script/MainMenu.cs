@@ -117,6 +117,8 @@ public class MainMenu : MonoBehaviour
         {
             input_field.text = "192.168.195.36";
         }
+
+        CheckForBackToMainMenu();
     }
 
     public void LoadPlayScene()
