@@ -52,6 +52,10 @@ public class GhostScript : NetworkBehaviour
 
     [SerializeField] float joystickDeadZone = 0.2f;
 
+    // Ghost's wild
+    [HideInInspector] public bool wild_mode_on;
+    [SerializeField] float wild_mode_speed_mod;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -118,7 +122,22 @@ public class GhostScript : NetworkBehaviour
             {
                 last_valid_position = transform.position;
             }
+
+
+            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
         }
+    }
+
+    public IEnumerator WildMode()
+    {
+        SyncHideServerRpc(false);
+
+        yield return new WaitForSeconds(0.3f);
+
+        player.frozen = false;
+
+        default_speed *= wild_mode_speed_mod;
+        player.speed *= wild_mode_speed_mod;
     }
 
     void AimForCharge(Vector2 target_position)
