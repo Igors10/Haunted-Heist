@@ -11,6 +11,8 @@ public class ItemLottery : MonoBehaviour
     [SerializeField] int total_item_number;
     int[] item_coupon_ids = new int[6];
     [SerializeField] Image[] item_coupon_sprites = new Image[6];
+    [SerializeField] Image[] item_coupon_frames = new Image[6];
+    [SerializeField] Sprite green_frame; 
     [SerializeField] GameObject items_collected_message;
     [SerializeField] GameObject[] escape_zone = new GameObject[2];
 
@@ -106,6 +108,7 @@ public class ItemLottery : MonoBehaviour
             else if (item_coupon_sprites[i].sprite == item_sprite)
             {
                 item_coupon_sprites[i].color = new Color(1f, 1f, 1f, 1f);
+                item_coupon_frames[i].sprite = green_frame;
 
                 Game.Instance.robber.Value.GetComponent<RobberScript>().ResetItemRadar();
                 // if all the items are collected, it will set correcsponding robber's boolean to true.
