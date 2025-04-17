@@ -13160,8 +13160,8 @@ MonoBehaviour:
   timer: {fileID: 1173038515}
   souls: {fileID: 527202534}
   ghostVision: {fileID: 2016768425}
-  stepvision_filter_intensity: 0
-  stepvision_filter_color: {r: 0, g: 0, b: 0, a: 0}
+  stepvision_filter_intensity: 0.85
+  stepvision_filter_color: {r: 0.33374858, g: 0.8490566, b: 0.8144933, a: 1}
   dash_fill: {fileID: 1624755798}
   stepvision_fill: {fileID: 753691139}
   dash_icons:
@@ -18951,6 +18951,7 @@ GameObject:
   - component: {fileID: 887677079}
   - component: {fileID: 887677078}
   - component: {fileID: 887677080}
+  - component: {fileID: 887677081}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: spawnPointTutorial
@@ -19008,6 +19009,25 @@ MonoBehaviour:
   firstRobberInstance: {fileID: 0}
   secondRobberInstance: {fileID: 0}
   thirdRobberInstance: {fileID: 0}
+--- !u!114 &887677081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887677077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922023baa4a936b4db548178814b781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftButtonAction: {fileID: 1820431602}
+  RightButtonAction: {fileID: 1346083872}
+  Life: {fileID: 527202532}
+  ItemCoupon: {fileID: 0}
+  Timer: {fileID: 1173038515}
+  ghost: 1
+  robber: 0
 --- !u!1 &887832798
 GameObject:
   m_ObjectHideFlags: 0
@@ -43843,6 +43863,7 @@ MonoBehaviour:
   ghostVent: 1
   ghostMoveRoom: 0
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 0
 --- !u!61 &1548787683
@@ -51903,6 +51924,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 0
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 0
 --- !u!61 &1815313085
@@ -55636,6 +55658,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 1
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 0
 --- !u!61 &1967588411
@@ -58419,6 +58442,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 0
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 0
 --- !u!61 &2113975130
@@ -58804,6 +58828,7 @@ MonoBehaviour:
   ghostVent: 0
   ghostMoveRoom: 0
   robberVent: 0
+  robberLight: 0
   robberSeeGhost: 0
   robberMoveRoom: 0
 --- !u!61 &2134121188
