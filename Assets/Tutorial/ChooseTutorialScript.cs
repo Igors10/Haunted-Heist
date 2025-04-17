@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 public class ChooseTutorialScript : MonoBehaviour
 {
 
+    void Update()
+    {
+        CheckForBackToMainMenu();
+    }
+
     public void RobberTutorial()
     {
         //reset the tutorial stage in static script
@@ -25,7 +30,6 @@ public class ChooseTutorialScript : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-
 
     // If on Play or Tutorial scene, and "B" or "Circle" is pressed on controller, go back to main menu
     public void CheckForBackToMainMenu()
