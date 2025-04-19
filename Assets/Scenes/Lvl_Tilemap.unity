@@ -14836,6 +14836,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 16f11b1330bac2c4b8021eda46042545, type: 3}
   - {fileID: 8300000, guid: 2219304a7701c934d903c97813875639, type: 3}
   - {fileID: 8300000, guid: a4ba0b8c9420f234c88554869cfe9136, type: 3}
+  - {fileID: 8300000, guid: af9027ac26fe9bd42b8d193a4aa7b1bf, type: 3}
+  - {fileID: 8300000, guid: 5dfcb6f7ceec1c149b5ea7f46d91cf5a, type: 3}
   musicSource: {fileID: 2068006972}
   sfxSource: {fileID: 1021322026}
 --- !u!1 &1028410370
