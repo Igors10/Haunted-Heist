@@ -471,6 +471,8 @@ MonoBehaviour:
   ghostParticleZoomIn: {fileID: 8127603847181126484}
   ghostParticleZoomOut: {fileID: 7711715213158653238}
   joystickDeadZone: 0.2
+  wild_mode_on: 0
+  wild_mode_speed_mod: 2.5
 --- !u!50 &4216343954045900820
 Rigidbody2D:
   serializedVersion: 5
@@ -558,9 +560,12 @@ MonoBehaviour:
   goDown: 0
   goLeft: 0
   goRight: 0
+  moveRoom: 0
   stepVision: 0
   throughWall: 0
   finishSteps: 0
+  spawner: {fileID: 0}
+  spawnAntagonists: {fileID: 0}
 --- !u!1 &5223075842775214517
 GameObject:
   m_ObjectHideFlags: 0
