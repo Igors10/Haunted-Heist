@@ -142,4 +142,9 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void LoadHelpScene()
+    {
+        SceneManager.LoadScene("Help");
+    }
+
 }
