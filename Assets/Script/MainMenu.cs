@@ -117,6 +117,8 @@ public class MainMenu : MonoBehaviour
         {
             input_field.text = "192.168.195.36";
         }
+
+        CheckForBackToMainMenu();
     }
 
     public void LoadPlayScene()
@@ -138,6 +140,11 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Back to main menu");
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void LoadHelpScene()
+    {
+        SceneManager.LoadScene("Help");
     }
 
 }
