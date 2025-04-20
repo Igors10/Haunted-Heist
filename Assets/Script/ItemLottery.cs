@@ -94,7 +94,7 @@ public class ItemLottery : MonoBehaviour
             while_stop++;
 
 
-        } while (random_item.GetComponent<SpriteRenderer>().color.r == 1f || while_stop < 5);
+        } while (random_item.GetComponent<SpriteRenderer>().color.r == 1f && while_stop < 5);
 
 
         return random_item;

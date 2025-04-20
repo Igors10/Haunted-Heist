@@ -226,7 +226,7 @@ public class RobberScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsServer && collision.gameObject.tag == "Ghost" && collision.gameObject.GetComponent<GhostScript>().is_dashing)
+        if (IsServer && collision.gameObject.tag == "Ghost" && collision.transform.parent.GetComponent<GhostScript>().is_dashing)
         {
             SyncCatchRobberServerRpc();
         }
