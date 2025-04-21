@@ -33,7 +33,7 @@ public class RobberScript : NetworkBehaviour
 
     // Night vision jump scare variables
     bool jumpscared;
-    float jumpscare_cooldown = 5f;
+    float jumpscare_cooldown = 20f;
 
     public override void OnStartClient()
     {
@@ -103,7 +103,7 @@ public class RobberScript : NetworkBehaviour
 
         if (IsOwner) player.narrow_dark_filter.SetActive(!is_on);
 
-        NightVisionOn();
+        if (is_on) NightVisionOn();
     }
 
     void NightVisionOn()
