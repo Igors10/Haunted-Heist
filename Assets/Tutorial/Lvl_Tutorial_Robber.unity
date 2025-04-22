@@ -7860,8 +7860,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Find the listed Items using your Lantern (Left Mouse Button) Be careful,
-        ghost can see the lantern.
+      value: Find the listed Items using your <color=yellow>Lantern ({key})</color>.
+        Be careful, <color=#099>ghost can see the light </color>from it.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -13253,7 +13253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Use W, A, S, D (Keyboard) to move to the next room
+      value: Use <color=yellow> {key} </color> to move to the next room
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -14863,8 +14863,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: You can use vents to escape from the Ghost! Choose a direction using
-        Q or E.
+      value: You can use <color="yellow">vents</color> to escape from the Ghost!
+        Choose a direction using<color=yellow> {key}</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -14897,7 +14897,11 @@ PrefabInstance:
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4505371012998169425, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -15459,8 +15463,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: When you have collected all the items from the list, escape the Mansion
-        to win!
+      value: When you have collected all the items from the list, <color="yellow">escape
+        the Mansion</color> to win!
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -15493,7 +15497,11 @@ PrefabInstance:
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4505371012998169425, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -16526,7 +16534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Hold Spacebar with lantern on to collect the item
+      value: Hold <color=yellow>Spacebar</color> with lantern on to collect the item
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -20757,8 +20765,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Flashlight is flickering, means ghost is close! Use your Night Vision
-        to see it (Right Mouse Button).
+      value: Flashlight is flickering, means <color=#099>ghost is close!</color>
+        Use your <color="green">Night Vision</color> to see it <color="yellow">{key}</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -21970,7 +21978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1248089843
 RectTransform:
   m_ObjectHideFlags: 0
