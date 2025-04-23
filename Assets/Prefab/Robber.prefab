@@ -1415,8 +1415,8 @@ MonoBehaviour:
   is_blinking: 0
   w_text: {fileID: 0}
   l_text: {fileID: 0}
-  win_text: You collected all the items and succesfully escaped the mansion
-  lose_text: Ghost caught you 3 times
+  win_text: You collected all the Items and succesfully escaped the mansion
+  lose_text: The Ghost caught you three times
 --- !u!114 &892456825074874813
 MonoBehaviour:
   m_ObjectHideFlags: 0
