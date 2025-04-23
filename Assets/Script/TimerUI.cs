@@ -33,7 +33,7 @@ public class TimerUI : MonoBehaviour
             gameTimerInSeconds = 0;
 
             // Ghost becomes wild bebe
-            StartCoroutine(Game.Instance.ghost.Value.GetComponent<GhostScript>().WildMode());
+            if (GameData.is_ghost_wild == false) StartCoroutine(Game.Instance.ghost.Value.GetComponent<GhostScript>().WildMode());
         }
     }
 }
