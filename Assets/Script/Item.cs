@@ -13,6 +13,8 @@ public class Item : MonoBehaviour
     public int item_id;
 
     public GameObject pickUp_image;
+    [SerializeField] Sprite spacebar_icon;
+    [SerializeField] Sprite right_tab_icon;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +31,14 @@ public class Item : MonoBehaviour
         // Check if the flashlight is off and disable the pickup image
         if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == false)
         {
-            pickUp_image.SetActive(false);
+            PickUpImage(false);
         }
+    }
+
+    void PickUpImage(bool is_active)
+    {
+        pickUp_image.GetComponent<SpriteRenderer>().sprite = (GameData.is_gamepad_used) ? right_tab_icon : spacebar_icon;
+        pickUp_image.SetActive(is_active);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,7 +48,7 @@ public class Item : MonoBehaviour
             if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == true)
             {
                 // if the robber is in range of the item, show the pick up image
-                pickUp_image.SetActive(true);
+                PickUpImage(true);
             }
         }
     }
@@ -52,7 +60,7 @@ public class Item : MonoBehaviour
             if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == true)
             {
                 // if the robber is in range of the item, show the pick up image
-                pickUp_image.SetActive(true);
+                PickUpImage(true);
             }
         }
     }
@@ -62,7 +70,7 @@ public class Item : MonoBehaviour
         if (collision.tag == "Robber")
         {
             // if the robber is out of range of the item, hide the pick up image
-            pickUp_image.SetActive(false);
+            PickUpImage(false);
         }
     }
 
@@ -70,7 +78,7 @@ public class Item : MonoBehaviour
     {
         if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == true)
         {
-            pickUp_image.SetActive(true);
+            PickUpImage(true);
         }
     }
 
@@ -78,12 +86,12 @@ public class Item : MonoBehaviour
     {
         if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf == true)
         {
-            pickUp_image.SetActive(true);
+            PickUpImage(true);
         }
     }
 
     public void OnRobberExitRange(Collider2D collision)
     {
-        pickUp_image.SetActive(false);
+        PickUpImage(false);
     }
 }
