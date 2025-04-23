@@ -419,8 +419,8 @@ MonoBehaviour:
   is_blinking: 0
   w_text: {fileID: 0}
   l_text: {fileID: 0}
-  win_text: You caught the robber
-  lose_text: Robber escaped the mansion
+  win_text: You caught the Robber three times
+  lose_text: The Robber escaped the mansion
 --- !u!114 &6547271981266293688
 MonoBehaviour:
   m_ObjectHideFlags: 0
