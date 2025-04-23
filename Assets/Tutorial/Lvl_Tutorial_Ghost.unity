@@ -725,7 +725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Use <color=yellow> {key} </color>to move to the next room
+      value: Use <color=yellow>{key}</color> to move.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -11645,13 +11645,13 @@ MonoBehaviour:
   - {fileID: 449973864}
   - {fileID: 1009244962}
   keyboard_controls:
-  - '"W, A, S, D"'
-  - Left mouse button
-  - Right mouse button
+  - W, A, S, & D
+  - Left Mouse Button
+  - Right Mouse Button
   gamepad_controls:
-  - Left stick
-  - '"A"'
-  - '"B"'
+  - the Left Joystick
+  - A
+  - B
   input_ui: []
   gamepad_ui_sprites: []
   keyboard_ui_sprites: []
@@ -11904,8 +11904,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Your goal is to find and catch the Robber. Use your  <color=red>Dash
-        </color>to catch him <color=yellow>({key})</color>.
+      value: Your goal is to find and catch the <color=green>Robber</color>. Use
+        your <color=red>Dash</color> to catch him <color=yellow>({key})</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -16544,8 +16544,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Looks like the Robber used a vent to evade you. Try to find where he
-        went!
+      value: Looks like the <color=green>Robber</color> used a <color=yellow>Vent</color>
+        to evade you. Try to find where he went!
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -20349,6 +20349,10 @@ PrefabInstance:
       value: Wait for the host to restart
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_fontColor.b
       value: 0.5772374
       objectReference: {fileID: 0}
@@ -20363,6 +20367,10 @@ PrefabInstance:
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4287884786
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_Pivot.x
@@ -21598,8 +21606,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: The Robber escaped! Use <color=blue>Step Vision</color> to follow his
-        footprints and find him again <color=yellow>({key})</color>.
+      value: The <color=green>Robber</color> ran away! Use your <color=#27DDFF>Step
+        Vision</color> to follow his footprints and find him again <color=yellow>({key})</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -23973,8 +23981,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Catch the robber <color=yellow>three times</color> to win. Find him
-        one last time to complete the tutorial.
+      value: You win by catching the <color=green>Robber</color> <color=yellow>three
+        times</color>. Catch him one more time to complete the tutorial!
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -44958,7 +44966,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Ghost caught you 3 times
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1cc681bfc16ecec4082b48bbe6bd2766, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
   m_sharedMaterial: {fileID: 6058894021461514745, guid: 1cc681bfc16ecec4082b48bbe6bd2766, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -45024,7 +45032,7 @@ MonoBehaviour:
   m_margin: {x: -174.5646, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1551491344
@@ -46648,7 +46656,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'You succesfully collected all the items '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1cc681bfc16ecec4082b48bbe6bd2766, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
   m_sharedMaterial: {fileID: 6058894021461514745, guid: 1cc681bfc16ecec4082b48bbe6bd2766, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -46714,7 +46722,7 @@ MonoBehaviour:
   m_margin: {x: -174.5646, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1654568186
@@ -52162,8 +52170,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Dashing can let you <color=yellow>move through objects</color> and walls,
-        but it also reveals you to the Robber.
+      value: <color=red>Dashing</color> can let you <color=yellow>move through objects</color>
+        and walls, but it also reveals you to the <color=green>Robber</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
