@@ -11652,9 +11652,15 @@ MonoBehaviour:
   - the Left Joystick
   - A
   - B
-  input_ui: []
-  gamepad_ui_sprites: []
-  keyboard_ui_sprites: []
+  input_ui:
+  - {fileID: 1284726968}
+  - {fileID: 761670237}
+  gamepad_ui_sprites:
+  - {fileID: 649223268058989734, guid: 914f58314cecbd44eba883cf785322b5, type: 3}
+  - {fileID: -5485327256500454033, guid: 98338b03395cb64438f28aa2bc2ef8f3, type: 3}
+  keyboard_ui_sprites:
+  - {fileID: 1588045885516318957, guid: fbf17da29e39cf244806d800b63d039d, type: 3}
+  - {fileID: -2208852223112515189, guid: aacc786ba7607cf48b44b7ddc3ca8f9f, type: 3}
   debug_log: 0
 --- !u!1 &431797884
 GameObject:
@@ -12450,6 +12456,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left_arrow: {fileID: 1196506772}
   right_arrow: {fileID: 352415850}
+  left_arrow_text: {fileID: 0}
+  right_arrow_text: {fileID: 0}
+  lb_icon: {fileID: 0}
+  rb_icon: {fileID: 0}
 --- !u!1 &491540592
 GameObject:
   m_ObjectHideFlags: 0
@@ -44974,7 +44984,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4279834030
-  m_fontColor: {r: 0.68235296, g: 0.08235293, b: 0.0968729, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -46664,7 +46674,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4279608086
-  m_fontColor: {r: 0.08481063, g: 0.6377357, b: 0.08061941, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

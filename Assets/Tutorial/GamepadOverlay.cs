@@ -96,6 +96,7 @@ public class GamepadOverlay : MonoBehaviour
             if (debug_log) Debug.Log("Controller connected");
             InitControlsText(gamepad_controls);
             InitControlVisuals(gamepad_ui_sprites);
+            GameData.is_gamepad_used = true;
         }
         else if (CheckKeyInput())
         {
@@ -103,6 +104,7 @@ public class GamepadOverlay : MonoBehaviour
             if (debug_log) Debug.Log("No controller connected.");
             InitControlsText(keyboard_controls);
             InitControlVisuals(keyboard_ui_sprites);
+            GameData.is_gamepad_used = false;
         }
     }
     
