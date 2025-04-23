@@ -29,7 +29,7 @@ public class TutorialUI : MonoBehaviour
         if(TutorialProgress.part == 1)
         {
             Life.SetActive(true);
-            Timer.SetActive(true);
+            //Timer.SetActive(true);
         }
 
         if (TutorialProgress.part == 2)
