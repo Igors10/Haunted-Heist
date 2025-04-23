@@ -1,11 +1,9 @@
-using FishNet.Object;
 using FishNet.Connection;
-using UnityEngine;
-using FishNet.Managing;
-using UnityEngine.UI;
-using Unity.VisualScripting;
+using FishNet.Object;
 using System.Collections;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : NetworkBehaviour
 {
@@ -67,7 +65,7 @@ public class Spawner : NetworkBehaviour
         if (Game.Instance.is_robber_connected || choice_made) return;
 
         SetChoiceObserverRpc(true);
-       
+
         StartCoroutine(SpawnPlayer(robber_prefab, FindSpawnPoint("RobberSpawnpoint"), sender, true));
     }
 
@@ -132,14 +130,14 @@ public class Spawner : NetworkBehaviour
     {
         countdown_text.text = new_countdown;
 
-        
+
         float countdown_default_text_size = countdown_text.fontSize;
         float current_text_size = countdown_default_text_size;
 
         for (float a = 0; a <= time_between_countdown; a += time_between_countdown / 100)
         {
             //current_text_size *= 1.3f;
-            
+
             countdown_text.fontSize = current_text_size + a * 20;
             yield return new WaitForSeconds(time_between_countdown / 100);
         }
@@ -151,7 +149,7 @@ public class Spawner : NetworkBehaviour
     {
         StartCoroutine(UpdateCountDown(new_countdown));
     }
-   
+
     [ObserversRpc]
     void UpdatePlayerConnectionObserversRpc(bool is_robber)
     {
