@@ -19030,7 +19030,7 @@ MonoBehaviour:
   RightButtonAction: {fileID: 1346083872}
   Life: {fileID: 527202532}
   ItemCoupon: {fileID: 0}
-  Timer: {fileID: 1173038515}
+  Timer: {fileID: 0}
   ghost: 1
   robber: 0
 --- !u!1 &887832798
@@ -22098,7 +22098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1064994122
 MonoBehaviour:
   m_ObjectHideFlags: 0

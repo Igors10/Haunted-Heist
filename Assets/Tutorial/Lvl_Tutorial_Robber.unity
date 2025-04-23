@@ -13425,7 +13425,7 @@ MonoBehaviour:
   RightButtonAction: {fileID: 953042451}
   Life: {fileID: 112960433}
   ItemCoupon: {fileID: 1269926072}
-  Timer: {fileID: 1941700708}
+  Timer: {fileID: 0}
   ghost: 0
   robber: 1
 --- !u!1 &683222164
