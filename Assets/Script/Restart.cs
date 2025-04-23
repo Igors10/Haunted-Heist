@@ -22,7 +22,7 @@ public class Restart : MonoBehaviour
     IEnumerator BackToLevel()
     {
         GameData.is_game_over = false;
-        GameData.ghost_is_wild = false;
+        GameData.is_ghost_wild = false;
 
 
         yield return new WaitForSeconds(restart_time);

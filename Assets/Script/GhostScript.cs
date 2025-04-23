@@ -132,7 +132,7 @@ public class GhostScript : NetworkBehaviour
     {
         SyncHideServerRpc(false);
 
-        GameData.ghost_is_wild = true;
+        GameData.is_ghost_wild = true;
 
         yield return new WaitForSeconds(0.3f);
 
