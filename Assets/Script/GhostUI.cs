@@ -27,6 +27,7 @@ public class GhostUI : MonoBehaviour
     [SerializeField] Color cooldown_color;
     [HideInInspector] public bool is_dash_ready = true;
     [HideInInspector] public bool is_stepvision_ready = true;
+    [SerializeField] bool timer_on;
     void Start()
     {
         default_filter_intensity = ghostVision.GetComponent<Light2D>().intensity;
@@ -81,7 +82,7 @@ public class GhostUI : MonoBehaviour
     public void EnableUI()
     {
         elements_UI.SetActive(true);
-        timer.SetActive(true);
+        if (timer_on) timer.SetActive(true);
         ghostVision.SetActive(true);
     }
 }

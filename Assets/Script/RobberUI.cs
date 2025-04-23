@@ -23,6 +23,7 @@ public class RobberUI : MonoBehaviour
     [SerializeField] float energy_decrease;
     [SerializeField] float energy_regeneration;
     bool recharging = false;
+    [SerializeField] bool timer_on;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,7 +37,7 @@ public class RobberUI : MonoBehaviour
     public void EnableUI()
     {
         elements_UI.SetActive(true);
-        timer.SetActive(true);
+        if (timer_on) timer.SetActive(true);
     }
 
     private void FixedUpdate()

@@ -11,6 +11,13 @@ public class ArrowPointer : MonoBehaviour
     {
         ArrowRotation();
         CheckDistance();
+        CheckGameOver();
+    }
+
+    void CheckGameOver()
+    {
+        // Disable those when game over
+        if (GameData.is_game_over) Destroy(this.gameObject);
     }
 
     void ArrowRotation()

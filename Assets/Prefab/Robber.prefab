@@ -1779,6 +1779,7 @@ MonoBehaviour:
   goLeft: 0
   goRight: 0
   moveRoom: 0
+  moveLight: 0
   flashlight: 0
   seenAGhost: 0
   ventUsed: 0
@@ -1816,8 +1817,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0020274362, y: -0.36108136}
-  m_Size: {x: 0.7607307, y: 0.3551737}
+  m_Offset: {x: 0.0020273877, y: -0.31328082}
+  m_Size: {x: 0.7607322, y: 0.46621418}
   m_Direction: 1
 --- !u!1 &8149528738269290541
 GameObject:

@@ -31,6 +31,10 @@ public class RobberScript : NetworkBehaviour
     float item_radar_timer;
     [SerializeField] ArrowPointer item_arrow;
 
+    // Night vision jump scare variables
+    bool jumpscared;
+    float jumpscare_cooldown = 20f;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -99,7 +103,32 @@ public class RobberScript : NetworkBehaviour
 
         if (IsOwner) player.narrow_dark_filter.SetActive(!is_on);
 
-        if (is_on) SyncFlashlightObserversRpc(false);
+        if (is_on) NightVisionOn();
+    }
+
+    void NightVisionOn()
+    {
+        // Turn off the flashlight in case its on
+        SyncFlashlightObserversRpc(false);
+
+        // Play the jumpscare sound if the ghost is close
+        if (Game.Instance.ghost.Value != null && jumpscared == false &&
+            Vector2.Distance(Game.Instance.ghost.Value.transform.position, transform.position) < 9f)
+        {
+            StartCoroutine(Jumpscare());
+        }
+    }
+
+    IEnumerator Jumpscare()
+    {
+        // Play the jumpscare sound
+        jumpscared = true;
+        AudioManager.instance.PlaySFX("JumpscareLight");
+
+        // Sound will not repeat in the next set amount of seconds
+        yield return new WaitForSeconds(jumpscare_cooldown);
+
+        jumpscared = false;
     }
 
     private void Update()
@@ -115,7 +144,7 @@ public class RobberScript : NetworkBehaviour
     }
     void ItemRadar()
     {
-        if (item_arrow.gameObject.activeSelf) return;
+        if (item_arrow.gameObject.activeSelf || IsOwner == false) return;
 
         item_radar_timer -= Time.deltaTime;
 
@@ -197,7 +226,7 @@ public class RobberScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsServer && collision.gameObject.tag == "Ghost" && collision.gameObject.GetComponent<GhostScript>().is_dashing)
+        if (IsServer && collision.gameObject.tag == "Ghost" && collision.transform.parent.GetComponent<GhostScript>().is_dashing)
         {
             SyncCatchRobberServerRpc();
         }

@@ -7860,7 +7860,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Find the listed Items using your Lantern (Left Mouse Button)
+      value: Find the listed Items using your <color=yellow>Lantern ({key})</color>.
+        Be careful, <color=#099>ghost can see the light </color>from it.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -7879,8 +7880,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
-      propertyPath: m_hasFontAssetChanged
+      propertyPath: m_fontColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_Pivot.x
@@ -7972,6 +7993,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 319570791}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &319570793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 319570791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &322148564
 GameObject:
   m_ObjectHideFlags: 0
@@ -12300,7 +12332,6 @@ RectTransform:
   m_Children:
   - {fileID: 468858353}
   - {fileID: 372879965}
-  - {fileID: 1774559952}
   m_Father: {fileID: 1323343807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12380,6 +12411,7 @@ Transform:
   - {fileID: 761984860}
   - {fileID: 1401163102}
   - {fileID: 1150193105}
+  - {fileID: 1174780736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &618228318
@@ -13233,7 +13265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: 'Move: W, A, S, D (Keyboard)'
+      value: Use <color=yellow> {key} </color> to move to the next room
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -13252,8 +13284,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
-      propertyPath: m_hasFontAssetChanged
+      propertyPath: m_fontColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_Pivot.x
@@ -13345,6 +13397,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 673273756}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &673273758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 673273756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &677821398
 GameObject:
   m_ObjectHideFlags: 0
@@ -13493,6 +13556,7 @@ MonoBehaviour:
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
   is_dash_ready: 0
   is_stepvision_ready: 0
+  timer_on: 0
 --- !u!1 &706661673
 GameObject:
   m_ObjectHideFlags: 0
@@ -14822,8 +14886,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: You can use vents to escape from the Ghost! Choose a direction using
-        Q or E.
+      value: You can use <color="yellow">vents</color> to escape from the Ghost!
+        Choose a direction using<color=yellow> {key}</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -14842,9 +14906,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4505371012998169425, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -14939,6 +15019,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 774549854}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &774549856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 774549854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &781580008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15406,8 +15497,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: When you have collected all the items from the list, escape the Mansion
-        to win!
+      value: When you have collected all the items from the list, <color="yellow">escape
+        the Mansion</color> to win!
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -15426,9 +15517,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4505371012998169425, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -16461,7 +16568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Collect Item (Hold Spacebar)
+      value: Hold <color=yellow>{key}</color> with lantern on to collect the item
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -16480,8 +16587,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
-      propertyPath: m_hasFontAssetChanged
+      propertyPath: m_fontColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_Pivot.x
@@ -16573,6 +16700,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 928096420}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &928096422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 928096420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &934047324
 GameObject:
   m_ObjectHideFlags: 0
@@ -20672,7 +20810,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Avoid the Ghost! Use your Night Vision to see it (Right Mouse Button).
+      value: Flashlight is flickering, means <color=#099>ghost is close!</color>
+        Use your <color="green">Night Vision</color> to see it <color="yellow">{key}</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -20691,9 +20830,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4505371012998169425, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+      objectReference: {fileID: -5255114776211069470, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -20788,6 +20943,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 1144749063}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1144749065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 1144749063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1149930315
 GameObject:
   m_ObjectHideFlags: 0
@@ -21104,6 +21270,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169953688}
   m_CullTransparentMesh: 1
+--- !u!1 &1174780735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174780736}
+  - component: {fileID: 1174780737}
+  m_Layer: 0
+  m_Name: GamepadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1174780736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174780735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 618228317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1174780737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174780735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f837fe1106653479e081f2a566175d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlays:
+  - {fileID: 673273758}
+  - {fileID: 319570793}
+  - {fileID: 928096422}
+  - {fileID: 1144749065}
+  - {fileID: 774549856}
+  keyboard_controls:
+  - '"W, A, S, D"'
+  - Left mouse button
+  - '"Spacebar"'
+  - Right mouse button
+  - '"Q, E"'
+  gamepad_controls:
+  - Left stick
+  - '"A"'
+  - '"RT"'
+  - '"B"'
+  - '"LB, RB"'
+  input_ui:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gamepad_ui_sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  keyboard_ui_sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  debug_log: 0
 --- !u!1 &1184964101
 GameObject:
   m_ObjectHideFlags: 0
@@ -21323,6 +21564,7 @@ MonoBehaviour:
   burst_decrease: 0.03
   energy_decrease: 0.003
   energy_regeneration: 0.002
+  timer_on: 0
 --- !u!114 &1214177555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23048,6 +23290,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -4505371012998169425, guid: 64c84726faf212347a43d8123bbf1c76, type: 2}
@@ -24089,6 +24343,7 @@ MonoBehaviour:
   cooldown_color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
   is_dash_ready: 0
   is_stepvision_ready: 0
+  timer_on: 0
 --- !u!1 &1491447514
 GameObject:
   m_ObjectHideFlags: 0
@@ -37389,6 +37644,7 @@ MonoBehaviour:
   burst_decrease: 0.03
   energy_decrease: 0.003
   energy_regeneration: 0.002
+  timer_on: 0
 --- !u!1001 &1529512058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43941,7 +44197,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 618221242}
+    m_TransformParent: {fileID: 1825913054}
     m_Modifications:
     - target: {fileID: 865650505453762090, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -43993,15 +44249,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1249099
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1249099
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.1249099
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44013,7 +44269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.248827
+      value: 9.996094
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44033,11 +44289,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 876.64233
+      value: 794.3
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 560.37384
+      value: 492.14984
       objectReference: {fileID: 0}
     - target: {fileID: 4979719979628202816, guid: 72e45f022a625284ab6dda06b839d539, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -45514,6 +45770,7 @@ RectTransform:
   - {fileID: 1116803473}
   - {fileID: 594856753}
   - {fileID: 1854589435}
+  - {fileID: 1774559952}
   m_Father: {fileID: 1323343807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
