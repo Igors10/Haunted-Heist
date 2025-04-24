@@ -11782,8 +11782,8 @@ MonoBehaviour:
   - Right Mouse Button
   gamepad_controls:
   - the Left Joystick
-  - A
-  - B
+  - A Button
+  - B Button
   input_ui:
   - {fileID: 1284726968}
   - {fileID: 761670237}
@@ -12043,7 +12043,7 @@ PrefabInstance:
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
       value: Your goal is to find and catch the <color=green>Robber</color>. Use
-        your <color=red>Dash</color> to catch him <color=yellow>({key})</color>.
+        your <color=red>Dash</color> to catch him (hold and release the <color=yellow>{key}</color>).
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
