@@ -457,9 +457,9 @@ MonoBehaviour:
   ghost_hiding: {fileID: 7272600033158285140}
   ghost_attacking: {fileID: 6632733983475322842}
   stepvision_color: {r: 0.10293335, g: 0.44102767, b: 0.690566, a: 0.22745098}
-  stepvision_speed: 0.045
+  stepvision_speed: 0.035
   default_speed: 0
-  dash_cooldown: 42
+  dash_cooldown: 20
   stepvision_cooldown: 26
   is_dashing: 0
   dash_duration: 0.5

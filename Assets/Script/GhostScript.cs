@@ -178,21 +178,21 @@ public class GhostScript : NetworkBehaviour
 
         // Charging up the dash
         
-        if (ghostUI.dash_fill.fillAmount < 1f)
+        if (full_aiming_arrow.fillAmount < 1f)
         {
-            ghostUI.dash_fill.fillAmount += Time.deltaTime * dash_prep_speed;
+            full_aiming_arrow.fillAmount += Time.deltaTime * dash_prep_speed;
             full_aiming_arrow.color = ghostUI.charged_color_dash;
         }
         else
         {
             // Dash is ready
-            ghostUI.DashReady();
-            ghostUI.dash_fill.fillAmount = 1f;
+            //ghostUI.DashReady();
+            full_aiming_arrow.fillAmount = 1f;
             is_dash_ready = true;
             full_aiming_arrow.color = aiming_arrow_default_color;
         }
 
-        full_aiming_arrow.fillAmount = ghostUI.dash_fill.fillAmount;
+        //full_aiming_arrow.fillAmount = ghostUI.dash_fill.fillAmount;
 
     }
 
@@ -310,8 +310,8 @@ public class GhostScript : NetworkBehaviour
         is_dashing = true;
 
         // Cooldown
-        //StartCoroutine(ghostUI.Cooldown(dash_cooldown, true));
-        ghostUI.DashUsed();
+        StartCoroutine(ghostUI.Cooldown(dash_cooldown, true));
+        //ghostUI.DashUsed();
 
         Debug.Log("Charge Started");
     }
@@ -389,10 +389,14 @@ public class GhostScript : NetworkBehaviour
 
     public void ChargeAttack(bool is_on)
     {
-        if (is_dashing) return;
+        if (is_dashing || ghostUI.dash_fill.fillAmount < 1f) return;
 
         // updating the indicator
         DashIndicatorServerRpc(is_on);
+
+        // making the ghost slower while aiming
+        player.speed = (is_on) ? stepvision_speed : default_speed;
+        full_aiming_arrow.fillAmount = 0f;
 
         is_aiming = is_on;
         aiming_arrow.SetActive(is_aiming);
@@ -401,7 +405,7 @@ public class GhostScript : NetworkBehaviour
         {
             StartCoroutine(StartCharge());
         }
-        else if (is_on == false) ghostUI.DashUsed();
+        //else if (is_on == false) ghostUI.DashUsed();
     }
 
     public void StepVision(bool is_on)
