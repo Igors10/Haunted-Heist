@@ -22,7 +22,7 @@ public class GhostUI : MonoBehaviour
     [SerializeField] Image[] dash_icons;
     public Image[] stepvision_icons;
 
-    [SerializeField] Color charged_color_dash;
+    public Color charged_color_dash;
     [SerializeField] Color charged_color_stepvision;
     [SerializeField] Color cooldown_color;
     [HideInInspector] public bool is_dash_ready = true;
@@ -32,6 +32,7 @@ public class GhostUI : MonoBehaviour
     {
         default_filter_intensity = ghostVision.GetComponent<Light2D>().intensity;
         default_filter_color = ghostVision.GetComponent<Light2D>().color;
+        DashUsed();
     }
     public IEnumerator Cooldown(float cooldown_time, bool is_dash)
     {
@@ -58,6 +59,19 @@ public class GhostUI : MonoBehaviour
         ability_fill.fillAmount = 1;
 
         DimAbilityIcons(icons_to_dim, false);
+    }
+
+    public void DashReady()
+    {
+        DimAbilityIcons(dash_icons, false);
+        dash_fill.color = charged_color_dash;
+    }
+
+    public void DashUsed()
+    {
+        dash_fill.fillAmount = 0;
+        dash_fill.color = cooldown_color;
+        DimAbilityIcons(dash_icons, true);
     }
 
     void DimAbilityIcons(Image[] icons_to_dim, bool to_dim)

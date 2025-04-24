@@ -1,7 +1,10 @@
 using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GhostScript : NetworkBehaviour
 {
@@ -22,6 +25,7 @@ public class GhostScript : NetworkBehaviour
     // Dashing Variables
     bool is_aiming;
     [HideInInspector] public bool is_dashing;
+    bool is_dash_ready;
 
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
@@ -31,6 +35,11 @@ public class GhostScript : NetworkBehaviour
     [SerializeField] float dash_delay_time;
     Vector3 charge_starting_position;
     Vector3 last_valid_position;
+
+    [SerializeField] float dash_prep_speed;
+    [SerializeField] Image full_aiming_arrow;
+    Color aiming_arrow_default_color;
+    Vector2 last_aiming_position = new Vector2(0f, 0f);
 
     // Boundary checking
     [SerializeField] LayerMask boundaryLayer;
@@ -73,6 +82,7 @@ public class GhostScript : NetworkBehaviour
 
         hiding_sprite = ghost_hiding.GetComponent<SpriteRenderer>();
         hiding_color = hiding_sprite.color;
+        aiming_arrow_default_color = full_aiming_arrow.color;
 
         if (IsOwner)
         {
@@ -95,25 +105,8 @@ public class GhostScript : NetworkBehaviour
     {
         if (IsOwner)
         {
-            Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-            bool usingJoystick = joystickInput.magnitude > joystickDeadZone;
-
-            Vector2 targetPosition;
-
-            if (usingJoystick)
-            {
-                // Joystick
-                Vector2 direction = joystickInput.normalized;
-                targetPosition = (Vector2)transform.position + direction * 3f; // Scalar distance, can be increased.
-            }
-            else
-            {
-                // Mouse fallback
-                Vector3 screen_mouse_position = Input.mousePosition;
-                targetPosition = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
-            }
+            // Different aiming logic depending on if gamepad is used or not
+            Vector2 targetPosition = (GameData.is_gamepad_used) ? JoystickAimInput() : MouseAimInput();
 
             if (is_aiming) AimForCharge(targetPosition);
             if (charge_target_position != Vector2.zero) Charging();
@@ -126,6 +119,38 @@ public class GhostScript : NetworkBehaviour
 
             if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
         }
+    }
+
+    Vector2 JoystickAimInput()
+    {
+        Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        bool usingJoystick = joystickInput.magnitude > joystickDeadZone;
+
+        Vector2 targetPosition;
+
+        if (usingJoystick)
+        {
+            // Joystick
+            Vector2 direction = joystickInput.normalized;
+            targetPosition = (Vector2)transform.position + direction * 3f; // Scalar distance, can be increased.
+            last_aiming_position = targetPosition;
+        }
+        else
+        {
+            targetPosition = last_aiming_position;
+        }
+
+        return targetPosition;
+    }
+
+    Vector2 MouseAimInput()
+    {
+        Vector3 screen_mouse_position = Input.mousePosition;
+        Vector2 targetPosition = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
+
+        return targetPosition;
     }
 
     public IEnumerator WildMode()
@@ -148,6 +173,25 @@ public class GhostScript : NetworkBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         aiming_arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        // Charging up the dash
+        
+        if (ghostUI.dash_fill.fillAmount < 1f)
+        {
+            ghostUI.dash_fill.fillAmount += Time.deltaTime * dash_prep_speed;
+            full_aiming_arrow.color = ghostUI.charged_color_dash;
+        }
+        else
+        {
+            // Dash is ready
+            ghostUI.DashReady();
+            ghostUI.dash_fill.fillAmount = 1f;
+            is_dash_ready = true;
+            full_aiming_arrow.color = aiming_arrow_default_color;
+        }
+
+        full_aiming_arrow.fillAmount = ghostUI.dash_fill.fillAmount;
+
     }
 
     void Charging()
@@ -264,7 +308,8 @@ public class GhostScript : NetworkBehaviour
         is_dashing = true;
 
         // Cooldown
-        StartCoroutine(ghostUI.Cooldown(dash_cooldown, true));
+        //StartCoroutine(ghostUI.Cooldown(dash_cooldown, true));
+        ghostUI.DashUsed();
 
         Debug.Log("Charge Started");
     }
@@ -274,7 +319,7 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
-
+        is_dash_ready = false;
 
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
@@ -342,15 +387,19 @@ public class GhostScript : NetworkBehaviour
 
     public void ChargeAttack(bool is_on)
     {
-        if (ghostUI.dash_fill.fillAmount < 1 || is_dashing) return;
+        if (is_dashing) return;
+
+        // updating the indicator
+        DashIndicatorServerRpc(is_on);
 
         is_aiming = is_on;
         aiming_arrow.SetActive(is_aiming);
 
-        if (is_on == false && Vector2.Distance(mouse_position, transform.position) > 0f)
+        if (is_on == false && Vector2.Distance(mouse_position, transform.position) > 0f && is_dash_ready)
         {
             StartCoroutine(StartCharge());
         }
+        else if (is_on == false) ghostUI.DashUsed();
     }
 
     public void StepVision(bool is_on)
@@ -367,7 +416,21 @@ public class GhostScript : NetworkBehaviour
         player.speed = (is_on) ? stepvision_speed : default_speed;
     }
 
-    // Changing states HIDING - ATTACKING ======================================
+    // Updating the dash indicatior for the robber over network
+
+    [ServerRpc(RequireOwnership = false)]
+    public void DashIndicatorServerRpc(bool is_on)
+    {
+        DashIndicatorObserversRpc(is_on);
+
+    }
+
+    [ObserversRpc]
+    public void DashIndicatorObserversRpc(bool is_on)
+    {
+        Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
+    }
+        // Changing states HIDING - ATTACKING ======================================
 
     [ServerRpc(RequireOwnership = false)]
     public void SyncHideServerRpc(bool is_hiding)
@@ -384,7 +447,6 @@ public class GhostScript : NetworkBehaviour
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
         if (Game.Instance.robber.Value != null)
-        Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
 
         //ghost particle effects for charging
         if (is_hiding)
