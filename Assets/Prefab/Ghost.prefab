@@ -1598,7 +1598,6 @@ Transform:
   - {fileID: 5012920797770665111}
   m_Father: {fileID: 300743850939253570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &8898442271569630849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,8 +1673,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-=======
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
 --- !u!1001 &2664488311107218120
 PrefabInstance:
   m_ObjectHideFlags: 0

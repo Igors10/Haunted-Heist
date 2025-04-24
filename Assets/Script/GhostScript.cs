@@ -430,7 +430,7 @@ public class GhostScript : NetworkBehaviour
     [ObserversRpc]
     public void DashIndicatorObserversRpc(bool is_on)
     {
-        Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
+        if (Game.Instance.robber.Value != null) Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
     }
         // Changing states HIDING - ATTACKING ======================================
 
