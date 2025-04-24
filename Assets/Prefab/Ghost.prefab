@@ -465,7 +465,7 @@ MonoBehaviour:
   dash_duration: 0.5
   dash_length: 8
   dash_delay_time: 0
-  dash_prep_speed: 1
+  dash_prep_speed: 1.1
   full_aiming_arrow: {fileID: 851479180862683286}
   boundaryLayer:
     serializedVersion: 2
