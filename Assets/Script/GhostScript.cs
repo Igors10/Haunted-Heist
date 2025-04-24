@@ -25,10 +25,8 @@ public class GhostScript : NetworkBehaviour
     // Dashing Variables
     bool is_aiming;
     [HideInInspector] public bool is_dashing;
-<<<<<<< HEAD
     bool is_dash_ready;
-=======
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
+
 
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
@@ -124,7 +122,7 @@ public class GhostScript : NetworkBehaviour
         }
     }
 
-<<<<<<< HEAD
+
     Vector2 JoystickAimInput()
     {
         Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -157,8 +155,6 @@ public class GhostScript : NetworkBehaviour
         return targetPosition;
     }
 
-=======
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
     public IEnumerator WildMode()
     {
         SyncHideServerRpc(false);
@@ -453,10 +449,6 @@ public class GhostScript : NetworkBehaviour
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
         if (Game.Instance.robber.Value != null)
-<<<<<<< HEAD
-=======
-        Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
 
         //ghost particle effects for charging
         if (is_hiding)

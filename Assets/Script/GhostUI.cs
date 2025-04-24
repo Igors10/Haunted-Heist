@@ -22,11 +22,8 @@ public class GhostUI : MonoBehaviour
     [SerializeField] Image[] dash_icons;
     public Image[] stepvision_icons;
 
-<<<<<<< HEAD
+
     public Color charged_color_dash;
-=======
-    [SerializeField] Color charged_color_dash;
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
     [SerializeField] Color charged_color_stepvision;
     [SerializeField] Color cooldown_color;
     [HideInInspector] public bool is_dash_ready = true;
@@ -36,10 +33,8 @@ public class GhostUI : MonoBehaviour
     {
         default_filter_intensity = ghostVision.GetComponent<Light2D>().intensity;
         default_filter_color = ghostVision.GetComponent<Light2D>().color;
-<<<<<<< HEAD
+
         DashUsed();
-=======
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
     }
     public IEnumerator Cooldown(float cooldown_time, bool is_dash)
     {
@@ -68,7 +63,6 @@ public class GhostUI : MonoBehaviour
         DimAbilityIcons(icons_to_dim, false);
     }
 
-<<<<<<< HEAD
     public void DashReady()
     {
         DimAbilityIcons(dash_icons, false);
@@ -82,8 +76,6 @@ public class GhostUI : MonoBehaviour
         DimAbilityIcons(dash_icons, true);
     }
 
-=======
->>>>>>> parent of c83de38 (Revert "Merge branch 'main' of https://github.com/Igors10/Haunted-Heist")
     void DimAbilityIcons(Image[] icons_to_dim, bool to_dim)
     {
         float alpha = (to_dim) ? 0.2f : 1f;
