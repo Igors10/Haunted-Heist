@@ -34,7 +34,7 @@ public class GhostUI : MonoBehaviour
         default_filter_intensity = ghostVision.GetComponent<Light2D>().intensity;
         default_filter_color = ghostVision.GetComponent<Light2D>().color;
 
-        DashUsed();
+        //DashUsed();
     }
     public IEnumerator Cooldown(float cooldown_time, bool is_dash)
     {
