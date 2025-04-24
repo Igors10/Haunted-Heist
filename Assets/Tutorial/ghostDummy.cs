@@ -12,11 +12,20 @@ public class ghostDummy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TutorialProgress.part == 7)
+        if(TutorialProgress.part == 6)
         {
-            this.gameObject.SetActive(false);
+            Despawn(0);
         }
     }
+
+    IEnumerator Despawn(int time)
+    {
+
+        yield return new WaitForSeconds(time);
+
+        this.gameObject.SetActive(false);
+    }   
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

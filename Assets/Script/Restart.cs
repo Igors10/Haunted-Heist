@@ -21,10 +21,6 @@ public class Restart : MonoBehaviour
 
     IEnumerator BackToLevel()
     {
-        GameData.is_game_over = false;
-        GameData.is_ghost_wild = false;
-
-
         yield return new WaitForSeconds(restart_time);
         SceneManager.LoadScene("Lvl_Tilemap", LoadSceneMode.Single);
         //SceneLoadData sld = new SceneLoadData("MainMenu");

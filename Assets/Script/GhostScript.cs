@@ -21,8 +21,7 @@ public class GhostScript : NetworkBehaviour
 
     // Dashing Variables
     bool is_aiming;
-    [HideInInspector] public bool is_dashing;
-
+    bool is_dashing;
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
     float charge_time;
@@ -52,10 +51,6 @@ public class GhostScript : NetworkBehaviour
 
     [SerializeField] float joystickDeadZone = 0.2f;
 
-    // Ghost's wild
-    [HideInInspector] public bool wild_mode_on;
-    [SerializeField] float wild_mode_speed_mod;
-
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -80,7 +75,6 @@ public class GhostScript : NetworkBehaviour
             if (ghostUI == null) Debug.Log("Couldnt find ghost UI");
             else ghostUI.EnableUI();
         }
-        
     }
 
     void FindTeleportationPoint(GameObject teleport_point)
@@ -122,24 +116,7 @@ public class GhostScript : NetworkBehaviour
             {
                 last_valid_position = transform.position;
             }
-
-
-            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
         }
-    }
-
-    public IEnumerator WildMode()
-    {
-        SyncHideServerRpc(false);
-
-        GameData.is_ghost_wild = true;
-
-        yield return new WaitForSeconds(0.3f);
-
-        player.frozen = false;
-
-        default_speed *= wild_mode_speed_mod;
-        player.speed *= wild_mode_speed_mod;
     }
 
     void AimForCharge(Vector2 target_position)
@@ -357,8 +334,6 @@ public class GhostScript : NetworkBehaviour
     {
         if (ghostUI.stepvision_fill.fillAmount < 1) return;
 
-        ghostUI.StepVisionFilter(is_on);
-
         // Cooldown
         if (!is_on) StartCoroutine(ghostUI.Cooldown(stepvision_cooldown, false));
 
@@ -383,7 +358,6 @@ public class GhostScript : NetworkBehaviour
         ghost_hiding.SetActive(is_hiding);
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
-        if (Game.Instance.robber.Value != null)
         Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
 
         //ghost particle effects for charging
@@ -445,7 +419,7 @@ public class GhostScript : NetworkBehaviour
         return teleportation_locations[chosen_point];
     }
 
-    public IEnumerator Catch()
+    IEnumerator Catch()
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
 
@@ -467,7 +441,7 @@ public class GhostScript : NetworkBehaviour
             current_alpha = current_laughing_duration / laughing_duration;
 
             current_laughing_duration--;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         hiding_sprite.color = hiding_color;

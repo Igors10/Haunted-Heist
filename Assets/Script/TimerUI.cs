@@ -31,9 +31,7 @@ public class TimerUI : MonoBehaviour
         if (gameTimerInSeconds <= 0)
         {
             gameTimerInSeconds = 0;
-
-            // Ghost becomes wild bebe
-            if (GameData.is_ghost_wild == false) StartCoroutine(Game.Instance.ghost.Value.GetComponent<GhostScript>().WildMode());
+            // GAME IS OVER / Ghost wins
         }
     }
 }

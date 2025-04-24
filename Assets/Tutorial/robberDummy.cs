@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class robberDummy : MonoBehaviour
 {
-    
+    public Transform teleportSpot;
+
     private void Start()
     {
-        
+        teleportSpot = GameObject.FindGameObjectWithTag("spawnPointTutorial").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -19,24 +20,16 @@ public class robberDummy : MonoBehaviour
     {
         if(collision.CompareTag("Ghost"))
         {
-            collision.gameObject.transform.parent.TryGetComponent(out GhostScript ghostScript);
+            GameObject ghost = collision.gameObject.transform.parent.gameObject;
 
-            if (ghostScript.is_dashing)
+            if (ghost.TryGetComponent(out ghostTutorial component))
             {
-
-                GameObject ghost = collision.gameObject.transform.parent.gameObject;
-
-                if (ghost.TryGetComponent(out ghostTutorial component))
-                {
-                    //increase the killcount and teleport the ghost back
-                    component.robberKills += 1;
-                    StartCoroutine(ghostScript.Catch());
-                    
-
-                }
-
-                Destroy(this.gameObject);
+                //increase the killcount and teleport the ghost back
+                component.robberKills += 1;
+                ghost.transform.position = teleportSpot.position;
             }
+
+            Destroy(this.gameObject);
         }
     }
 }

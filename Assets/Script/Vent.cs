@@ -3,7 +3,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 
 // TO FIX: script is being disabled when you start the game (because its network behaviour)
@@ -19,6 +18,7 @@ public class Vent : NetworkBehaviour
     Color open_color;
     [SerializeField] SpriteRenderer sprite;
     [HideInInspector] public bool blocked;
+    GameObject[] key_UI = new GameObject[2];
     VentArrows ventUI;
     bool open = false;
     [SerializeField] Sprite[] vent_sprites;
@@ -37,6 +37,9 @@ public class Vent : NetworkBehaviour
         {
             vent_buttons[i] = vent_button_gameObjects[i].GetComponent<Button>();
         }
+
+        key_UI[0] = GameObject.Find("QKeyText");
+        key_UI[1] = GameObject.Find("EKeyText");
 
         ventUI = GameObject.Find("NewVentUI").GetComponent<VentArrows>(); // Add this object with arrows into the scene
     }
@@ -62,15 +65,9 @@ public class Vent : NetworkBehaviour
 
         open = is_open;
 
-        //  * Enabling/disabling arrows *
-        // Setting the correct input icons
-        bool is_lb_icon_on = (GameData.is_gamepad_used) ? true : false;
-        ventUI.lb_icon.SetActive(is_lb_icon_on);
-        bool is_rb_icon_on = (GameData.is_gamepad_used) ? true : false;
-        ventUI.rb_icon.SetActive(is_rb_icon_on);
-
+        // Enabling/disabling arrows
         bool left_arrow_active = (is_open && !connected_vents[0].blocked) ? true : false;
-        bool right_arrow_active = ((connected_vents.Length > 1) && is_open && !connected_vents[1].blocked) ? true : false;
+        bool right_arrow_active = (is_open && !connected_vents[1].blocked) ? true : false;
         ventUI.left_arrow.SetActive(left_arrow_active);
         ventUI.right_arrow.SetActive(right_arrow_active);
 

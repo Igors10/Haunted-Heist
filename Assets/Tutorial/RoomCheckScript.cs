@@ -12,11 +12,8 @@ public class RoomCheckScript : MonoBehaviour
 
     public bool ghostRoom;
     public bool ghostVent;
-    public bool ghostMoveRoom;
     public bool robberVent;
-    public bool robberLight;
     public bool robberSeeGhost;
-    public bool robberMoveRoom;
 
     bool kill = false;
 
@@ -64,17 +61,6 @@ public class RoomCheckScript : MonoBehaviour
             }
         }
 
-        if (collider.gameObject.CompareTag("Ghost") && ghostMoveRoom)
-        {
-            GameObject ghost = collider.gameObject.transform.parent.gameObject;
-
-            //checking the position of the ghost in the tutorial
-            if (ghost.TryGetComponent(out ghostTutorial component))
-            {
-                component.moveRoom = true;
-            }
-        }
-
         if (collider.gameObject.CompareTag("Robber") && robberVent)
         {
             //checking the position of the robber in the tutorial
@@ -92,24 +78,6 @@ public class RoomCheckScript : MonoBehaviour
                 component.seenAGhost = true;
             }
         }
-
-        if (collider.gameObject.CompareTag("Robber") && robberMoveRoom)
-        {
-            //checking the position of the robber in the tutorial
-            if (collider.TryGetComponent(out robberTutorial component))
-            {
-                component.moveRoom = true;
-            }
-        }
-
-        if (collider.gameObject.CompareTag("Robber") && robberLight)
-        {
-            //checking the position of the robber in the tutorial
-            if (collider.TryGetComponent(out robberTutorial component))
-            {
-                component.moveLight = true;
-            }
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
@@ -120,15 +88,6 @@ public class RoomCheckScript : MonoBehaviour
             if (collider.gameObject.TryGetComponent(out robberTutorial component))
             {
                 component.seenAGhost = false;
-            }
-        }
-
-        if (collider.gameObject.CompareTag("Robber") && robberLight)
-        {
-            //checking the position of the robber in the tutorial
-            if (collider.TryGetComponent(out robberTutorial component))
-            {
-                component.moveLight = false;
             }
         }
     }

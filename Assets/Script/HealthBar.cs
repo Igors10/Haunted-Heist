@@ -4,7 +4,7 @@ using System.Collections;
 
 public class HealthBar : MonoBehaviour
 {
-    public int currentHealth = 3;
+    [SerializeField] private int currentHealth = 3;
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private GameObject[] heartObjects;
     [SerializeField] private GameObject[] emptyHearts;
