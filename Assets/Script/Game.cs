@@ -1,8 +1,6 @@
 using FishNet.Managing;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
-using Newtonsoft.Json.Bson;
-using TMPro;
 using UnityEngine;
 public enum character
 {
@@ -29,7 +27,7 @@ public class Game : NetworkBehaviour
 
         //connection fails
         network_manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
-    
+
     }
     //public static GameObject robber;
     public readonly SyncVar<GameObject> robber = new SyncVar<GameObject>();
@@ -52,7 +50,7 @@ public class Game : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             is_robber_connected = true;
             is_ghost_connected = true;

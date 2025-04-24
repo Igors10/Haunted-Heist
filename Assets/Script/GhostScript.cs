@@ -27,6 +27,7 @@ public class GhostScript : NetworkBehaviour
     [HideInInspector] public bool is_dashing;
     bool is_dash_ready;
 
+
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
     float charge_time;
@@ -120,6 +121,7 @@ public class GhostScript : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
         }
     }
+
 
     Vector2 JoystickAimInput()
     {
@@ -428,7 +430,7 @@ public class GhostScript : NetworkBehaviour
     [ObserversRpc]
     public void DashIndicatorObserversRpc(bool is_on)
     {
-        Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
+        if (Game.Instance.robber.Value != null) Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
     }
         // Changing states HIDING - ATTACKING ======================================
 

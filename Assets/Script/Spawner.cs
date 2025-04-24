@@ -45,6 +45,9 @@ public class Spawner : NetworkBehaviour
 
         Debug.Log("I- Spawner client star");
 
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(ghost_button.gameObject);
+
+
         ghost_button.onClick.AddListener(() => RequestSpawnGhost());
         robber_button.onClick.AddListener(() => RequestSpawnRobber());
     }

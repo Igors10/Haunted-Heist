@@ -22,6 +22,7 @@ public class GhostUI : MonoBehaviour
     [SerializeField] Image[] dash_icons;
     public Image[] stepvision_icons;
 
+
     public Color charged_color_dash;
     [SerializeField] Color charged_color_stepvision;
     [SerializeField] Color cooldown_color;
@@ -32,6 +33,7 @@ public class GhostUI : MonoBehaviour
     {
         default_filter_intensity = ghostVision.GetComponent<Light2D>().intensity;
         default_filter_color = ghostVision.GetComponent<Light2D>().color;
+
         DashUsed();
     }
     public IEnumerator Cooldown(float cooldown_time, bool is_dash)
