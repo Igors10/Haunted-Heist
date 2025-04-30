@@ -18,26 +18,11 @@ public class RuntimeTutorialManager : MonoBehaviour
 
     void WipeTutorial()
     {
-        TutorialProgress.robber_movement        = false;
-        TutorialProgress.robber_lantern         = false;
-        TutorialProgress.robber_pickup          = false;
-        TutorialProgress.robber_light_warning   = false;
-        TutorialProgress.robber_radar           = false;
-        TutorialProgress.robber_vent            = false;
-        TutorialProgress.robber_item_arrow      = false;
-        TutorialProgress.robber_timer           = false;
-        TutorialProgress.robber_escape          = false;
 
-        TutorialProgress.ghost_movement         = false;
-        TutorialProgress.ghost_dash             = false;
-        TutorialProgress.ghost_stepvision       = false;
-        TutorialProgress.ghost_dash_warning     = false;
-        TutorialProgress.ghost_objective        = false;
-        TutorialProgress.ghost_teleport         = false;
-        TutorialProgress.ghost_timer            = false;
-        TutorialProgress.ghost_items            = false;
-        TutorialProgress.ghost_items_gathered   = false;
-}
+
+
+    }
+
 
     // Update is called once per frame
     void Update()

@@ -27,11 +27,11 @@ public class RobberScript : NetworkBehaviour
     [SerializeField] GameObject jumpscare;
 
     // Item radar
-    [SerializeField] float time_before_item_help;
+    public float time_before_item_help;
     float item_radar_timer;
-    [SerializeField] ArrowPointer item_arrow;
-    [HideInInspector] public bool custom_arrow_pointer;
-    [HideInInspector] public Vector3 custom_arrow_pointer_target;
+    public ArrowPointer item_arrow;
+    public bool custom_arrow_pointer;
+    public Vector3 custom_arrow_pointer_target;
 
     // *** How to use custom arrow pointer ***
 

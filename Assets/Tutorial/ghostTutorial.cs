@@ -58,6 +58,21 @@ public class ghostTutorial : MonoBehaviour
         spawnAntagonists = spawner.GetComponent<SpawnAntagonists>();
     }
 
+    IEnumerator DelayChange(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        TutorialProgress.part = 5;
+
+        // Attach the second robberDummy as a target of the flashlight
+        spawnAntagonists.SpawnSecondRobber();
+
+        if (spawnAntagonists.secondRobberInstance != null)
+        {
+            ghostScript.player.indication.target = spawnAntagonists.secondRobberInstance.transform.position;
+            ghostScript.player.Indication(true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -126,7 +141,7 @@ public class ghostTutorial : MonoBehaviour
         //part 4
         if (finishSteps && TutorialProgress.part == 4)
         {
-            TutorialProgress.part = 5;
+            DelayChange(3f);
         }
 
         //part 5
@@ -136,7 +151,7 @@ public class ghostTutorial : MonoBehaviour
 
             spawnAntagonists.SpawnThirdRobber();
 
-            // Attach the second robberDummy as a target of the flashlight
+            // Attach the third robberDummy as a target of the flashlight
             if (spawnAntagonists.secondRobberInstance != null)
             {
                 ghostScript.player.indication.target = spawnAntagonists.secondRobberInstance.transform.position;
