@@ -12,9 +12,9 @@ public class SpawnAntagonists : MonoBehaviour
     public Transform secondInstance;  
     public Transform thirdInstance;
 
-    bool firstRobber = false;
-    bool secondRobber = false;
-    bool thirdRobber = false;
+    public bool firstRobber = false;
+    public bool secondRobber = false;
+    public bool thirdRobber = false;
 
     public robberDummy firstRobberInstance;
     public robberDummy secondRobberInstance;
