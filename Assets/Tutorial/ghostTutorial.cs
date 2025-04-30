@@ -66,7 +66,7 @@ public class ghostTutorial : MonoBehaviour
         TutorialProgress.part = 5;
 
         // Attach the second robberDummy as a target of the flashlight
-        spawnAntagonists.SpawnSecondRobber();
+        if(!spawnAntagonists.secondRobber) spawnAntagonists.SpawnSecondRobber();
 
         if (spawnAntagonists.secondRobberInstance != null)
         {
@@ -121,7 +121,7 @@ public class ghostTutorial : MonoBehaviour
             TutorialProgress.part = 3;
 
             // Attach the first robberDummy as a target of the flashlight
-            spawnAntagonists.SpawnFirstRobber();
+            if (!spawnAntagonists.firstRobber) spawnAntagonists.SpawnFirstRobber();
 
 
             if (spawnAntagonists.firstRobberInstance != null)
@@ -143,7 +143,7 @@ public class ghostTutorial : MonoBehaviour
         //part 4
         if (finishSteps && TutorialProgress.part == 4)
         {
-            DelayChange(3f);
+            StartCoroutine(DelayChange(3f));
         }
 
         //part 5
@@ -151,12 +151,12 @@ public class ghostTutorial : MonoBehaviour
         {
             TutorialProgress.part = 6;
 
-            spawnAntagonists.SpawnThirdRobber();
+            if (!spawnAntagonists.thirdRobber) spawnAntagonists.SpawnThirdRobber();
 
             // Attach the third robberDummy as a target of the flashlight
-            if (spawnAntagonists.secondRobberInstance != null)
+            if (spawnAntagonists.thirdRobberInstance != null)
             {
-                ghostScript.player.indication.target = spawnAntagonists.secondRobberInstance.transform.position;
+                ghostScript.player.indication.target = spawnAntagonists.thirdRobberInstance.transform.position;
                 ghostScript.player.Indication(true);
             }
 
