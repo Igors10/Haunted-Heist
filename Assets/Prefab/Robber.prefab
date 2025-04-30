@@ -1461,8 +1461,10 @@ MonoBehaviour:
   white_noise_volume: 0.2
   jumpscare_duration: 10
   jumpscare: {fileID: 5603760665451837918}
-  time_before_item_help: 50
+  time_before_item_help: 0
   item_arrow: {fileID: 202241766439725639}
+  custom_arrow_pointer: 0
+  custom_arrow_pointer_target: {x: 0, y: 0, z: 0}
 --- !u!114 &6780872986741511376
 MonoBehaviour:
   m_ObjectHideFlags: 0
