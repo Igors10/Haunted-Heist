@@ -9,8 +9,8 @@ public class RuntimeOverlayScript : MonoBehaviour
     public GameObject textbox;
     public string given_text;
     public Vector3 changed_position;
-
     public string type;
+    public float priority;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,9 +22,10 @@ public class RuntimeOverlayScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //it ends when their bool is deactivated
-
-        //if (//the exact bool becomes inactive) Delete();
+        if (TutorialProgress.tutorial_bools[type])
+        {
+            Delete();
+        }
     }
 
     public void Delete()
