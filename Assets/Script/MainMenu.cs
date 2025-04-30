@@ -147,5 +147,4 @@ public class MainMenu : MonoBehaviour
     {
         helpPanel.SetActive(!helpPanel.activeSelf);
     }
-
 }
