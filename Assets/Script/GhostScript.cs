@@ -1,8 +1,6 @@
 using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,6 +64,8 @@ public class GhostScript : NetworkBehaviour
     [HideInInspector] public bool wild_mode_on;
     [SerializeField] float wild_mode_speed_mod;
 
+    private Vector3 dashDirection;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -91,7 +91,7 @@ public class GhostScript : NetworkBehaviour
             if (ghostUI == null) Debug.Log("Couldnt find ghost UI");
             else ghostUI.EnableUI();
         }
-        
+
     }
 
     void FindTeleportationPoint(GameObject teleport_point)
@@ -177,7 +177,7 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         // Charging up the dash
-        
+
         if (full_aiming_arrow.fillAmount < 1f)
         {
             full_aiming_arrow.fillAmount += Time.deltaTime * dash_prep_speed;
@@ -205,50 +205,134 @@ public class GhostScript : NetworkBehaviour
         // Calculating the next position 
         Vector3 nextPosition = Vector3.Lerp(charge_starting_position, charge_target_position, coolT);
 
-        // Check if the next position would be inside a map boundary
-        if (IsPositionValid(nextPosition))
+        // Before moving, check if the path is clear
+        float distanceToMove = Vector3.Distance(transform.position, nextPosition);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDirection, distanceToMove, boundaryLayer);
+
+        // Also check for pushers, but only if we want to stop at them
+        RaycastHit2D pusherHit = Physics2D.Raycast(transform.position, dashDirection, distanceToMove);
+        if (pusherHit.collider != null && pusherHit.collider.CompareTag("Pusher"))
         {
-            // If it's valid, move to that position
-            player.transform.position = nextPosition;
-        }
-        else
-        {
-            // If it's not valid, find the closest valid position
-            Vector3 direction = (nextPosition - charge_starting_position).normalized;
-            float distance = Vector3.Distance(charge_starting_position, nextPosition);
-
-            // Searching for the closest valid position
-            float minDistance = 0;
-            float maxDistance = distance;
-            float currentDistance = maxDistance;
-            Vector3 validPosition = charge_starting_position;
-
-            for (int i = 0; i < 10; i++)
-            {
-                currentDistance = (minDistance + maxDistance) / 2;
-                Vector3 testPosition = charge_starting_position + direction * currentDistance;
-
-                if (IsPositionValid(testPosition))
-                {
-                    validPosition = testPosition;
-                    minDistance = currentDistance;
-                }
-                else
-                {
-                    maxDistance = currentDistance;
-                }
-            }
-
-            // Move to the valid position
-            player.transform.position = validPosition;
-
-            // End the dash since we hit map boundary
+            // Stop just before the pusher
+            Vector3 stopPosition = transform.position + dashDirection * (pusherHit.distance - boundaryOffset);
+            player.transform.position = stopPosition;
             EndCharge();
             return;
         }
 
+        if (hit.collider != null)
+        {
+            // If we hit a boundary, stop just before it
+            Vector3 stopPosition = transform.position + dashDirection * (hit.distance - boundaryOffset);
+            player.transform.position = stopPosition;
+            EndCharge();
+            return;
+        }
+
+        // If the path is clear, move to the next position
+        player.transform.position = nextPosition;
+
+        // If we've reached the end of the dash, end it
         if (progress >= 1) EndCharge();
     }
+
+    void CheckAndResolvePusherCollision()
+    {
+        if (!IsOwner) return;
+
+        // Check if the ghost is inside a pusher
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        bool insidePusher = false;
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Pusher"))
+            {
+                insidePusher = true;
+                break;
+            }
+        }
+
+        // If inside a pusher, we need to find a safe position
+        if (insidePusher)
+        {
+            // Attempt to find a safe position along the dash path
+            FindSafePositionAlongDashPath();
+        }
+    }
+
+    void FindSafePositionAlongDashPath()
+    {
+        // Get the dash direction
+        Vector3 direction = -dashDirection; // Try going backward along the dash path first
+
+        // Try different distances to find a safe spot
+        float[] distances = { 0.5f, 1.0f, 1.5f, 2.0f };
+
+        foreach (float distance in distances)
+        {
+            Vector3 testPosition = transform.position + direction * distance;
+
+            // Check if this position is safe (not inside a pusher)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(testPosition, 0.1f);
+            bool positionSafe = true;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Pusher"))
+                {
+                    positionSafe = false;
+                    break;
+                }
+            }
+
+            if (positionSafe)
+            {
+                // Found a safe position, move there
+                transform.position = testPosition;
+                Debug.Log("Found safe position at distance: " + distance);
+                return;
+            }
+        }
+        Vector2[] cardinalDirections = {
+        Vector2.up,
+        Vector2.right,
+        Vector2.down,
+        Vector2.left
+    };
+
+        foreach (Vector2 dir in cardinalDirections)
+        {
+            // Try a reasonable escape distance
+            Vector3 testPosition = transform.position + new Vector3(dir.x, dir.y, 0) * 0.5f;
+
+            // Check if this position is safe
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(testPosition, 0.1f);
+            bool positionSafe = true;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Pusher"))
+                {
+                    positionSafe = false;
+                    break;
+                }
+            }
+
+            if (positionSafe)
+            {
+                // Found a safe position, move there
+                transform.position = testPosition;
+                Debug.Log("Found safe position in cardinal direction: " + dir);
+                return;
+            }
+        }
+
+        // As a last resort, use the last valid position
+        transform.position = last_valid_position;
+        Debug.Log("No safe position found, using last valid position");
+    }
+
 
     // Check if a position is valid (not inside a boundary)
     bool IsPositionValid(Vector3 position)
@@ -284,7 +368,6 @@ public class GhostScript : NetworkBehaviour
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
 
-
         SyncHideServerRpc(false);
         is_aiming = false;
 
@@ -299,8 +382,8 @@ public class GhostScript : NetworkBehaviour
         // Dash start soundeffect
         AudioManager.instance.PlaySFXGlobal("Dash");
 
-        // Calculate initial dash target
-        Vector3 dashDirection = aiming_arrow.transform.up;
+        // Calculate initial dash target and save the direction
+        dashDirection = aiming_arrow.transform.up;
         Vector3 initialTargetPosition = transform.position + dashDirection * dash_length;
 
         charge_target_position = initialTargetPosition;
@@ -316,6 +399,7 @@ public class GhostScript : NetworkBehaviour
         Debug.Log("Charge Started");
     }
 
+
     void EndCharge()
     {
         aiming_arrow.SetActive(false);
@@ -330,27 +414,71 @@ public class GhostScript : NetworkBehaviour
         Debug.Log("Charge Ended");
     }
 
-    void CheckAndResolvePusherCollision()
+
+    void HandleTilemapCollision()
     {
-        if (!IsOwner) return;
-
-        // Get all colliders at the current position
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
-
-        foreach (Collider2D collider in colliders)
+        // Cast rays in 8 directions to find the nearest exit
+        Vector2[] directions = new Vector2[]
         {
-            if (collider.CompareTag("Pusher"))
+        Vector2.up,
+        Vector2.right,
+        Vector2.down,
+        Vector2.left,
+        new Vector2(1, 1).normalized,
+        new Vector2(1, -1).normalized,
+        new Vector2(-1, -1).normalized,
+        new Vector2(-1, 1).normalized
+        };
+
+        float maxRayDistance = 2f; // Maximum distance to check
+        float shortestDistance = maxRayDistance;
+        Vector2 bestDirection = Vector2.zero;
+        bool foundExit = false;
+
+        // Try to find the nearest exit point
+        foreach (Vector2 direction in directions)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxRayDistance, boundaryLayer);
+            if (hit.collider == null) // No boundary in this direction
             {
-                // Calculate the nearest edge point
-                Vector2 direction = GetNearestExitDirection(collider);
-
-                // Push the ghost out in that direction
-                float pushDistance = 0.5f;
-                transform.position += new Vector3(direction.x, direction.y, 0) * pushDistance;
-
-                // Stop the loop after the first pusher is found
-                break;
+                // Cast another ray but this time looking for pushers
+                RaycastHit2D pusherHit = Physics2D.Raycast(transform.position, direction, maxRayDistance);
+                if (pusherHit.collider != null && pusherHit.collider.CompareTag("Pusher"))
+                {
+                    // Found the edge of the pusher
+                    if (pusherHit.distance < shortestDistance)
+                    {
+                        shortestDistance = pusherHit.distance;
+                        bestDirection = direction;
+                        foundExit = true;
+                    }
+                }
+                else
+                {
+                    // Open direction with no obstacles
+                    float distance = 0.5f; // Default push distance
+                    if (distance < shortestDistance)
+                    {
+                        shortestDistance = distance;
+                        bestDirection = direction;
+                        foundExit = true;
+                    }
+                }
             }
+        }
+
+        if (foundExit)
+        {
+            // Push in the best direction with a little extra to ensure we're outside
+            float pushDistance = shortestDistance + 0.3f;
+            transform.position += new Vector3(bestDirection.x, bestDirection.y, 0) * pushDistance;
+            Debug.Log("Pushed out of tilemap in direction: " + bestDirection);
+        }
+        else
+        {
+            // If no clear exit found, try teleporting to last valid position
+            transform.position = last_valid_position;
+            Debug.Log("No clear exit found, teleported to last valid position");
         }
     }
 
@@ -436,7 +564,7 @@ public class GhostScript : NetworkBehaviour
     {
         if (Game.Instance.robber.Value != null) Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
     }
-        // Changing states HIDING - ATTACKING ======================================
+    // Changing states HIDING - ATTACKING ======================================
 
     [ServerRpc(RequireOwnership = false)]
     public void SyncHideServerRpc(bool is_hiding)
@@ -454,31 +582,31 @@ public class GhostScript : NetworkBehaviour
         is_dashing = !is_hiding;
         if (Game.Instance.robber.Value != null)
 
-        //ghost particle effects for charging
-        if (is_hiding)
-        {
-            if (ghostParticleZoomIn.isEmitting)
+            //ghost particle effects for charging
+            if (is_hiding)
             {
-                ghostParticleZoomIn.Clear();
-                Debug.Log("ZoomIn cleared");
-            }
+                if (ghostParticleZoomIn.isEmitting)
+                {
+                    ghostParticleZoomIn.Clear();
+                    Debug.Log("ZoomIn cleared");
+                }
 
-            ghostParticleZoomOut.Stop();
-            if (ghostParticleZoomOut.isStopped)
-            {
-                ghostParticleZoomOut.Play();
-                Debug.Log("ZoomOut activated");
+                ghostParticleZoomOut.Stop();
+                if (ghostParticleZoomOut.isStopped)
+                {
+                    ghostParticleZoomOut.Play();
+                    Debug.Log("ZoomOut activated");
+                }
             }
-        }
-        else
-        {
-            ghostParticleZoomIn.Stop();
-            if (ghostParticleZoomIn.isStopped)
+            else
             {
-                ghostParticleZoomIn.Play();
-                Debug.Log("ZoomIn activated");
+                ghostParticleZoomIn.Stop();
+                if (ghostParticleZoomIn.isStopped)
+                {
+                    ghostParticleZoomIn.Play();
+                    Debug.Log("ZoomIn activated");
+                }
             }
-        }
 
     }
 
