@@ -176,7 +176,7 @@ public class robberTutorial : MonoBehaviour
             GetComponent<RobberScript>().item_arrow.gameObject.SetActive(true);
             GetComponent<RobberScript>().custom_arrow_pointer = true;
             GetComponent<RobberScript>().custom_arrow_pointer_target = ghost_position.transform.position;
-            GetComponent<RobberScript>().time_before_item_help = 0;
+            GetComponent<RobberScript>().ActivateItemRadar();
 
             // set ArrowPointer.gameObject to be active
             // set custom_arrow_pointer to true
@@ -191,6 +191,7 @@ public class robberTutorial : MonoBehaviour
 
             //arrow for vent
             GetComponent<RobberScript>().custom_arrow_pointer_target = vent_position.position;
+            GetComponent<RobberScript>().ActivateItemRadar();
         }
 
         //part 6
@@ -198,6 +199,9 @@ public class robberTutorial : MonoBehaviour
         {
             TutorialProgress.part = 7;
             GetComponent<RobberScript>().custom_arrow_pointer = false;
+            GetComponent<RobberScript>().item_arrow.gameObject.SetActive(false);
+            GetComponent<RobberScript>().time_before_item_help = 0;
+            GetComponent<RobberScript>().ActivateItemRadar();
         }
 
 
