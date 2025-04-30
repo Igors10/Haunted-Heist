@@ -15412,10 +15412,10 @@ MonoBehaviour:
   - {fileID: 1633834877}
   - {fileID: 892807492}
   gamepad_ui_sprites:
-  - {fileID: 649223268058989734, guid: 914f58314cecbd44eba883cf785322b5, type: 3}
-  - {fileID: -5485327256500454033, guid: 98338b03395cb64438f28aa2bc2ef8f3, type: 3}
-  - {fileID: -5485327256500454033, guid: 98338b03395cb64438f28aa2bc2ef8f3, type: 3}
-  - {fileID: -5485327256500454033, guid: 98338b03395cb64438f28aa2bc2ef8f3, type: 3}
+  - {fileID: 2920897226203271158, guid: b18f4dfd117e5544281a774102e45bc7, type: 3}
+  - {fileID: -8689399778339607699, guid: 1d09618b465505e4bbd73fb2bedfb44e, type: 3}
+  - {fileID: 2920897226203271158, guid: b18f4dfd117e5544281a774102e45bc7, type: 3}
+  - {fileID: -8689399778339607699, guid: 1d09618b465505e4bbd73fb2bedfb44e, type: 3}
   keyboard_ui_sprites:
   - {fileID: 1588045885516318957, guid: fbf17da29e39cf244806d800b63d039d, type: 3}
   - {fileID: -2208852223112515189, guid: aacc786ba7607cf48b44b7ddc3ca8f9f, type: 3}
