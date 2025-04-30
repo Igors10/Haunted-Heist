@@ -1,5 +1,4 @@
 using FishNet.Object;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +39,8 @@ public class Player : NetworkBehaviour
     [SerializeField] TextMeshProUGUI l_text;
     [SerializeField] string win_text;
     [SerializeField] string lose_text;
+
+    private bool lastFlipXState;
 
     public override void OnStartClient()
     {
@@ -135,5 +136,27 @@ public class Player : NetworkBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        // Flip state 
+        if (sprite.flipX != lastFlipXState)
+        {
+            SyncFlipXServerRpc(sprite.flipX);
+            lastFlipXState = sprite.flipX;
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SyncFlipXServerRpc(bool flipX)
+    {
+        SyncFlipXObserversRpc(flipX);
+    }
+
+    [ObserversRpc]
+    void SyncFlipXObserversRpc(bool flipX)
+    {
+        sprite.flipX = flipX;
+        if (aura_sprite != null) aura_sprite.flipX = flipX;
+    }
 }
 

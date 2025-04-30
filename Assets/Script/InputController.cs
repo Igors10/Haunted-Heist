@@ -7,6 +7,8 @@ public class InputController : NetworkBehaviour
     Player player;
     Animator animator;
 
+    private bool lastFlipXState;
+
     bool wasRTPressedLastFrame = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,6 +33,16 @@ public class InputController : NetworkBehaviour
         {
             bool isWalking = movement.x != 0f || movement.y != 0f;
             animator.SetBool("isWalking", isWalking);  // Set the 'isWalking' parameter in the Animator
+        }
+    }
+
+    void LateUpdate()
+    {
+        // Flip state 
+        if (player.sprite.flipX != lastFlipXState)
+        {
+            SyncFlipXServerRpc(player.sprite.flipX);
+            lastFlipXState = player.sprite.flipX;
         }
     }
 
@@ -107,5 +119,19 @@ public class InputController : NetworkBehaviour
     bool IsMouseOverButton()
     {
         return EventSystem.current.IsPointerOverGameObject();
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    void SyncFlipXServerRpc(bool flipX)
+    {
+        SyncFlipXObserversRpc(flipX);
+    }
+
+    [ObserversRpc]
+    void SyncFlipXObserversRpc(bool flipX)
+    {
+        player.sprite.flipX = flipX;
+        if (player.aura_sprite != null) player.aura_sprite.flipX = flipX;
     }
 }
