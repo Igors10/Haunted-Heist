@@ -27,11 +27,11 @@ public class RobberScript : NetworkBehaviour
     [SerializeField] GameObject jumpscare;
 
     // Item radar
-    [SerializeField] float time_before_item_help;
+    public float time_before_item_help;
     float item_radar_timer;
-    [SerializeField] ArrowPointer item_arrow;
-    [HideInInspector] public bool custom_arrow_pointer;
-    [HideInInspector] public Vector3 custom_arrow_pointer_target;
+    public ArrowPointer item_arrow;
+    public bool custom_arrow_pointer;
+    public Vector3 custom_arrow_pointer_target;
 
     // *** How to use custom arrow pointer ***
 
@@ -155,16 +155,21 @@ public class RobberScript : NetworkBehaviour
     }
     void ItemRadar()
     {
-        if (item_arrow.gameObject.activeSelf || IsOwner == false) return;
+        if (item_arrow.gameObject.activeSelf || IsOwner == false || items_collected) return;
 
         item_radar_timer -= Time.deltaTime;
 
         if (item_radar_timer < 0)
         {
-            // activate the arrow
-            item_arrow.gameObject.SetActive(true);
-            item_arrow.target = (custom_arrow_pointer) ? custom_arrow_pointer_target : Game.Instance.item_lottery.GetRandomItem().transform.position;
+            ActivateItemRadar();
         }
+    }
+
+    public void ActivateItemRadar()
+    {
+        // activate the arrow
+        item_arrow.gameObject.SetActive(true);
+        item_arrow.target = (custom_arrow_pointer) ? custom_arrow_pointer_target : Game.Instance.item_lottery.GetRandomItem().transform.position;
     }
 
     void GhostRadar()

@@ -13641,6 +13641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostObject: {fileID: 8971885395949694260, guid: c4ef0389c687121439e3b0e33f16aea6, type: 3}
+  ghost_position: {fileID: 1571439576}
+  vent_position: {fileID: 1348037566}
   firstInstance: {fileID: 1571439576}
   secondInstance: {fileID: 151620356}
   endZones: {fileID: 77705068}
@@ -16575,11 +16577,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8415808740923237502, guid: 6d98fa07c13c3214aba33c2e1af99b42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.81
+      value: -1.44
       objectReference: {fileID: 0}
     - target: {fileID: 8415808740923237502, guid: 6d98fa07c13c3214aba33c2e1af99b42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.06
+      value: 15.94
       objectReference: {fileID: 0}
     - target: {fileID: 8415808740923237502, guid: 6d98fa07c13c3214aba33c2e1af99b42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24015,11 +24017,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8415808740923237502, guid: 6d98fa07c13c3214aba33c2e1af99b42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.95
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 8415808740923237502, guid: 6d98fa07c13c3214aba33c2e1af99b42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.46
+      value: 7.35
       objectReference: {fileID: 0}
     - target: {fileID: 8415808740923237502, guid: 6d98fa07c13c3214aba33c2e1af99b42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44327,7 +44329,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.64383876, y: -0.29976308}
+  m_Offset: {x: 0.62289304, y: -0.5421057}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -44337,7 +44339,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.6827157, y: 1.1431503}
+  m_Size: {x: 1.7246071, y: 1.6278358}
   m_EdgeRadius: 0
 --- !u!1001 &1774559951
 PrefabInstance:

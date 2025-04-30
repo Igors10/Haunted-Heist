@@ -1,15 +1,17 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
+using System.Diagnostics.CodeAnalysis;
 
 public class RuntimeTutorialManager : MonoBehaviour
 {
     public bool Robber;
     public bool Ghost;
-
     public GameObject overlay;
 
-    string active_type; //switch to enum
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,26 +20,17 @@ public class RuntimeTutorialManager : MonoBehaviour
 
     void WipeTutorial()
     {
-        TutorialProgress.robber_movement        = false;
-        TutorialProgress.robber_lantern         = false;
-        TutorialProgress.robber_pickup          = false;
-        TutorialProgress.robber_light_warning   = false;
-        TutorialProgress.robber_radar           = false;
-        TutorialProgress.robber_vent            = false;
-        TutorialProgress.robber_item_arrow      = false;
-        TutorialProgress.robber_timer           = false;
-        TutorialProgress.robber_escape          = false;
+        foreach (var key in TutorialProgress.tutorial_bools.Keys.ToList())
+        {
+            TutorialProgress.tutorial_bools[key] = false;
+        }
 
-        TutorialProgress.ghost_movement         = false;
-        TutorialProgress.ghost_dash             = false;
-        TutorialProgress.ghost_stepvision       = false;
-        TutorialProgress.ghost_dash_warning     = false;
-        TutorialProgress.ghost_objective        = false;
-        TutorialProgress.ghost_teleport         = false;
-        TutorialProgress.ghost_timer            = false;
-        TutorialProgress.ghost_items            = false;
-        TutorialProgress.ghost_items_gathered   = false;
-}
+    }
+
+    void DeactivateBool(string bool_name)
+    {
+        TutorialProgress.tutorial_bools[bool_name] = true;
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,14 +38,23 @@ public class RuntimeTutorialManager : MonoBehaviour
         
     }
 
-    public void ActivateOverlay(float x_pos, float y_pos, string text, string type)
+    public void ActivateOverlay(float x_pos, float y_pos, string text, string type, float priority)
     {
-        overlay.GetComponent<RuntimeOverlayScript>().textbox.GetComponent<TextMeshPro>().text = text;
-        overlay.GetComponent<RuntimeOverlayScript>().type = type;
-        active_type = type;
-        //put text in the chid of the overlay
-        //plan the overlay in the correct place
-        //instantiate overlay
-        //bind the type for deleting it from the game
+        if (overlay.activeSelf)
+        {
+            if (overlay.GetComponent<RuntimeOverlayScript>().priority > priority)
+            {
+                overlay.GetComponent<RuntimeOverlayScript>().textbox.GetComponent<TextMeshPro>().text = text;
+                overlay.GetComponent<RuntimeOverlayScript>().type = type;
+                overlay.GetComponent<RuntimeOverlayScript>().priority = priority;
+            }
+            else return;
+        }
+        else
+        {
+            overlay.GetComponent<RuntimeOverlayScript>().textbox.GetComponent<TextMeshPro>().text = text;
+            overlay.GetComponent<RuntimeOverlayScript>().type = type;
+            overlay.GetComponent<RuntimeOverlayScript>().priority = priority;
+        }
     }
 }
