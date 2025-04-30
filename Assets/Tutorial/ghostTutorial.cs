@@ -1,7 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
-using FishNet.Demo.AdditiveScenes;
 
 public class ghostTutorial : MonoBehaviour
 {
@@ -28,6 +25,18 @@ public class ghostTutorial : MonoBehaviour
     public SpawnAntagonists spawnAntagonists;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        // If scene is Lvl_Tilemap then disable the whole script
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Lvl_Tilemap")
+        {
+            this.enabled = false;
+            return;
+        }
+    }
+
     void Start()
     {
         robberKills = 0;
@@ -47,6 +56,21 @@ public class ghostTutorial : MonoBehaviour
         spawner = GameObject.FindWithTag("spawnPointTutorial");
         ghostScript = GetComponent<GhostScript>();
         spawnAntagonists = spawner.GetComponent<SpawnAntagonists>();
+    }
+
+    IEnumerator DelayChange(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        TutorialProgress.part = 5;
+
+        // Attach the second robberDummy as a target of the flashlight
+        spawnAntagonists.SpawnSecondRobber();
+
+        if (spawnAntagonists.secondRobberInstance != null)
+        {
+            ghostScript.player.indication.target = spawnAntagonists.secondRobberInstance.transform.position;
+            ghostScript.player.Indication(true);
+        }
     }
 
     // Update is called once per frame
@@ -117,7 +141,7 @@ public class ghostTutorial : MonoBehaviour
         //part 4
         if (finishSteps && TutorialProgress.part == 4)
         {
-            TutorialProgress.part = 5;
+            DelayChange(3f);
         }
 
         //part 5
@@ -127,7 +151,7 @@ public class ghostTutorial : MonoBehaviour
 
             spawnAntagonists.SpawnThirdRobber();
 
-            // Attach the second robberDummy as a target of the flashlight
+            // Attach the third robberDummy as a target of the flashlight
             if (spawnAntagonists.secondRobberInstance != null)
             {
                 ghostScript.player.indication.target = spawnAntagonists.secondRobberInstance.transform.position;

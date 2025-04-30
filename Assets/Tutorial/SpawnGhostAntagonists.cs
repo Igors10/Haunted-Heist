@@ -5,6 +5,9 @@ public class SpawnGhostAntagonists : MonoBehaviour
     //objects to spawn
     public GameObject ghostObject;
 
+    public Transform ghost_position;
+    public Transform vent_position;
+
 
     //places to spawn robber
     public Transform firstInstance;

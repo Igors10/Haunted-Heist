@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject credits_window;
 
     public Button nextButton;
+    public GameObject helpPanel;
 
     bool server_created = false;
 
@@ -142,9 +143,8 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void LoadHelpScene()
+    public void LoadHelpPanel()
     {
-        SceneManager.LoadScene("Help");
+        helpPanel.SetActive(!helpPanel.activeSelf);
     }
-
 }

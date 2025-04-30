@@ -30,8 +30,10 @@ public class robberTutorial : MonoBehaviour
 
     //ghost radar functionality
     GameObject ghost;
+    Transform vent_position;
+    Transform ghost_position;
     RobberScript robberScript;
-
+    public SpawnGhostAntagonists spawnGhostScript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,8 +53,11 @@ public class robberTutorial : MonoBehaviour
 
         ventUsed = false;
 
-        
+        spawnGhostScript = GameObject.Find("SpawnPoint").GetComponent<SpawnGhostAntagonists>();
         robberScript = GetComponent<RobberScript>();
+
+        vent_position = spawnGhostScript.vent_position;
+        ghost_position = spawnGhostScript.ghost_position;
     }
 
     //reworked ghostradar for the tutorial
@@ -159,18 +164,33 @@ public class robberTutorial : MonoBehaviour
         if (itemsGathered >= 3 && TutorialProgress.part == 4)
         {
             TutorialProgress.part = 5;
+
+            //arrow for ghost
+            GetComponent<RobberScript>().item_arrow.gameObject.SetActive(true);
+            GetComponent<RobberScript>().custom_arrow_pointer = true;
+            GetComponent<RobberScript>().custom_arrow_pointer_target = ghost_position.transform.position;
+            GetComponent<RobberScript>().time_before_item_help = 0;
+
+            // set ArrowPointer.gameObject to be active
+            // set custom_arrow_pointer to true
+            // set custom_arrow_poinetr_target to transform.position of desired target
+            // set custom_arrow_pointer back to false when you need the arrow to point at items again
         }
 
         //part 5
         if (seenAGhost && mouseRightButton == 1 && TutorialProgress.part == 5)
         {
             TutorialProgress.part = 6;
+
+            //arrow for vent
+            GetComponent<RobberScript>().custom_arrow_pointer_target = vent_position.position;
         }
 
         //part 6
         if(ventUsed && TutorialProgress.part == 6)
         {
             TutorialProgress.part = 7;
+            GetComponent<RobberScript>().custom_arrow_pointer = false;
         }
 
 
