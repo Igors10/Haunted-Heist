@@ -18667,7 +18667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1064994122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38004,7 +38004,7 @@ MonoBehaviour:
   lose_text: {fileID: 70314184}
   client_wait_text: {fileID: 1209051045105618950}
   restart_button: {fileID: 1797459768}
-  disconnect_button: {fileID: 0}
+  disconnect_button: {fileID: 229467979}
 --- !u!1001 &1549897294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52047,10 +52047,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1076558903}
-  - {fileID: 618228317}
   - {fileID: 1884943422}
   - {fileID: 670449320}
   - {fileID: 1220319011}
   - {fileID: 705336386}
   - {fileID: 2080962400}
   - {fileID: 981181574}
+  - {fileID: 618228317}

@@ -1,7 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
-using FishNet.Demo.AdditiveScenes;
 
 public class ghostTutorial : MonoBehaviour
 {
@@ -28,6 +25,18 @@ public class ghostTutorial : MonoBehaviour
     public SpawnAntagonists spawnAntagonists;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        // If scene is Lvl_Tilemap then disable the whole script
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Lvl_Tilemap")
+        {
+            this.enabled = false;
+            return;
+        }
+    }
+
     void Start()
     {
         robberKills = 0;

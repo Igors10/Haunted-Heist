@@ -1,13 +1,9 @@
-using FishNet.Demo.AdditiveScenes;
-using System.Globalization;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class robberTutorial : MonoBehaviour
 {
     //how many items did the robber get
-    public float itemsGathered; 
+    public float itemsGathered;
 
     //did the player test every direction of movement
     public bool goUp;
@@ -32,6 +28,17 @@ public class robberTutorial : MonoBehaviour
     GameObject ghost;
     RobberScript robberScript;
 
+    void Awake()
+    {
+        // If scene is Lvl_Tilemap then disable the whole script
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Lvl_Tilemap")
+        {
+            this.enabled = false;
+            return;
+        }
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,27 +58,27 @@ public class robberTutorial : MonoBehaviour
 
         ventUsed = false;
 
-        
+
         robberScript = GetComponent<RobberScript>();
     }
 
     //reworked ghostradar for the tutorial
     void GhostNear()
     {
-          ghost = GameObject.FindGameObjectsWithTag("GhostDummy")[0];
+        ghost = GameObject.FindGameObjectsWithTag("GhostDummy")[0];
 
-          float distance_to_ghost = Vector2.Distance(ghost.transform.position, transform.position);
+        float distance_to_ghost = Vector2.Distance(ghost.transform.position, transform.position);
 
-          // Shaking effect
-          Vector2 shake_vector = ShakeEffect(distance_to_ghost);
-          robberScript.natural_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, robberScript.natural_light.transform.position.z);
-          robberScript.flashlight.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, robberScript.flashlight.transform.position.z);
-          //level_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, level_light.transform.position.z);
+        // Shaking effect
+        Vector2 shake_vector = ShakeEffect(distance_to_ghost);
+        robberScript.natural_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, robberScript.natural_light.transform.position.z);
+        robberScript.flashlight.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, robberScript.flashlight.transform.position.z);
+        //level_light.transform.localPosition = new Vector3(shake_vector.x, shake_vector.y, level_light.transform.position.z);
 
-          // Growing Audio effect
-          AudioSource white_noise = GetComponent<AudioSource>();
-          if (distance_to_ghost > robberScript.white_noise_range) white_noise.volume = 0;
-          else white_noise.volume = (robberScript.white_noise_range - distance_to_ghost) * robberScript.white_noise_volume / robberScript.white_noise_range;
+        // Growing Audio effect
+        AudioSource white_noise = GetComponent<AudioSource>();
+        if (distance_to_ghost > robberScript.white_noise_range) white_noise.volume = 0;
+        else white_noise.volume = (robberScript.white_noise_range - distance_to_ghost) * robberScript.white_noise_volume / robberScript.white_noise_range;
     }
 
     Vector2 ShakeEffect(float distance_to_ghost)
@@ -142,14 +149,14 @@ public class robberTutorial : MonoBehaviour
         }
 
         //part 2
-        if(flashlight && moveLight && TutorialProgress.part == 2)
+        if (flashlight && moveLight && TutorialProgress.part == 2)
         {
             TutorialProgress.part = 3;
         }
 
         //part 3
-        
-        if(itemsGathered == 1 && TutorialProgress.part == 3)
+
+        if (itemsGathered == 1 && TutorialProgress.part == 3)
         {
             TutorialProgress.part = 4;
         }
@@ -168,7 +175,7 @@ public class robberTutorial : MonoBehaviour
         }
 
         //part 6
-        if(ventUsed && TutorialProgress.part == 6)
+        if (ventUsed && TutorialProgress.part == 6)
         {
             TutorialProgress.part = 7;
         }
