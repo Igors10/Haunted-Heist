@@ -1331,13 +1331,13 @@ PrefabInstance:
 
 
 
-        2. One person should press
-        create server and then join button.
+        2. One person must select
+        Create Server and then Join.
 
 
 
-        3. The other person then needs
-        to input the host''s IP and press join.'
+        3. The other person then needs to
+        input the host''s IP and select Join.'
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_fontSize
