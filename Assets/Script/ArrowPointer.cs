@@ -25,7 +25,7 @@ public class ArrowPointer : MonoBehaviour
 
     void ArrowRotation()
     {
-        if (target_close) return;
+        //if (target_close) return;
         Vector3 target_direction = (target - transform.position).normalized;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, target_direction);
     }
@@ -33,9 +33,9 @@ public class ArrowPointer : MonoBehaviour
     {
         if (Vector2.Distance(target, transform.position) < hide_distance)
         {
-            if (target_close == false) StartCoroutine(PointAtItem());
+            //if (target_close == false) StartCoroutine(PointAtItem());
             target_close = true;
-            transform.position = target;
+            //transform.position = target;
         }
         else if (!arrow_sprite.enabled) target_close = false;
     }
