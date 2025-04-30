@@ -30,6 +30,17 @@ public class RobberScript : NetworkBehaviour
     [SerializeField] float time_before_item_help;
     float item_radar_timer;
     [SerializeField] ArrowPointer item_arrow;
+    [HideInInspector] public bool custom_arrow_pointer;
+    [HideInInspector] public Vector3 custom_arrow_pointer_target;
+
+    // *** How to use custom arrow pointer ***
+
+    // set ArrowPointer.gameObject to be active
+    // set custom_arrow_pointer to true
+    // set custom_arrow_poinetr_target to transform.position of desired target
+    // set custom_arrow_pointer back to false when you need the arrow to point at items again
+
+    // also you can set time_before_item_help to 0 so that item arrow appears right after you have collected an item
 
     // Night vision jump scare variables
     bool jumpscared;
@@ -152,7 +163,7 @@ public class RobberScript : NetworkBehaviour
         {
             // activate the arrow
             item_arrow.gameObject.SetActive(true);
-            item_arrow.target = Game.Instance.item_lottery.GetRandomItem().transform.position;
+            item_arrow.target = (custom_arrow_pointer) ? custom_arrow_pointer_target : Game.Instance.item_lottery.GetRandomItem().transform.position;
         }
     }
 

@@ -313,4 +313,4 @@ MonoBehaviour:
   item_id: 0
   pickUp_image: {fileID: 7987457234507526131}
   spacebar_icon: {fileID: -3323434113402294440, guid: 0f4e5fdec0c13d847b5933ea55f2bd62, type: 3}
-  right_tab_icon: {fileID: 8252615025641974414, guid: 6c5c08ff4546a5f4d9be4c87b0c199bd, type: 3}
+  right_tab_icon: {fileID: 8373813170311067641, guid: b68bd47c64fafba4f9564e801f5d4ebb, type: 3}
