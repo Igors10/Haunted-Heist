@@ -50,7 +50,7 @@ public class Game : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             is_robber_connected = true;
             is_ghost_connected = true;
