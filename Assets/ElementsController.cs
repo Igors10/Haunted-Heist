@@ -9,24 +9,24 @@ public class ElementsController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        createServerButton.SetActive(!GameData.disableCreateServerButton);
+        inputField.SetActive(!GameData.disableInputField);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If T is presssed disable the create server button, enable it if pressed again
-
         if (Input.GetKeyDown(KeyCode.T))
         {
-            createServerButton.SetActive(!createServerButton.activeSelf);
+            GameData.disableCreateServerButton = !GameData.disableCreateServerButton;
+            createServerButton.SetActive(!GameData.disableCreateServerButton);
         }
-
-        // If Y is pressed disable the input field
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            inputField.SetActive(!inputField.activeSelf);
+            GameData.disableInputField = !GameData.disableInputField;
+            inputField.SetActive(!GameData.disableInputField);
         }
     }
+
 }
