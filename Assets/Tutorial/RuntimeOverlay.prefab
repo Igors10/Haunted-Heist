@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a218b4f993cc240813680f95f7275d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textbox: {fileID: 1122103232769834102}
+  type: 
 --- !u!1 &7259034910324144916
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +240,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+--- !u!1 &1122103232769834102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 381568572837992373, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 781682851856133059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5228617830433375778 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
