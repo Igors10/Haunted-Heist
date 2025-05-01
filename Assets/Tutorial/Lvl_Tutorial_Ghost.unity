@@ -15521,7 +15521,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: 
+      value: Congratulations, you have <color=green>completed the tutorial</color>.
+        Exit by pressing <color=red>disconnect</color> in the top <color=yellow>right
+        corner</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -20497,6 +20499,9 @@ MonoBehaviour:
   firstInstance: {fileID: 981519683}
   secondInstance: {fileID: 1844181577}
   thirdInstance: {fileID: 1666701377}
+  firstRobber: 0
+  secondRobber: 0
+  thirdRobber: 0
   firstRobberInstance: {fileID: 0}
   secondRobberInstance: {fileID: 0}
   thirdRobberInstance: {fileID: 0}

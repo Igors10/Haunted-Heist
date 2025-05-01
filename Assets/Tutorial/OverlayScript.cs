@@ -10,6 +10,7 @@ public class OverlayScript : MonoBehaviour
     public bool tutorial_part_5;
     public bool tutorial_part_6;
     public bool tutorial_part_7;
+    public bool tutorial_part_8;
 
     public bool show = true;
 
@@ -33,7 +34,7 @@ public class OverlayScript : MonoBehaviour
         else if (tutorial_part_5 && TutorialProgress.part == 6) { show = false; }
         else if (tutorial_part_6 && TutorialProgress.part == 7) { show = false; }
         else if (tutorial_part_7 && TutorialProgress.part == 8) { show = false; }
-
+        else if (tutorial_part_8 && TutorialProgress.part == 9) { show = false; }
 
         if (!show) { gameObject.SetActive(false); }
     }

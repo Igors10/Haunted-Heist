@@ -5,6 +5,10 @@ public static class TutorialProgress
 {
     public static int part = 1; //what stage the tutorial is in
 
+    //which instance of the tutorial must be shown
+    public static bool Robber;
+    public static bool Ghost;
+
 
     //TUTORIAL AT RUNTIME
     public static bool is_tutorial_active = true; //will the tutorial activate in the game
@@ -53,6 +57,6 @@ public static class TutorialProgress
     15 bool 7 ghost_objective;
     16 bool 8 ghost_items;
     17 bool 9 ghost_movement;
-
     */
+    
 }

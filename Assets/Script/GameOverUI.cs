@@ -34,8 +34,8 @@ public class GameOverUI : MonoBehaviour
         else lose_text.gameObject.SetActive(true);
 
         // wait for host / restart
-        if (is_host) restart_button.gameObject.SetActive(true);
-        else client_wait_text.gameObject.SetActive(true);
+        //if (is_host) restart_button.gameObject.SetActive(true);
+        //else client_wait_text.gameObject.SetActive(true);
     }
 
     public void DisconnectClient() // when the host disconnects the clients should also disconnect
