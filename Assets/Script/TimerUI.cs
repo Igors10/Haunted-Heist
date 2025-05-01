@@ -5,12 +5,13 @@ public class TimerUI : MonoBehaviour
 {
     [SerializeField] private float gameTimerInSeconds = 300;
     public TMP_Text timerInMinutesAndSeconds;
-
+    public float current_time;
     
     private void Update()
     {
         // This will start to countdown as soon as the scene is loaded, so trigger this after both players are loaded in.
         CountDownTimer();
+        current_time = gameTimerInSeconds;
     }
 
 
@@ -31,7 +32,9 @@ public class TimerUI : MonoBehaviour
         if (gameTimerInSeconds <= 0)
         {
             gameTimerInSeconds = 0;
-            // GAME IS OVER / Ghost wins
+
+            // Ghost becomes wild bebe
+            if (GameData.is_ghost_wild == false) StartCoroutine(Game.Instance.ghost.Value.GetComponent<GhostScript>().WildMode());
         }
     }
 }
