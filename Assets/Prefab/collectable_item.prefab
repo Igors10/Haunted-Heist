@@ -68,7 +68,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 5.2
+  m_Radius: 10
 --- !u!114 &4091600012859670947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 10
 --- !u!114 &4774071879930341992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +311,7 @@ MonoBehaviour:
   level: 0
   sprite: {fileID: 6391479393085254503}
   item_id: 0
+  is_ready_for_pickup: 0
   pickUp_image: {fileID: 7987457234507526131}
   spacebar_icon: {fileID: -3323434113402294440, guid: 0f4e5fdec0c13d847b5933ea55f2bd62, type: 3}
   right_tab_icon: {fileID: 8373813170311067641, guid: b68bd47c64fafba4f9564e801f5d4ebb, type: 3}

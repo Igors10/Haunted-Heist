@@ -62,7 +62,7 @@ public class ItemPickUp : MonoBehaviour
 
     public void StartPicking(bool picking)
     {
-        if (closest_item == null) return;
+        if (closest_item == null || closest_item.GetComponent<Item>().is_ready_for_pickup == false) return;
 
         if (closest_item.tag == "Vent")
         {
@@ -99,6 +99,9 @@ public class ItemPickUp : MonoBehaviour
         // Reset SelectionAura fill amount
         SelectionAura.GetComponent<Image>().fillAmount = 1;
 
+        // Disable object pointer
+        GameObject.Find("ObjectPointer").GetComponent<ObjectPointer>().DeactivatePointer();
+
         // Instantiate pickup VFX at the item's position
         if (pickupVFXPrefab != null && closest_item != null)
         {
@@ -128,26 +131,6 @@ public class ItemPickUp : MonoBehaviour
             closest_item.SetActive(false);
             closest_item = null;
             is_picking = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Vents
-        if (collision.gameObject.tag == "Vent")
-        {
-            Debug.Log("VENTS: vent collision");
-            // Experimental code where you press Q and E to use vents
-           
-            Vent vent = collision.GetComponent<Vent>();
-            if (vent == null)
-            {
-                Debug.LogError("VENTS: Vent component is missing from the collided object!");
-            }
-            else
-            {
-                vent.OpenVent(true);
-            }
         }
     }
 

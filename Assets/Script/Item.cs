@@ -12,6 +12,7 @@ public class Item : MonoBehaviour
     public SpriteRenderer sprite;
     public int item_id;
 
+    [HideInInspector] public bool is_ready_for_pickup;
     public GameObject pickUp_image;
     [SerializeField] Sprite spacebar_icon;
     [SerializeField] Sprite right_tab_icon;
@@ -39,6 +40,7 @@ public class Item : MonoBehaviour
     {
         pickUp_image.GetComponent<SpriteRenderer>().sprite = (GameData.is_gamepad_used) ? right_tab_icon : spacebar_icon;
         pickUp_image.SetActive(is_active);
+        is_ready_for_pickup = is_active;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

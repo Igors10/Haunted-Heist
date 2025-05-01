@@ -145,6 +145,7 @@ public class robberTutorial : MonoBehaviour
         if (TutorialProgress.part == 2 && mouseLeftButton == 1)
         {
             flashlight = true;
+            GetComponent<RobberScript>().time_before_item_help = 300;
         }
 
         //part 1

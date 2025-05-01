@@ -76,6 +76,7 @@ public class ItemLottery : MonoBehaviour
         {
             escape_zone[a].SetActive(true);
             Game.Instance.robber.Value.GetComponent<RobberScript>().exit_pointer[a].gameObject.SetActive(true);
+            GameObject.Find("ObjectPointer").transform.position = escape_zone[1].transform.position;
         }
 
         return true;
