@@ -134,7 +134,6 @@ public class ItemPickUp : MonoBehaviour
         }
     }
 
-            if (vent == null)
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Picking Items

@@ -259,6 +259,23 @@ public class RobberScript : NetworkBehaviour
             player.GameOverServerRpc(true);
             if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().GameOverServerRpc(false);
         }
+
+        // Vents
+        if (collision.gameObject.tag == "Vent")
+        {
+            Debug.Log("VENTS: vent collision");
+            // Experimental code where you press Q and E to use vents
+
+            Vent vent = collision.GetComponent<Vent>();
+            if (vent == null)
+            {
+                Debug.LogError("VENTS: Vent component is missing from the collided object!");
+            }
+            else // if (Vector2.Distance(transform.position, vent.gameObject.transform.position) < vent.use_distance)
+            {
+                vent.OpenVent(true);
+            }
+        }
     }
 
     // Synchronizing using the flashlight ===========================================
