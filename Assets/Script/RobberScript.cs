@@ -30,7 +30,7 @@ public class RobberScript : NetworkBehaviour
     public float time_before_item_help;
     float item_radar_timer;
     public ArrowPointer item_arrow;
-    public bool custom_arrow_pointer;
+    public bool custom_arrow_pointer = false;
     public Vector3 custom_arrow_pointer_target;
 
     // *** How to use custom arrow pointer ***
@@ -95,6 +95,10 @@ public class RobberScript : NetworkBehaviour
     [ObserversRpc]
     public void EnableObseverRpc(bool is_enabled)
     {
+        // prevent the bug when robber has light on when venting, and also has night vision on when venting
+        SyncFlashlightServerRpc(false);
+        NightVision(false);
+
         item_pick_up_aura.SetActive(is_enabled);
         GetComponent<SpriteRenderer>().enabled = is_enabled;
         GetComponent<CapsuleCollider2D>().enabled = is_enabled;
@@ -239,14 +243,16 @@ public class RobberScript : NetworkBehaviour
             Gamepad.current.SetMotorSpeeds(0f, 0f);
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsServer && collision.gameObject.tag == "Ghost" && collision.transform.parent.GetComponent<GhostScript>().is_dashing)
+        // Ghost collision
+        if (IsServer && collision.gameObject.tag == "Ghost" && collision.transform.parent.GetComponent<GhostScript>().is_dashing
+            && is_caught == false)
         {
             SyncCatchRobberServerRpc();
         }
 
+        // Mansion escape
         if (collision.gameObject.tag == "EscapeZone" && items_collected)
         {
             player.won = true;

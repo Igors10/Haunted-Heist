@@ -23,6 +23,7 @@ public class Vent : NetworkBehaviour
     bool open = false;
     [SerializeField] Sprite[] vent_sprites;
     [SerializeField] GameObject open_aura;
+    public float use_distance;
 
     public override void OnStartClient()
     {

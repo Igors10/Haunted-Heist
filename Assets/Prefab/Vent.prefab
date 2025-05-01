@@ -106,17 +106,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: -7791087918115146080}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: -7791087918115146080}
   connected_vents: []
   closed_color: {r: 0.19245279, g: 0.19245279, b: 0.19245279, a: 1}
   blocked_color: {r: 0.509434, g: 0.2258811, b: 0.2258811, a: 1}
-  vent_moving_speed: 0.01
+  vent_moving_speed: 0.004
   sprite: {fileID: 8350282865039423622}
   blocked: 0
   vent_sprites:
   - {fileID: 21300000, guid: 9f69b30906107174f99566f45205ba48, type: 3}
   - {fileID: 21300000, guid: 91ec33ed39be29a43b18489951838c25, type: 3}
   open_aura: {fileID: 7888307545992868369}
+  use_distance: 0
 --- !u!61 &9169624020446279728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +180,8 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours: []
+  NetworkBehaviours:
+  - {fileID: 2059038657069392664}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -190,7 +192,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedValusSet: 0
+  _initializedValusSet: 1
   NetworkObserver: {fileID: 0}
   _enablePrediction: 0
   _predictionType: 0
@@ -205,14 +207,14 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 65535
+  <PrefabId>k__BackingField: 7
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 14101053107777581592
   <SceneId>k__BackingField: 0
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    LocalScale: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 3.5, y: 3.5, z: 1}
 --- !u!1 &6394684172300118525
 GameObject:
   m_ObjectHideFlags: 0
