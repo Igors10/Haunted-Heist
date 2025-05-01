@@ -3,6 +3,8 @@ using UnityEngine;
 public class ManageOverlay : MonoBehaviour
 {
     float previousNumber = 0;
+    [SerializeField] AnimationScript smoke;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,7 @@ public class ManageOverlay : MonoBehaviour
     {
         if (number != previousNumber)
         {
+            StartCoroutine(smoke.PlayAnimation());
             Transform selectedOverlay = gameObject.transform.GetChild(number - 1);
             selectedOverlay.gameObject.SetActive(true);
             previousNumber = number;
