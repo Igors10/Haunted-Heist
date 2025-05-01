@@ -12,6 +12,7 @@ public class Vent : NetworkBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Vent[] connected_vents;
+    GameObject[] all_vents;
     Button[] vent_buttons = new Button[3];
     [SerializeField] Color closed_color;
     [SerializeField] Color blocked_color;
@@ -24,6 +25,10 @@ public class Vent : NetworkBehaviour
     [SerializeField] Sprite[] vent_sprites;
     [SerializeField] GameObject open_aura;
     public float use_distance;
+    [SerializeField] float full_block_timer;
+    float current_block_timer = 0;
+    [SerializeField] Image cooldown_overlay;
+    [SerializeField] TextMeshProUGUI cooldown_text;
 
     public override void OnStartClient()
     {
@@ -52,6 +57,8 @@ public class Vent : NetworkBehaviour
                 vent_buttons[i].gameObject.SetActive(false);
             }
         }
+
+        all_vents = GameObject.FindGameObjectsWithTag("Vent");
     }
 
     public void OpenVent(bool is_open)
@@ -197,17 +204,52 @@ public class Vent : NetworkBehaviour
         AudioManager.instance.PlaySFX("Vent");
 
         //Game.Instance.robber.Value.SetActive(true); // Reactivating the robber
-        
-        // block the vent you just moved to
-        vent_to_move_to.BlockVentServerRpc();
+
+        // block all vents for some time
+        BlockAllVents();
 
         // we need to block this vent if both vents it goes to were blocked
-        if (CheckToBlock()) BlockVentServerRpc();
+        //if (CheckToBlock()) BlockVentServerRpc();
 
         Game.Instance.robber.Value.GetComponent<RobberScript>().EnableServerRpc(true);
         Debug.Log("VENT: finished_moving");
 
         // to do: the above can happen when you interact with another vent so make sure to account for that
+    }
+
+    void BlockAllVents()
+    {
+        for (int a = 0; a < all_vents.Length; a++)
+        {
+            all_vents[a].GetComponent<Vent>().BlockVentServerRpc();
+        }
+    }
+
+    public IEnumerator Block()
+    {
+        blocked = true;
+        //this.gameObject.tag = "Untagged";
+        sprite.sprite = vent_sprites[1];
+
+        while (current_block_timer < full_block_timer) {
+            current_block_timer++;
+
+            // setting the timer text
+            float time_to_showcase = full_block_timer - current_block_timer;
+            cooldown_text.text = time_to_showcase.ToString();
+
+            // setting the overlay look
+            float cooldown_fillAmount = (full_block_timer - current_block_timer) / full_block_timer;
+            cooldown_overlay.fillAmount = cooldown_fillAmount;
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        current_block_timer = 0;
+        cooldown_overlay.fillAmount = 0;
+        cooldown_text.text = "";
+        sprite.sprite = vent_sprites[0];
+        blocked = false;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -219,8 +261,6 @@ public class Vent : NetworkBehaviour
     [ObserversRpc]
     public void BlockVentObserverRpc()
     {
-        blocked = true;
-        //this.gameObject.tag = "Untagged";
-        sprite.sprite = vent_sprites[1];
+        if (blocked == false) StartCoroutine(Block());
     }
 }
