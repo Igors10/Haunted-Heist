@@ -32,7 +32,7 @@ public class ObjectPointer : MonoBehaviour
     public void ActivatePointer(Vector3 new_location)
     {
         // Do not trigger the function if playing as ghost
-        if (Game.Instance.player == Game.Instance.ghost.Value) return;
+        if (Game.Instance.IsGhost()) return;
 
         transform.position = new_location;
 
@@ -46,6 +46,8 @@ public class ObjectPointer : MonoBehaviour
 
     public void DeactivatePointer()
     {
+        if (Game.Instance.IsGhost()) return;
+
         for (int a = 0; a < pointers.Length; a++)
         {
             pointers[a].enabled = false;

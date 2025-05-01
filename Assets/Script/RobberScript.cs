@@ -171,6 +171,7 @@ public class RobberScript : NetworkBehaviour
 
     public void ActivateItemRadar()
     {
+        if (Game.Instance.IsGhost()) return;
         // activate the arrow
         item_arrow.gameObject.SetActive(true);
         item_arrow.target = (custom_arrow_pointer) ? custom_arrow_pointer_target : Game.Instance.item_lottery.GetRandomItem().transform.position;

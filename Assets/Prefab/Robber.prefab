@@ -2031,6 +2031,10 @@ PrefabInstance:
       propertyPath: hide_distance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2395950213092091537, guid: cb5a02d055d266f409577a986965a716, type: 3}
+      propertyPath: object_pointer_used
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4339070311826079776, guid: cb5a02d055d266f409577a986965a716, type: 3}
       propertyPath: m_Name
       value: ItemFindArrow
