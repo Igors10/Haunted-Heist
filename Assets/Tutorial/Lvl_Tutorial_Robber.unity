@@ -15029,8 +15029,8 @@ MonoBehaviour:
   green_frame: {fileID: 0}
   items_collected_message: {fileID: 2085627393}
   escape_zone:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 287377840}
+  - {fileID: 1763529570}
 --- !u!1 &767938004
 GameObject:
   m_ObjectHideFlags: 0
