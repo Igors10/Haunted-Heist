@@ -16,6 +16,8 @@ public class ItemLottery : MonoBehaviour
     //[SerializeField] Color dimmed_frame_color;
     [SerializeField] GameObject items_collected_message;
     [SerializeField] GameObject[] escape_zone = new GameObject[2];
+    public bool all_items_collected = false;
+    public bool item_picked = false;
 
     private void Awake()
     {
@@ -79,6 +81,7 @@ public class ItemLottery : MonoBehaviour
             GameObject.Find("ObjectPointer").transform.position = escape_zone[1].transform.position;
         }
 
+        all_items_collected = true;
         return true;
     }
 
@@ -119,6 +122,8 @@ public class ItemLottery : MonoBehaviour
             }
 
         }
+
+        item_picked = true;
 
     }
 

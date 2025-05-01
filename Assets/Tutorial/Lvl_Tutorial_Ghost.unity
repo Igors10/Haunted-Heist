@@ -718,6 +718,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &34595637 stripped
 Transform:
@@ -5783,6 +5784,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &95607885 stripped
 Transform:
@@ -8452,6 +8454,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &303853096
 PrefabInstance:
@@ -9546,6 +9549,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &352415850
 GameObject:
@@ -10910,6 +10914,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &416867940 stripped
 Transform:
@@ -10973,6 +10978,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 1
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &421154883
 PrefabInstance:
@@ -11097,6 +11103,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &430979043
 GameObject:
@@ -12714,7 +12721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &471202916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12755,6 +12762,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &472825092
 GameObject:
@@ -14101,6 +14109,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &567511530
 GameObject:
@@ -15362,6 +15371,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &632301212
 GameObject:
@@ -15521,7 +15531,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: 
+      value: Congratulations, you have <color=green>completed the tutorial</color>.
+        Exit by pressing <color=red>disconnect</color> in the top <color=yellow>right
+        corner</color>.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -15859,6 +15871,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &661117866
 PrefabInstance:
@@ -18323,6 +18336,8 @@ MonoBehaviour:
   escape_zone:
   - {fileID: 1485461201}
   - {fileID: 719079358}
+  all_items_collected: 0
+  item_picked: 0
 --- !u!1 &767938004
 GameObject:
   m_ObjectHideFlags: 0
@@ -19102,6 +19117,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &796668731
 PrefabInstance:
@@ -19534,6 +19550,104 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &842864814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 842864815}
+  - component: {fileID: 842864817}
+  - component: {fileID: 842864816}
+  - component: {fileID: 842864818}
+  m_Layer: 5
+  m_Name: SmokeAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &842864815
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842864814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1652395867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 101, y: -389}
+  m_SizeDelta: {x: 951.81, y: 232.06}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &842864816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842864814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 07f99ddb604b61942afdeb8fce5d336b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &842864817
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842864814}
+  m_CullTransparentMesh: 1
+--- !u!95 &842864818
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842864814}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 197b03c1d21dd264387f4cebe8fdf20c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &848139764
 GameObject:
   m_ObjectHideFlags: 0
@@ -20497,6 +20611,9 @@ MonoBehaviour:
   firstInstance: {fileID: 981519683}
   secondInstance: {fileID: 1844181577}
   thirdInstance: {fileID: 1666701377}
+  firstRobber: 0
+  secondRobber: 0
+  thirdRobber: 0
   firstRobberInstance: {fileID: 0}
   secondRobberInstance: {fileID: 0}
   thirdRobberInstance: {fileID: 0}
@@ -22334,6 +22451,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &990422085
 PrefabInstance:
@@ -23352,6 +23470,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1047028826
 GameObject:
@@ -23588,6 +23707,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1060595355
 GameObject:
@@ -24169,6 +24289,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1075997593
 GameObject:
@@ -24714,6 +24835,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &1097442996 stripped
 Transform:
@@ -27401,6 +27523,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &1163941180
 PrefabInstance:
@@ -27622,6 +27745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimerInSeconds: 300
   timerInMinutesAndSeconds: {fileID: 744267348}
+  current_time: 0
 --- !u!1 &1191813999
 GameObject:
   m_ObjectHideFlags: 0
@@ -29432,6 +29556,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &1286589954
 PrefabInstance:
@@ -30531,6 +30656,7 @@ MonoBehaviour:
   tutorial_part_5: 1
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1346083872
 GameObject:
@@ -31225,6 +31351,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1389764689
 GameObject:
@@ -47949,6 +48076,7 @@ RectTransform:
   - {fileID: 1004837974}
   - {fileID: 1173038516}
   - {fileID: 784870205}
+  - {fileID: 842864815}
   m_Father: {fileID: 1493316227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -53406,6 +53534,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1748559407
 GameObject:
@@ -57800,6 +57929,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &1933135771 stripped
 Transform:
@@ -58204,6 +58334,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &1937729221
 PrefabInstance:
@@ -59143,6 +59274,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1981058198
 GameObject:
@@ -59370,6 +59502,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1989342391
 GameObject:
@@ -60113,6 +60246,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &2032156091
 GameObject:
@@ -60357,6 +60491,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &2045350585
 GameObject:
@@ -60780,6 +60915,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 1
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &2072363295
 PrefabInstance:
@@ -62252,6 +62388,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &2140740483 stripped
 Transform:

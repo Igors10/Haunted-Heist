@@ -11,6 +11,8 @@ public class robberTutorial : MonoBehaviour
     public bool goLeft;
     public bool goRight;
 
+    public bool escaped;
+
     public bool moveRoom;
 
     public bool moveLight;
@@ -57,6 +59,8 @@ public class robberTutorial : MonoBehaviour
         flashlight = false;
 
         seenAGhost = false;
+
+        escaped = false;
 
         ventUsed = false;
 
@@ -203,6 +207,12 @@ public class robberTutorial : MonoBehaviour
             GetComponent<RobberScript>().item_arrow.gameObject.SetActive(false);
             GetComponent<RobberScript>().time_before_item_help = 0;
             GetComponent<RobberScript>().ActivateItemRadar();
+        }
+
+        //part 7
+        if(escaped && TutorialProgress.part == 7)
+        {
+            TutorialProgress.part = 8;
         }
 
 

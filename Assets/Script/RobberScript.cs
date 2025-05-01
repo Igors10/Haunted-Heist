@@ -11,7 +11,7 @@ public class RobberScript : NetworkBehaviour
     public GameObject natural_light;
     [HideInInspector] public bool items_collected;
     public GameObject item_pick_up_aura;
-    RobberUI robberUI;
+    [HideInInspector] public RobberUI robberUI;
     public ArrowPointer[] exit_pointer;
 
     // Shake variables
@@ -259,6 +259,8 @@ public class RobberScript : NetworkBehaviour
             player.won = true;
             player.GameOverServerRpc(true);
             if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().GameOverServerRpc(false);
+            //progressing to the last step of the tutorial
+            GetComponent<robberTutorial>().escaped = true;
         }
 
         // Vents
