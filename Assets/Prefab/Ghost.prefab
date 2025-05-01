@@ -463,7 +463,7 @@ MonoBehaviour:
   stepvision_cooldown: 26
   is_dashing: 0
   dash_duration: 0.5
-  dash_length: 8
+  dash_length: 7.5
   dash_delay_time: 0
   dash_prep_speed: 1.1
   full_aiming_arrow: {fileID: 851479180862683286}
