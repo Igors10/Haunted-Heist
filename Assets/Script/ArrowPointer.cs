@@ -9,6 +9,7 @@ public class ArrowPointer : MonoBehaviour
     bool target_close = false;
     [SerializeField] float arrow_pointing_interval;
     [HideInInspector] public GameObject object_pointer;
+    [SerializeField] bool object_pointer_used;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class ArrowPointer : MonoBehaviour
     {
         if (Vector2.Distance(target, transform.position) < hide_distance)
         {
-            if (arrow_sprite.enabled && object_pointer != null) object_pointer.GetComponent<ObjectPointer>().ActivatePointer(target);
+            if (arrow_sprite.enabled && object_pointer != null && object_pointer_used) object_pointer.GetComponent<ObjectPointer>().ActivatePointer(target);
             arrow_sprite.enabled = false;
         }
         else if (!arrow_sprite.enabled)
