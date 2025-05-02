@@ -47082,9 +47082,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Congratulations, you have <color=green>completed the tutorial</color>.
-        Exit by pressing <color=red>disconnect</color> in the top <color=yellow>right
-        corner</color>.
+      value: Congratulations, you have completed the tutorial! Exit by pressing the
+        <color=yellow>Disconnect</color> button in the top right corner.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
