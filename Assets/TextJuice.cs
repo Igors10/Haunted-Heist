@@ -40,11 +40,12 @@ public class TextJuice : MonoBehaviour
 
     private void UpdateCounterTextValue()
     {
+        currentValue++; // Im increasing it here
         counterText.text = $"{currentValue} / {maxValue}";
     }
 
     // This method should be called when the value changes, so when the robber picks up item you can call this one
-    private void UpdateCounterTextWithJuice()
+    public void UpdateCounterTextWithJuice()
     {
         UpdateCounterTextValue();
 

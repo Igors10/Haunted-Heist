@@ -567,6 +567,19 @@ public class GhostScript : NetworkBehaviour
     // Changing states HIDING - ATTACKING ======================================
 
     [ServerRpc(RequireOwnership = false)]
+    public void CollecteItemCounterUpdateServerRpc()
+    {
+        CollectedItemCounterUpdateObserversRpc();
+
+    }
+
+    [ObserversRpc]
+    void CollectedItemCounterUpdateObserversRpc()
+    {
+        Game.Instance.item_lottery.gameObject.GetComponent<TextJuice>().UpdateCounterTextWithJuice();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
     public void SyncHideServerRpc(bool is_hiding)
     {
         SyncHideObserversRpc(is_hiding);
