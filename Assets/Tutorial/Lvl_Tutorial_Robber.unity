@@ -14167,7 +14167,7 @@ Transform:
   m_GameObject: {fileID: 719079358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 13.1, z: 0}
+  m_LocalPosition: {x: 0.7, y: 15.46, z: 0}
   m_LocalScale: {x: 9.326224, y: 3.6249027, z: 5.937}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47082,9 +47082,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Congratulations, you have <color=green>completed the tutorial</color>.
-        Exit by pressing <color=red>disconnect</color> in the top <color=yellow>right
-        corner</color>.
+      value: Congratulations, you have completed the tutorial! Exit by pressing the
+        <color=yellow>Disconnect</color> button in the top right corner.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x

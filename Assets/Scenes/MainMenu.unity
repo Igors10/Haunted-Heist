@@ -7730,11 +7730,12 @@ PrefabInstance:
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
       value: "<color=#ebaaa7>Hi! Thanks for playtesting our game! </color> \n\n<color=#780f7c>Haunted
-        Heist</color> is a two player competitive game.  One player is the <color=yellow>Robber</color>
-        trying to loot the mansion and escape, while the other is the <color=yellow>Ghost
-        </color>trying to stop the Robber.\n\nFirst we ask you to try out both roles
-        in the <color=yellow>tutorial.</color>\n\nAfter you have done that go ahead
-        and <color=yellow>play</color> a couple of games with your opponent."
+        Heist</color> is a two-player competitive game.  One player controls the
+        <color=yellow>Robber</color>, trying to steal loot from the mansion and then
+        escape, while the other plays as the <color=yellow>Ghost</color>, who wants
+        to stop the Robber.\n\nFirst, we ask you to try out both roles in the <color=yellow>Tutorial.</color>\n\nAfter
+        you have done that, go ahead and <color=yellow>play</color> a couple of games
+        with your opponent.\n\nGood luck!"
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
