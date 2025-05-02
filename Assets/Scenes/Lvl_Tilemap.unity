@@ -12329,6 +12329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimerInSeconds: 300
   timerInMinutesAndSeconds: {fileID: 746077574}
+  current_time: 0
 --- !u!1 &632301212
 GameObject:
   m_ObjectHideFlags: 0
@@ -15081,6 +15082,8 @@ MonoBehaviour:
   escape_zone:
   - {fileID: 1485461201}
   - {fileID: 719079358}
+  all_items_collected: 0
+  item_picked: 0
 --- !u!114 &761984862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15655,7 +15658,7 @@ MonoBehaviour:
   keyboard_ui_sprites:
   - {fileID: 1588045885516318957, guid: fbf17da29e39cf244806d800b63d039d, type: 3}
   - {fileID: -2208852223112515189, guid: aacc786ba7607cf48b44b7ddc3ca8f9f, type: 3}
-  - {fileID: -2208852223112515189, guid: aacc786ba7607cf48b44b7ddc3ca8f9f, type: 3}
+  - {fileID: 1588045885516318957, guid: fbf17da29e39cf244806d800b63d039d, type: 3}
   - {fileID: -2208852223112515189, guid: aacc786ba7607cf48b44b7ddc3ca8f9f, type: 3}
   debug_log: 0
 --- !u!4 &825004866 stripped
@@ -19027,7 +19030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1064994122
 MonoBehaviour:
   m_ObjectHideFlags: 0
