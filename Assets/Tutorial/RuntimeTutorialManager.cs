@@ -312,7 +312,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //------------------------------------------------------------------------------------------
 
         //ghost stepvision
-        if (TutorialProgress.tutorial_bools["ghost_dash"] && steps_near && TutorialProgress.Ghost)
+        if (TutorialProgress.tutorial_bools["ghost_dash"] && steps_near && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_stepvision"])
         {
             ActivateOverlay(0, 0, "string text", "ghost_stepvision", 4);
         }
@@ -322,22 +322,26 @@ public class RuntimeTutorialManager : MonoBehaviour
 
     public void ActivateOverlay(float x_pos, float y_pos, string text, string type, float priority)
     {
+        RuntimeOverlayScript overlay_script = overlay.GetComponent<RuntimeOverlayScript>();
+
         if (overlay.activeSelf)
         {
-            if (overlay.GetComponent<RuntimeOverlayScript>().priority < priority)
+            if (overlay_script.priority < priority)
             {
-                overlay.GetComponent<RuntimeOverlayScript>().textbox.GetComponent<TextMeshPro>().text = text;
-                overlay.GetComponent<RuntimeOverlayScript>().type = type;
-                overlay.GetComponent<RuntimeOverlayScript>().priority = priority;
+                overlay_script.textbox.GetComponent<TextMeshPro>().text = text;
+                overlay_script.type = type;
+                overlay_script.priority = priority;
             }
             else return;
         }
         else
         {
-            overlay.GetComponent<RuntimeOverlayScript>().textbox.GetComponent<TextMeshPro>().text = text;
-            overlay.GetComponent<RuntimeOverlayScript>().type = type;
-            overlay.GetComponent<RuntimeOverlayScript>().priority = priority;
+            overlay_script.textbox.GetComponent<TextMeshPro>().text = text;
+            overlay_script.type = type;
+            overlay_script.priority = priority;
         }
+
+        overlay_script.Activate();
     }
 
     void WipeTutorial()

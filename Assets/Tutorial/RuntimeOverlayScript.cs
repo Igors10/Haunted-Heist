@@ -12,8 +12,7 @@ public class RuntimeOverlayScript : MonoBehaviour
     public string type;
     public float priority;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Activate()
     {
         transform.position = changed_position;
         textbox.GetComponent<Text>().text = given_text;
