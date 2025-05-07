@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb7219f5d5fe30144add962263913ed8
+guid: 06113b8298723cc48b51d2005633b5d6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7734282702231206687
-    second: DiningTable_0
+      213: 1328558102401605214
+    second: DiningChair_front_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DiningTable_0
+      name: DiningChair_front_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 224
-        height: 128
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e48f0d3cde4aa490800000000000000
-      internalID: -7734282702231206687
+      spriteID: e5e5d1d1e8cff6210800000000000000
+      internalID: 1328558102401605214
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DiningTable_0: -7734282702231206687
+      DiningChair_front_0: 1328558102401605214
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
