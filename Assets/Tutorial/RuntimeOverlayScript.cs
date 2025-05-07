@@ -30,5 +30,6 @@ public class RuntimeOverlayScript : MonoBehaviour
     public void Delete()
     {
         this.gameObject.SetActive(false);
+        priority = 0f;
     }
 }
