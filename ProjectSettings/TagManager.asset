@@ -15,6 +15,7 @@ TagManager:
   - spawnPointTutorial
   - GhostDummy
   - RobberDummy
+  - Footstep
   layers:
   - Default
   - TransparentFX

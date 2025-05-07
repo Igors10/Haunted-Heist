@@ -24,10 +24,12 @@ public static class TutorialProgress
         { "robber_item_arrow", false },
         { "robber_timer", false },
         { "robber_escape", false },
+        { "robber_ghost_aiming", false }, // new 
 
 
         { "ghost_movement", false },
-        { "ghost_dash", false },
+        { "ghost_vent", false }, // new
+        { "ghost_dash", false }, 
         { "ghost_stepvision", false },
         { "ghost_dash_warning", false },
         { "ghost_objective", false },

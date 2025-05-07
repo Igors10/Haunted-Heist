@@ -87,37 +87,8 @@ public class Vent : NetworkBehaviour
 
         Debug.Log("VENT Opened:" + open);
 
-        /*            OLD CODE FOR DYNAMIC BUTTON ALLOCATION
-        for (int a = 0; a < connected_vents.Length; a++)
-        {
-            if (a >= vent_buttons.Length) continue;
-
-            vent_buttons[a].gameObject.SetActive(is_open);
-
-            if (!is_open) continue; // we dont need to go further if we simply close vents
-
-            // if the target vent is blocked there's no reason to make an arrow for it
-            else if (connected_vents[a].blocked)
-            {
-                vent_buttons[a].gameObject.SetActive(false);
-                continue;
-            }
-
-            // setting positions and rotations of the buttons
-            vent_buttons[a].transform.position = transform.position;
-
-            Vector3 vent_direction = (connected_vents[a].transform.position - transform.position).normalized;
-            vent_buttons[a].transform.rotation = Quaternion.FromToRotation(Vector3.up, vent_direction);
-
-            vent_buttons[a].transform.position += vent_buttons[a].transform.up * 1.5f;
-            key_UI[a].transform.position = vent_buttons[a].transform.position;
-
-
-            // Adding functionality to buttons
-            vent_buttons[a].onClick.RemoveAllListeners();
-            Vent target_vent = connected_vents[a];
-            vent_buttons[a].onClick.AddListener(() => StartCoroutine(MoveToVent(target_vent))); 
-        }*/
+        // Check for rt_tutorial
+        Game.Instance.rt_tutorial.vent_near = true;
     }
 
     bool CheckToBlock()
@@ -244,6 +215,9 @@ public class Vent : NetworkBehaviour
 
             yield return new WaitForSeconds(1f);
         }
+
+        // Check for rt_tutorial
+        Game.Instance.rt_tutorial.robber_vented = true;
 
         current_block_timer = 0;
         cooldown_overlay.fillAmount = 0;

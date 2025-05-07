@@ -39,6 +39,7 @@ public class Game : NetworkBehaviour
     public NetworkManager network_manager;
     public GameObject loading_screen;
     public ItemLottery item_lottery;
+    public RuntimeTutorialManager rt_tutorial;
 
     public bool is_robber_connected = false;
     public bool is_ghost_connected = false;

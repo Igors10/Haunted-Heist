@@ -21,7 +21,7 @@ public class GhostScript : NetworkBehaviour
     [SerializeField] float stepvision_cooldown;
 
     // Dashing Variables
-    bool is_aiming;
+    [HideInInspector] public bool is_aiming;
     [HideInInspector] public bool is_dashing;
     bool is_dash_ready;
 
@@ -407,6 +407,9 @@ public class GhostScript : NetworkBehaviour
         is_dashing = false;
         is_dash_ready = false;
 
+        // Check for rt_tutorial
+        if (Game.Instance.rt_tutorial.ghost_dashed == false) Game.Instance.rt_tutorial.ghost_dashed = true;
+
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
 
@@ -651,6 +654,8 @@ public class GhostScript : NetworkBehaviour
             if (new_distance > old_distance) chosen_point = i;
         }
 
+        Game.Instance.rt_tutorial.teleported = true;
+
         return teleportation_locations[chosen_point];
     }
 
@@ -708,6 +713,12 @@ public class GhostScript : NetworkBehaviour
             direction.Normalize();
 
             transform.position += new Vector3(direction.x, direction.y, 0) * 0.3f;
+        }
+
+        if (collision.gameObject.tag == "Vent")
+        {
+            // check for rt_tutorial vent_near_ghost
+            Game.Instance.rt_tutorial.vent_near_ghost = true;
         }
     }
 }
