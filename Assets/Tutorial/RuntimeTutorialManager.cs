@@ -36,14 +36,12 @@ public class RuntimeTutorialManager : MonoBehaviour
     bool steps_near = false;
     [HideInInspector] public bool teleported = false;
 
-    GameObject timer_reference;
     ItemLottery item_reference;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         WipeTutorial();
-        timer_reference = GameObject.Find("Timer");
         item_reference = Game.Instance.item_lottery;
 
         // Passing reference to it to game script
@@ -56,6 +54,9 @@ public class RuntimeTutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Some debugging stuff
+        // Debug.Log(TutorialProgress.Robber); that is not the problem, TutorialProgress.Robber is assigned
+
         //chechking for the movement
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
@@ -98,13 +99,13 @@ public class RuntimeTutorialManager : MonoBehaviour
         }
        
 
-        //timer check
-        if(timer_reference.GetComponent<TimerUI>().current_time < 60 && !timer_near_end)
+        //timer check This is getting called a lot for some reason (Its always robbin time)
+        if(Game.Instance.timer != null && Game.Instance.timer.current_time < 60 && !timer_near_end && false)
         {
             timer_near_end = true;
         }
 
-        if (timer_reference.GetComponent<TimerUI>().current_time <= 0 && !timer_end)
+        if (Game.Instance.timer != null && Game.Instance.timer.current_time <= 0 && !timer_end)
         {
             timer_end = true;
         }
@@ -112,7 +113,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost checkers
 
         //ghost aiming***
-        if (Game.Instance.robber.Value.GetComponent<Player>().indication.gameObject.activeSelf)
+        if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<Player>().indication.gameObject.activeSelf)
         {
             ghost_aiming = true;
         }
@@ -121,7 +122,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         // Is done in GhostScript line 411
 
         //ghost_near;
-        if (Vector2.Distance(Game.Instance.robber.Value.transform.position, Game.Instance.ghost.Value.transform.position) < 9f)
+        if (Game.Instance.robber.Value != null && Game.Instance.ghost.Value != null && Vector2.Distance(Game.Instance.robber.Value.transform.position, Game.Instance.ghost.Value.transform.position) < 9f)
         {
             ghost_near = true;
         }
@@ -133,7 +134,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber checkers
 
         //item_arrow_active;
-        if (Game.Instance.robber.Value.GetComponent<RobberScript>().item_arrow.gameObject.activeSelf)
+        if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().item_arrow.gameObject.activeSelf)
         {
             item_arrow_active = true;
         }
@@ -143,19 +144,19 @@ public class RuntimeTutorialManager : MonoBehaviour
         // Is done in Vent script line 249 
 
         //robber_life_lost
-        if (Game.Instance.robber.Value.GetComponent<RobberScript>().robberUI.hp.currentHealth < 3 && !robber_life_lost)
+        if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().robberUI.hp.currentHealth < 3 && !robber_life_lost)
         {
             robber_life_lost = true;
         }
 
         //light_active
-        if (Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf)
+        if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().flashlight.activeSelf)
         {
             light_active = true;
         }
 
         //robber_near;
-        if (Vector2.Distance(Game.Instance.robber.Value.transform.position, Game.Instance.ghost.Value.transform.position) < 9f)
+        if (Game.Instance.robber.Value != null && Game.Instance.ghost.Value != null &&  Vector2.Distance(Game.Instance.robber.Value.transform.position, Game.Instance.ghost.Value.transform.position) < 9f)
         {
             ghost_near = true;
         }
@@ -174,9 +175,9 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ROBBER#############################################################################################
 
         //robber movement
-        if (!goRight || !goLeft || !goUp || !goDown && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_movement"])
+        if ((!goRight || !goLeft || !goUp || !goDown) && TutorialProgress.Robber) // those are getting called continuously 
         {
-            ActivateOverlay(0, 0, "string text", "robber_movement", 9);
+            ActivateOverlay(0, 0, "move around", "robber_movement", 9);
         }
 
         if (goRight && goLeft && goUp && goDown)
@@ -187,16 +188,16 @@ public class RuntimeTutorialManager : MonoBehaviour
 
         //robber escape
         if (TutorialProgress.tutorial_bools["items_gathered"] && TutorialProgress.tutorial_bools["robber_pickup"] && TutorialProgress.tutorial_bools["robber_movement"]
-            && TutorialProgress.tutorial_bools["robber_lantern"] && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_escape"])
+            && TutorialProgress.tutorial_bools["robber_lantern"] && TutorialProgress.Robber)
         {
-            ActivateOverlay(0,0, "string text", "robber_escape", 1);
+            ActivateOverlay(0,0, "get out of here", "robber_escape", 1);
         }
         //-----------------------------------------------------------------------------------
 
         //robber radar
-        if (TutorialProgress.tutorial_bools["robber_movement"] && ghost_near && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_radar"])
+        if (TutorialProgress.tutorial_bools["robber_movement"] && ghost_near && TutorialProgress.Robber)
         {
-            ActivateOverlay(0, 0,"string text", "robber_radar", 2);
+            ActivateOverlay(0, 0,"this bitch is close", "robber_radar", 2);
         }
 
         if (robber_life_lost)
@@ -206,9 +207,9 @@ public class RuntimeTutorialManager : MonoBehaviour
         //-------------------------------------------------------------------------------------
 
         //robber time
-        if (TutorialProgress.tutorial_bools["robber_movement"] && timer_near_end && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_timer"])
+        if (TutorialProgress.tutorial_bools["robber_movement"] && timer_near_end && TutorialProgress.Robber)
         {
-            ActivateOverlay(0, 0, "string text", "robber_timer", 3);
+            ActivateOverlay(0, 0, "its robbin time", "robber_timer", 3);
         }
 
         if (timer_end)
@@ -218,9 +219,9 @@ public class RuntimeTutorialManager : MonoBehaviour
         //-------------------------------------------------------------------------------------
 
         //robber vent
-        if (TutorialProgress.tutorial_bools["robber_movement"] && vent_near && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_vent"])
+        if (TutorialProgress.tutorial_bools["robber_movement"] && vent_near && TutorialProgress.Robber)
         {
-            ActivateOverlay(0, 0, "string text", "robber_vent", 4);
+            ActivateOverlay(0, 0, "use vent", "robber_vent", 4);
         }
 
         if (robber_vented)
@@ -231,9 +232,9 @@ public class RuntimeTutorialManager : MonoBehaviour
 
         //robber pick up
         if (TutorialProgress.tutorial_bools["robber_movement"] && TutorialProgress.tutorial_bools["robber_lantern"] && item_near
-            && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_pickup"])
+            && TutorialProgress.Robber)
         {
-            ActivateOverlay(0, 0, "string text", "robber_pickup", 6);
+            ActivateOverlay(0, 0, "pick that up", "robber_pickup", 6);
         }
 
         if (item_gathered)
@@ -243,9 +244,9 @@ public class RuntimeTutorialManager : MonoBehaviour
         //-------------------------------------------------------------------------------------
 
         //robber lantern
-        if (TutorialProgress.tutorial_bools["robber_movement"] && item_near && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_lantern"])
+        if (TutorialProgress.tutorial_bools["robber_movement"] && item_near && TutorialProgress.Robber)
         {
-            ActivateOverlay(0, 0, "string text", "robber_lantern", 5);
+            ActivateOverlay(0, 0, "Let the light in", "robber_lantern", 5);
         }
 
         if (item_gathered)
@@ -255,19 +256,16 @@ public class RuntimeTutorialManager : MonoBehaviour
         //-------------------------------------------------------------------------------------
 
         //robber light warning
-        if (TutorialProgress.tutorial_bools["robber_movement"] && light_active && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_light_warning"])
+        if (TutorialProgress.tutorial_bools["robber_movement"] && light_active && TutorialProgress.Robber) // this check is happening continuosly fix it
         {
-            ActivateOverlay(0, 0, "string text", "robber_light_warning", 7);
+            ActivateOverlay(0, 0, "The ghost can see you", "robber_light_warning", 7);
         }
 
-        if (robber_life_lost)
-        {
-            DeactivateBool("robber_light_warning");
-        }
+        StartCoroutine(DeactivateBoolTimer(7f, "robber_light_warning")); // Will disappear after 7 seconds
         //--------------------------------------------------------------------------------------
 
         //robber_item_arrow
-        if (TutorialProgress.tutorial_bools["robber_movement"] && item_arrow_active && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_item_arrow"])
+        if (TutorialProgress.tutorial_bools["robber_movement"] && item_arrow_active && TutorialProgress.Robber)
         {
             ActivateOverlay(0, 0, "string text", "robber_item_arrow", 8);
         }
@@ -281,7 +279,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //GHOST#####################################################################################################
 
         //ghost movement
-        if (!goRight || !goLeft || !goUp || !goDown && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_movement"])
+        if ((!goRight || !goLeft || !goUp || !goDown) && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_movement"])
         {
             ActivateOverlay(0, 0, "string text", "ghost_movement", 9);
         }
@@ -417,11 +415,17 @@ public class RuntimeTutorialManager : MonoBehaviour
     {
         RuntimeOverlayScript overlay_script = overlay.GetComponent<RuntimeOverlayScript>();
 
+        // Activating the overlay
+        overlay_script.gameObject.SetActive(true);
+        overlay_script.Activate(text); // Im passing the text here now
+
+        // Debugging (bacause it doenst work sukaaa)
+        Debug.Log("RT_Tutorial: activated type: " + type + " with text: " + text);
+
         if (overlay.activeSelf)
         {
             if (overlay_script.priority < priority)
             {
-                overlay_script.textbox.GetComponent<TextMeshPro>().text = text;
                 overlay_script.type = type;
                 overlay_script.priority = priority;
             }
@@ -429,12 +433,9 @@ public class RuntimeTutorialManager : MonoBehaviour
         }
         else
         {
-            overlay_script.textbox.GetComponent<TextMeshPro>().text = text;
             overlay_script.type = type;
             overlay_script.priority = priority;
         }
-
-        overlay_script.Activate();
     }
 
     void WipeTutorial()
@@ -447,6 +448,7 @@ public class RuntimeTutorialManager : MonoBehaviour
 
     void DeactivateBool(string bool_name)
     {
+        Debug.Log("RT_Tutorial: activated type: " + bool_name);
         TutorialProgress.tutorial_bools[bool_name] = true;
     }
 }

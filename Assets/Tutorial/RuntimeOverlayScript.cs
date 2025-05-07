@@ -3,19 +3,20 @@ using System.Globalization;
 using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RuntimeOverlayScript : MonoBehaviour
 {
-    public GameObject textbox;
+    public TextMeshProUGUI textbox;
     public string given_text;
     public Vector3 changed_position;
     public string type;
     public float priority;
 
-    public void Activate()
+    public void Activate(string new_text)
     {
-        transform.position = changed_position;
-        textbox.GetComponent<Text>().text = given_text;
+        //transform.position = changed_position;   It appears in the center of the screen
+        textbox.text = new_text;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class RuntimeOverlayScript : MonoBehaviour
 
     public void Delete()
     {
-        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);         
         priority = 0f;
     }
 }

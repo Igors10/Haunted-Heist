@@ -300,6 +300,7 @@ RectTransform:
   - {fileID: 1581152274}
   - {fileID: 1964176649}
   - {fileID: 631129098}
+  - {fileID: 1056591801}
   m_Father: {fileID: 981181574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8986,6 +8987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 371156286}
+  - component: {fileID: 371156287}
   m_Layer: 0
   m_Name: RT_TutorialManager
   m_TagString: Untagged
@@ -9008,6 +9010,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 618228317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371156287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371156285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20926a692b3be564d81204e090c6a60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlay: {fileID: 1056591800}
+  robber_vented: 0
+  ghost_dashed: 0
+  vent_near: 0
+  vent_near_ghost: 0
+  teleported: 0
 --- !u!1 &375670616
 GameObject:
   m_ObjectHideFlags: 0
@@ -18957,6 +18977,153 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050676328}
   m_CullTransparentMesh: 1
+--- !u!1001 &1056591799
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2580675}
+    m_Modifications:
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 893.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 353.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 424
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -312
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768278313029120933, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_text
+      value: You are amazing ;)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768278313029120933, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768278313029120933, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768278313029120933, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768278313029120933, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076612546805954346, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_Name
+      value: RuntimeOverlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076612546805954346, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228617830433375778, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 879.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228617830433375778, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 353.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228617830433375778, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228617830433375778, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000019073
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+--- !u!1 &1056591800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5076612546805954346, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+  m_PrefabInstance: {fileID: 1056591799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1056591801 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 956723460507221647, guid: 80028e5244dd464478458e2a609cb097, type: 3}
+  m_PrefabInstance: {fileID: 1056591799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1060595355
 GameObject:
   m_ObjectHideFlags: 0
@@ -23580,6 +23747,18 @@ MonoBehaviour:
   - heyy cutie ;)
   - Thanks for playing
   - This is fine
+  - The cake is a lie
+  - Tables by Chloe
+  - Slow cars do not crash
+  - Right where you left me
+  - "\u041C\u0430\u0441\u043B\u0435\u043D\u043D\u0438\u043A\u043E\u0432 \u043B\u043E\u0445"
+  - "Vieta j\u016Bsu rekl\u0101mai"
+  - Eli should have come up with Italian easter egg here
+  - "\u0110i \u0111\xE2u \u0111\u1EA5y"
+  - Enjoy GGC!
+  - Game Design by Egirl
+  - Mamma mia!
+  - Skapat i lilla landet lagom
 --- !u!1 &1347821992
 GameObject:
   m_ObjectHideFlags: 0
@@ -24373,6 +24552,7 @@ MonoBehaviour:
   loading_screen: {fileID: 292308422}
   item_lottery: {fileID: 0}
   rt_tutorial: {fileID: 0}
+  timer: {fileID: 0}
   is_robber_connected: 0
   is_ghost_connected: 0
 --- !u!114 &1401163104
