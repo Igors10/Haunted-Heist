@@ -15648,7 +15648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Congratulations, you have completed the tutorial! Exit by pressing the
+      value: Congratulations! You have completed the tutorial. Exit by pressing the
         <color=yellow>Disconnect</color> button in the top right corner.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
