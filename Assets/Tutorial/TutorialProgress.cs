@@ -24,17 +24,23 @@ public static class TutorialProgress
         { "robber_item_arrow", false },
         { "robber_timer", false },
         { "robber_escape", false },
+        { "robber_ghost_aiming", false }, // new 
+        { "items_gathered", false }, // kinda new
+        { "item_gathered", false }, // kinda new
+
 
 
         { "ghost_movement", false },
-        { "ghost_dash", false },
+        { "ghost_vent", false }, // new
+        { "ghost_dash", false }, 
         { "ghost_stepvision", false },
         { "ghost_dash_warning", false },
         { "ghost_objective", false },
         { "ghost_teleport", false },
         { "ghost_timer", false },
         { "ghost_items", false },
-        { "ghost_items_gathered", false }
+        { "ghost_items_gathered", false },
+        { "ghost_item_gathered", false } // kinda new
     };
 
     /*
