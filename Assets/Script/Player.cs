@@ -62,6 +62,7 @@ public class Player : NetworkBehaviour
                 wide_dark_filter.SetActive(true);
                 main_camera.GetComponent<CameraBehavior>().CameraMode(camera_mode.ROBBER);
                 if (IsOwner) GetComponent<FootstepManager>().enabled = false;
+                TutorialProgress.Robber = true;
             }
             else if (TryGetComponent(out GhostScript ghost))
             {
@@ -71,6 +72,7 @@ public class Player : NetworkBehaviour
                 main_camera.GetComponent<CameraBehavior>().robber_filter.GetComponent<Image>().color = ghost.stepvision_color;
                 main_camera.GetComponent<CameraBehavior>().CameraMode(camera_mode.GHOST);
                 if (Game.Instance.item_lottery != null) Game.Instance.item_lottery.ClearLocations();
+                TutorialProgress.Ghost = true;
             }
 
             // for testing game over screen

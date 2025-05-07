@@ -6,7 +6,12 @@ public class TimerUI : MonoBehaviour
     [SerializeField] private float gameTimerInSeconds = 300;
     public TMP_Text timerInMinutesAndSeconds;
     public float current_time;
-    
+
+    private void Start()
+    {
+        Game.Instance.timer = this;
+    }
+
     private void Update()
     {
         // This will start to countdown as soon as the scene is loaded, so trigger this after both players are loaded in.

@@ -96,8 +96,8 @@ public class RobberScript : NetworkBehaviour
     public void EnableObseverRpc(bool is_enabled)
     {
         // prevent the bug when robber has light on when venting, and also has night vision on when venting
-        SyncFlashlightServerRpc(false);
-        NightVision(false);
+        //SyncFlashlightServerRpc(false);
+        //NightVision(false);
 
         item_pick_up_aura.SetActive(is_enabled);
         GetComponent<SpriteRenderer>().enabled = is_enabled;
