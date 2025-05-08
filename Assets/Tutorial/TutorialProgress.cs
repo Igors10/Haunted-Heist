@@ -32,7 +32,7 @@ public static class TutorialProgress
 
         { "ghost_movement", false },
         { "ghost_vent", false }, // new
-        { "ghost_dash", false }, 
+        { "ghost_dash", false },
         { "ghost_stepvision", false },
         { "ghost_dash_warning", false },
         { "ghost_objective", false },
@@ -64,5 +64,35 @@ public static class TutorialProgress
     16 bool 8 ghost_items;
     17 bool 9 ghost_movement;
     */
-    
+
+
+    public static Dictionary<string, bool> has_this_activated = new Dictionary<string, bool>()
+    {
+        { "robber_movement", false },
+        { "robber_lantern", false },
+        { "robber_pickup", false },
+        { "robber_light_warning", false },
+        { "robber_radar", false },
+        { "robber_vent", false },
+        { "robber_item_arrow", false },
+        { "robber_timer", false },
+        { "robber_escape", false },
+        { "robber_ghost_aiming", false }, // new 
+        { "items_gathered", false }, // kinda new
+        { "item_gathered", false }, // kinda new
+
+
+
+        { "ghost_movement", false },
+        { "ghost_vent", false }, // new
+        { "ghost_dash", false },
+        { "ghost_stepvision", false },
+        { "ghost_dash_warning", false },
+        { "ghost_objective", false },
+        { "ghost_teleport", false },
+        { "ghost_timer", false },
+        { "ghost_items", false },
+        { "ghost_items_gathered", false },
+        { "ghost_item_gathered", false } // kinda new
+    };
 }

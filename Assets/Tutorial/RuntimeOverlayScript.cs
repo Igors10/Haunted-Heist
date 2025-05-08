@@ -32,5 +32,6 @@ public class RuntimeOverlayScript : MonoBehaviour
     {
         this.gameObject.SetActive(false);         
         priority = 0f;
+        TutorialProgress.has_this_activated[type] = true;
     }
 }
