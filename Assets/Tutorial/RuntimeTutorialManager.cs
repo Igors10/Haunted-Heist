@@ -455,6 +455,8 @@ public class RuntimeTutorialManager : MonoBehaviour
         // Debugging (bacause it doenst work sukaaa)
         Debug.Log("RT_Tutorial: activated type: " + type + " with text: " + text);
 
+        TutorialProgress.has_this_activated[type] = true;
+
         if (overlay.activeSelf)
         {
             overlay_script.type = type;
