@@ -11,7 +11,7 @@ public class RuntimeOverlayScript : MonoBehaviour
     public string given_text;
     public Vector3 changed_position;
     public string type;
-    public float priority;
+    public float priority = 10f;
 
     public void Activate(string new_text)
     {
@@ -31,6 +31,6 @@ public class RuntimeOverlayScript : MonoBehaviour
     public void Delete()
     {
         this.gameObject.SetActive(false);         
-        priority = 0f;
+        priority = 10f;
     }
 }

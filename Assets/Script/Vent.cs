@@ -88,7 +88,7 @@ public class Vent : NetworkBehaviour
         Debug.Log("VENT Opened:" + open);
 
         // Check for rt_tutorial
-        Game.Instance.rt_tutorial.vent_near = true;
+        Game.Instance.rt_tutorial.vent_near = is_open;
     }
 
     bool CheckToBlock()
@@ -202,6 +202,9 @@ public class Vent : NetworkBehaviour
         //this.gameObject.tag = "Untagged";
         sprite.sprite = vent_sprites[1];
 
+        // Check for rt_tutorial
+        Game.Instance.rt_tutorial.robber_vented = true;
+
         while (current_block_timer < full_block_timer) {
             current_block_timer++;
 
@@ -216,8 +219,7 @@ public class Vent : NetworkBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        // Check for rt_tutorial
-        Game.Instance.rt_tutorial.robber_vented = true;
+        
 
         current_block_timer = 0;
         cooldown_overlay.fillAmount = 0;
