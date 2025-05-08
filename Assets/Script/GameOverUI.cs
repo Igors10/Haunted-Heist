@@ -26,6 +26,7 @@ public class GameOverUI : MonoBehaviour
     public void GameOverUIOn(bool won, bool is_host)
     {
         GameData.is_game_over = true;
+        GameData.are_hints_on = false;
         // disconnect button
         //disconnect_button.gameObject.SetActive(true);         should always be somewhere and available
 

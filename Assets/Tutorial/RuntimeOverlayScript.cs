@@ -8,6 +8,7 @@ using TMPro;
 public class RuntimeOverlayScript : MonoBehaviour
 {
     public TextMeshProUGUI textbox;
+    public AnimationScript smoke_animation;
     public string given_text;
     public Vector3 changed_position;
     public string type;

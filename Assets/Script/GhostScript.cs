@@ -16,7 +16,7 @@ public class GhostScript : NetworkBehaviour
     [HideInInspector] public float default_speed;
 
     // GhostUI
-    GhostUI ghostUI;
+    [HideInInspector] public GhostUI ghostUI;
     [SerializeField] float dash_cooldown;
     [SerializeField] float stepvision_cooldown;
 
