@@ -27,6 +27,7 @@ public class RuntimeTutorialManager : MonoBehaviour
     bool item_arrow_actived = false;
     [HideInInspector] public bool robber_vented = false;
     bool robber_life_lost = false;
+    bool robber_caught = false;
     bool robber_near = false;
     [HideInInspector] public bool ghost_dashed = false;
     bool ghost_aiming = false; // new
@@ -146,9 +147,18 @@ public class RuntimeTutorialManager : MonoBehaviour
         // Is done in Vent script line 205
 
         //robber_life_lost
-        if (Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().robberUI.hp.currentHealth < 3 && !robber_life_lost)
+        
+           
+        if (TutorialProgress.Ghost && Game.Instance.ghost.Value != null && Game.Instance.ghost.Value.GetComponent<GhostScript>().ghostUI != null && 
+            Game.Instance.ghost.Value.GetComponent<GhostScript>().ghostUI.souls.currentHealth > 0 && !robber_life_lost)
         {
             robber_life_lost = true;
+        }
+
+        if (TutorialProgress.Robber && Game.Instance.robber.Value != null && Game.Instance.robber.Value.GetComponent<RobberScript>().robberUI != null &&
+            Game.Instance.robber.Value.GetComponent<RobberScript>().robberUI.hp.currentHealth < 3)
+        {
+            robber_caught = true;
         }
 
 
@@ -206,9 +216,9 @@ public class RuntimeTutorialManager : MonoBehaviour
             ActivateOverlay(0, 0, "this bitch is close", "robber_radar", 2);
         }
 
-        if (robber_life_lost && TutorialProgress.has_this_activated["robber_radar"] == true) // those happen before they are activated
+        if (TutorialProgress.has_this_activated["robber_radar"] == true) // those happen before they are activated
         {
-            DeactivateBool("robber_radar");
+            StartCoroutine(DeactivateBoolTimer(5f, "robber_radar")); // Will disappear after 5 seconds
         }
         //-------------------------------------------------------------------------------------
 
@@ -262,6 +272,14 @@ public class RuntimeTutorialManager : MonoBehaviour
         }
         //-------------------------------------------------------------------------------------
 
+        //Robber life lost
+        if (robber_caught && TutorialProgress.Robber && TutorialProgress.has_this_activated["robber_life_lost"] == false)
+        {
+            if (ActivateOverlay(0, 0, "ups that hurt you, didnt it", "robber_life_lost", 1))
+                StartCoroutine(DeactivateBoolTimer(4f, "robber_life_lost")); // Will disappear after 5 seconds
+        }
+        //-------------------------------------------------------------------------------------
+
         //robber lantern
         if (TutorialProgress.tutorial_bools["robber_movement"] && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_lantern"] == false)
         {
@@ -281,10 +299,15 @@ public class RuntimeTutorialManager : MonoBehaviour
 
             //StartCoroutine(DeactivateBoolTimer(4f, "robber_light_warning")); // Will disappear after 7 seconds
         }
-
-
         //--------------------------------------------------------------------------------------
-
+        
+        //ghost aiming NEW
+        if (TutorialProgress.Robber && ghost_aiming && TutorialProgress.tutorial_bools["ghost_aiming"] == false)
+        {
+            if (ActivateOverlay(0, 0, "ghost aim lol", "ghost_aiming", 5)) StartCoroutine(DeactivateBoolTimer(7f, "ghost_aiming")); // Will disappear after 7 seconds
+        }
+        //-------------------------------------------------------------------------------------------
+        
         //robber_item_arrow
         if (TutorialProgress.tutorial_bools["robber_movement"] && item_arrow_active && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_item_arrow"] == false)
         {
@@ -354,17 +377,6 @@ public class RuntimeTutorialManager : MonoBehaviour
         }
         //-------------------------------------------------------------------------------------------
 
-        //ghost aiming NEW
-        if (TutorialProgress.Robber && ghost_aiming && TutorialProgress.tutorial_bools["ghost_dash"] == false)
-        {
-            ActivateOverlay(0, 0, "ghost aim lol", "ghost_aiming", 5);
-
-            StartCoroutine(DeactivateBoolTimer(7f, "ghost_aiming")); // Will disappear after 7 seconds
-        }
-
-        
-        //-------------------------------------------------------------------------------------------
-
         //ghost vent near NEW
         if (TutorialProgress.Ghost && vent_near_ghost && TutorialProgress.tutorial_bools["ghost_vent"] == false)
         {
@@ -398,7 +410,7 @@ public class RuntimeTutorialManager : MonoBehaviour
             ActivateOverlay(0, 0, "find robber and dash into it", "ghost_objective", 7);
         }
 
-        if (TutorialProgress.has_this_activated["ghost_objective"] == true && false)
+        if (TutorialProgress.has_this_activated["ghost_objective"] == true && robber_life_lost)
         {
             //time deactivation
             StartCoroutine(DeactivateBoolTimer(5f, "ghost_objective")); // Will disappear after 5 seconds
@@ -408,9 +420,9 @@ public class RuntimeTutorialManager : MonoBehaviour
 
 
         //ghost teleport
-        if (TutorialProgress.tutorial_bools["ghost_objective"] && teleported && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_teleport"] == false)
+        if (teleported && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_teleport"] == false)
         {
-            ActivateOverlay(0,0, "teleported? well sucks to suck", "ghost_teleport", 3);
+            ActivateOverlay(0,0, "teleported? well sucks to suck", "ghost_teleport", 1);
         }
 
         if (TutorialProgress.has_this_activated["ghost_teleport"] == true)
