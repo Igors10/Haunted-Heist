@@ -27,6 +27,7 @@ public class GameOverUI : MonoBehaviour
     {
         GameData.is_game_over = true;
         GameData.are_hints_on = false;
+        Game.Instance.rt_tutorial.WipeTutorial(); // resetting the tutorial
         // disconnect button
         //disconnect_button.gameObject.SetActive(true);         should always be somewhere and available
 
