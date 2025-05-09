@@ -26,7 +26,7 @@ public class GameOverUI : MonoBehaviour
     public void GameOverUIOn(bool won, bool is_host)
     {
         GameData.is_game_over = true;
-        GameData.are_hints_on = false;
+        //GameData.are_hints_on = false; we need to showcase the hints for the other role too
         Game.Instance.rt_tutorial.WipeTutorial(); // resetting the tutorial
         // disconnect button
         //disconnect_button.gameObject.SetActive(true);         should always be somewhere and available
