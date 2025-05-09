@@ -215,7 +215,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber movement
         if ((!goRight || !goLeft || !goUp || !goDown) && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_movement"] == false)
         {
-            ActivateOverlay(0, 0, "Move around with <color=yellow>left stick.</color>", "robber_movement", 9);
+            ActivateOverlay(0, 0, "Use the <color=yellow>Left Joystick</color> to move.", "robber_movement", 9);
         }
 
         if ((goRight || goLeft || goUp || goDown) && TutorialProgress.has_this_activated["robber_movement"] == true)
@@ -228,7 +228,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (items_gathered && TutorialProgress.tutorial_bools["robber_pickup"] && TutorialProgress.tutorial_bools["robber_movement"]
              && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_escape"] == false)
         {
-            ActivateOverlay(0, 0, "Escape the mansion through one of the <color=yellow>doors</color> to win!", "robber_escape", 1);
+            ActivateOverlay(0, 0, "Escape the mansion through one of the <color=yellow>Doors</color> to win!", "robber_escape", 1);
         }
         //-----------------------------------------------------------------------------------
 
@@ -237,7 +237,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber radar
         if (TutorialProgress.tutorial_bools["robber_movement"] && ghost_near && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_radar"] == false)
         {
-            ActivateOverlay(0, 0, "If the light is flickering <color=blue>Ghost</color> is close, use <color=yellow>'B'</color> to see and avoid it", "robber_radar", 2);
+            ActivateOverlay(0, 0, "Your light is flickering, which means that the <color=#099>Ghost</color> is close! Use your <color=green>Night Vision</color> <color=yellow>(B)</color> to see it.", "robber_radar", 2);
         }
 
         if (TutorialProgress.has_this_activated["robber_radar"] == true) // those happen before they are activated
@@ -249,7 +249,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber time
         if (TutorialProgress.tutorial_bools["robber_movement"] && timer_near_end && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_timer"] == false)
         {
-            ActivateOverlay(0, 0, "Watch out for the <color=yellow>time limit</color>", "robber_timer", 3);
+            ActivateOverlay(0, 0, "Watch out for the <color=yellow>time limit</color>!", "robber_timer", 3);
         }
 
         if (timer_end && TutorialProgress.has_this_activated["robber_time"] == true)
@@ -261,7 +261,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber vent
         if (TutorialProgress.tutorial_bools["robber_movement"] && vent_near && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_vent"] == false)
         {
-            if (ActivateOverlay(0, 0, "Crawl through vents using <color=yellow>LB</color> or <color=yellow>RB.</color>", "robber_vent", 4))
+            if (ActivateOverlay(0, 0, "You can use <color=yellow>LB</color> or <color=yellow>RB</color> to crawl through vents.", "robber_vent", 4))
                 StartCoroutine(DeactivateBoolTimer(5f, "robber_vent")); // Will disappear after 5 seconds
         }
 
@@ -269,7 +269,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         {
             DeactivateBool("robber_vent");
 
-            ActivateOverlay(0, 0, "Vents <color=red>close</color> after use. <color=yellow>Timer</color> on them shows when they will open", "robber_vent_used", 3);
+            ActivateOverlay(0, 0, "Vents become <color=yellow>closed</color> after being used. They will open again after some time has passed.", "robber_vent_used", 3);
 
             StartCoroutine(DeactivateBoolTimer(5f, "robber_vent_used")); // Will disappear after 5 seconds
         }
@@ -279,7 +279,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (TutorialProgress.tutorial_bools["robber_movement"] && item_near
             && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_pickup"] == false)
         {
-            ActivateOverlay(0, 0, "Collect an item by holding <color=yellow>RT</color> while <color=yellow>lantern is on</color>", "robber_pickup", 5);
+            ActivateOverlay(0, 0, "Collect an item by holding <color=yellow>RT</color> while using your <color=yellow>Lantern</color>.", "robber_pickup", 5);
         }
 
         if (item_gathered && TutorialProgress.has_this_activated["robber_pickup"] == true)
@@ -291,7 +291,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //Robber pick up done
         if (item_gathered && TutorialProgress.Robber && TutorialProgress.has_this_activated["robber_pickup_done"] == false)
         {
-            if (ActivateOverlay(0, 0, "Your goal is to avoid the <color=blue>ghost</color> and collect <color=yellow>every item</color> listed on the right.", "robber_pickup_done", 4))
+            if (ActivateOverlay(0, 0, "Your goal is to collect all of the <color=yellow>Items</color> listed on the right. Just watch out for the <color=#099>Ghost</color>!", "robber_pickup_done", 4))
                 StartCoroutine(DeactivateBoolTimer(6f, "robber_pickup_done")); // Will disappear after 5 seconds
         }
         //-------------------------------------------------------------------------------------
@@ -307,7 +307,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber lantern
         if (TutorialProgress.tutorial_bools["robber_movement"] && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_lantern"] == false)
         {
-            ActivateOverlay(0, 0, "Use lantern <color=yellow>(A)</color> to find items around the map. Be careful, <color=blue>ghost</color> can see the light from the lantern", "robber_lantern", 6);
+            ActivateOverlay(0, 0, "Use your <color=yellow>Lantern</color> <color=yellow>(A)</color> to find Items around the map. Be careful though, the <color=#099>Ghost</color> can see the light from it!", "robber_lantern", 6);
         }
 
         if (item_gathered && TutorialProgress.has_this_activated["robber_lantern"] == true)
@@ -328,20 +328,17 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost aiming NEW
         if (TutorialProgress.Robber && ghost_aiming && TutorialProgress.tutorial_bools["ghost_aiming"] == false)
         {
-            if (ActivateOverlay(0, 0, "That arrow shows when and where <color=blue>Ghost</color> is preparing for a <color=yellow>dash.</color>", "ghost_aiming", 5)) StartCoroutine(DeactivateBoolTimer(7f, "ghost_aiming")); // Will disappear after 7 seconds
+            if (ActivateOverlay(0, 0, "This arrow shows the <color=#099>Ghost's</color> location when it is preparing for a <color=red>Dash.</color>.", "ghost_aiming", 5)) StartCoroutine(DeactivateBoolTimer(7f, "ghost_aiming")); // Will disappear after 7 seconds
         }
         //-------------------------------------------------------------------------------------------
         
         //robber_item_arrow
         if (TutorialProgress.tutorial_bools["robber_movement"] && item_arrow_active && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_item_arrow"] == false)
         {
-            ActivateOverlay(0, 0, "Follow the <color=yellow>arrow</color> to find items yet to be collected.", "robber_item_arrow", 8);
+            if (ActivateOverlay(0, 0, "Follow the yellow <color=yellow>arrow</color> to find Items yet to be collected.", "robber_item_arrow", 8)) 
+                StartCoroutine(DeactivateBoolTimer(5f, "robber_item_arrow")); // Will disappear after 5 seconds
         }
 
-        if (TutorialProgress.has_this_activated["robber_item_arrow"] == true)
-        {
-            StartCoroutine(DeactivateBoolTimer(5f, "robber_item_arrow")); // Will disappear after 5 seconds
-        }
         //--------------------------------------------------------------------------------------
 
         //GHOST#####################################################################################################
@@ -349,7 +346,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost movement
         if ((!goRight || !goLeft || !goUp || !goDown) && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_movement"] == false)
         {
-            ActivateOverlay(0, 0, "Move around with <color=yellow>left stick.</color>", "ghost_movement", 9);
+            ActivateOverlay(0, 0, "Use the <color=yellow>Left Joystick.</color> to move.", "ghost_movement", 9);
         }
 
         if ((goRight || goLeft || goUp || goDown) && TutorialProgress.has_this_activated["ghost_movement"] == true)
@@ -380,7 +377,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost timer
         if (TutorialProgress.tutorial_bools["ghost_movement"] && timer_near_end && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_timer"] == false)
         {
-            ActivateOverlay(0, 0, "Delat the robber a bit more to gain an advantage", "ghost_timer", 2);
+            ActivateOverlay(0, 0, "Delay the <color=green>Robber</color> a bit longer to gain an advantage!", "ghost_timer", 2);
         }
 
         if (timer_end && TutorialProgress.has_this_activated["ghost_timer"] == true)
@@ -392,7 +389,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost dash
         if (TutorialProgress.tutorial_bools["ghost_movement"] && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_dash"] == false)
         {
-            ActivateOverlay(0, 0, "Your goal is to find and catch the <color=red>robber</color> using <color=yellow>dash (A)</color>", "ghost_dash", 5);
+            ActivateOverlay(0, 0, "Your goal is to find and catch the <color=green>Robber</color>, using your <color=red>Dash</color> <color=yellow>(A)</color>.", "ghost_dash", 5);
         }
 
         if (ghost_dashed && TutorialProgress.has_this_activated["ghost_dash"] == true)
@@ -404,7 +401,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost vent near NEW
         if (TutorialProgress.Ghost && vent_near_ghost && TutorialProgress.tutorial_bools["ghost_vent"] == false)
         {
-            ActivateOverlay(0, 0, "<color=red>Robber</color> can use vents to fasttravel around", "ghost_vent", 5);
+            ActivateOverlay(0, 0, "The <color=green>Robber</color> can use vents to move around quickly.", "ghost_vent", 5);
 
             // Will disappear after 7 seconds
             StartCoroutine(DeactivateBoolTimer(7f, "ghost_vent"));
@@ -417,7 +414,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (TutorialProgress.tutorial_bools["ghost_movement"] && TutorialProgress.tutorial_bools["ghost_dash"] && TutorialProgress.Ghost 
             && TutorialProgress.tutorial_bools["ghost_dash_warning"] == false && ghost_dashed)
         {
-            ActivateOverlay(0, 0, "<color=yellow>Dashing</color> can let you move through objects, but it also reveals your location to the <color=red>robber.</color>", "ghost_dash_warning", 6);
+            ActivateOverlay(0, 0, "<color=red>Dashing</color> can let you move through objects, but it also reveals your location to the <color=green>Robber.</color>.", "ghost_dash_warning", 6);
         }
 
         if (TutorialProgress.has_this_activated["ghost_dash_warning"] == true)
@@ -431,7 +428,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost objective
         if (TutorialProgress.tutorial_bools["ghost_dash"] && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_objective"] == false)
         {
-            ActivateOverlay(0, 0, "Find <color=red>Robber</color> and dash into him to catch", "ghost_objective", 7);
+            ActivateOverlay(0, 0, "Find the <color=green>Robber</color> and <color=red>Dash</color> into him to catch him.", "ghost_objective", 7);
         }
 
         if (TutorialProgress.has_this_activated["ghost_objective"] == true && robber_life_lost)
@@ -446,7 +443,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost teleport
         if (teleported && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_teleport"] == false)
         {
-            ActivateOverlay(0,0, "You will be teleported away after catching the <color=red>Robber.</color> Catch him <color=yellow>twice more</color> to win", "ghost_teleport", 1);
+            ActivateOverlay(0,0, "You will be teleported away after catching the <color=green>Robber.</color> Catch him <color=yellow>twice more</color> to win!", "ghost_teleport", 1);
         }
 
         if (TutorialProgress.has_this_activated["ghost_teleport"] == true)
@@ -460,7 +457,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost stepvision
         if (TutorialProgress.tutorial_bools["ghost_dash"] && steps_near && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_stepvision"] == false)
         {
-            ActivateOverlay(0, 0, "Robber leaves footsteps behind, use stepvision <color=yellow>(B)</color> to see them", "ghost_stepvision", 4);
+            ActivateOverlay(0, 0, "You can use your <color=#27DDFF>Step Vision</color> <color=yellow>(B)</color> to see footprints the <color=green>Robber.</color> leaves behind.", "ghost_stepvision", 4);
         }
 
         if (TutorialProgress.has_this_activated["ghost_stepvision"] == true)
