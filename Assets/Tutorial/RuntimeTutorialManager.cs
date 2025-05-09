@@ -295,8 +295,8 @@ public class RuntimeTutorialManager : MonoBehaviour
         //Robber life lost
         if (robber_caught && TutorialProgress.Robber && TutorialProgress.has_this_activated["robber_life_lost"] == false)
         {
-            if (ActivateOverlay(0, 0, "ups that hurt you, didnt it", "robber_life_lost", 1))
-                StartCoroutine(DeactivateBoolTimer(4f, "robber_life_lost")); // Will disappear after 5 seconds
+            if (ActivateOverlay(0, 0, "Ouch! The <color=#099>Ghost</color> just caught you. Don't worry you have two more lives.", "robber_life_lost", 1))
+                StartCoroutine(DeactivateBoolTimer(5f, "robber_life_lost")); // Will disappear after 5 seconds
         }
         //-------------------------------------------------------------------------------------
 
@@ -347,7 +347,7 @@ public class RuntimeTutorialManager : MonoBehaviour
 
         if ((goRight || goLeft || goUp || goDown) && TutorialProgress.has_this_activated["ghost_movement"] == true)
         {
-            StartCoroutine(DeactivateBoolTimer(4f, "ghost_movement")); // Will disappear after 5 seconds
+            StartCoroutine(DeactivateBoolTimer(1.5f, "ghost_movement")); // Will disappear after 5 seconds
         }
         //------------------------------------------------------------------------------------------
 
