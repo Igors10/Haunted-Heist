@@ -237,12 +237,8 @@ public class RuntimeTutorialManager : MonoBehaviour
         //robber radar
         if (TutorialProgress.tutorial_bools["robber_movement"] && ghost_near && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_radar"] == false)
         {
-            ActivateOverlay(0, 0, "Your light is flickering, which means that the <color=#099>Ghost</color> is close! Use your <color=green>Night Vision</color> <color=yellow>(B)</color> to see it.", "robber_radar", 2);
-        }
-
-        if (TutorialProgress.has_this_activated["robber_radar"] == true) // those happen before they are activated
-        {
-            StartCoroutine(DeactivateBoolTimer(5f, "robber_radar")); // Will disappear after 5 seconds
+            if (ActivateOverlay(0, 0, "Your light is flickering, which means that the <color=#099>Ghost</color> is close! Use your <color=green>Night Vision</color> <color=yellow>(B)</color> to see it.", "robber_radar", 2)) 
+                StartCoroutine(DeactivateBoolTimer(5f, "robber_radar")); // Will disappear after 5 seconds
         }
         //-------------------------------------------------------------------------------------
 
@@ -292,7 +288,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (item_gathered && TutorialProgress.Robber && TutorialProgress.has_this_activated["robber_pickup_done"] == false)
         {
             if (ActivateOverlay(0, 0, "Your goal is to collect all of the <color=yellow>Items</color> listed on the right. Just watch out for the <color=#099>Ghost</color>!", "robber_pickup_done", 4))
-                StartCoroutine(DeactivateBoolTimer(6f, "robber_pickup_done")); // Will disappear after 5 seconds
+                StartCoroutine(DeactivateBoolTimer(10f, "robber_pickup_done")); // Will disappear after 5 seconds
         }
         //-------------------------------------------------------------------------------------
 
@@ -336,7 +332,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (TutorialProgress.tutorial_bools["robber_movement"] && item_arrow_active && TutorialProgress.Robber && TutorialProgress.tutorial_bools["robber_item_arrow"] == false)
         {
             if (ActivateOverlay(0, 0, "Follow the yellow <color=yellow>arrow</color> to find Items yet to be collected.", "robber_item_arrow", 8)) 
-                StartCoroutine(DeactivateBoolTimer(5f, "robber_item_arrow")); // Will disappear after 5 seconds
+                StartCoroutine(DeactivateBoolTimer(8f, "robber_item_arrow")); // Will disappear after 5 seconds
         }
 
         //--------------------------------------------------------------------------------------
@@ -346,7 +342,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost movement
         if ((!goRight || !goLeft || !goUp || !goDown) && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_movement"] == false)
         {
-            ActivateOverlay(0, 0, "Use the <color=yellow>Left Joystick.</color> to move.", "ghost_movement", 9);
+            ActivateOverlay(0, 0, "Use the <color=yellow>Left Joystick</color> to move.", "ghost_movement", 9);
         }
 
         if ((goRight || goLeft || goUp || goDown) && TutorialProgress.has_this_activated["ghost_movement"] == true)
@@ -414,13 +410,14 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (TutorialProgress.tutorial_bools["ghost_movement"] && TutorialProgress.tutorial_bools["ghost_dash"] && TutorialProgress.Ghost 
             && TutorialProgress.tutorial_bools["ghost_dash_warning"] == false && ghost_dashed)
         {
-            ActivateOverlay(0, 0, "<color=red>Dashing</color> can let you move through objects, but it also reveals your location to the <color=green>Robber.</color>.", "ghost_dash_warning", 6);
+            if (ActivateOverlay(0, 0, "<color=red>Dashing</color> can let you move through objects, but it also reveals your location to the <color=green>Robber</color>.", "ghost_dash_warning", 6))
+                StartCoroutine(DeactivateBoolTimer(5f, "ghost_dash_warning")); // Will disappear after 5 seconds
         }
 
         if (TutorialProgress.has_this_activated["ghost_dash_warning"] == true)
         {
             //timer deactivation 
-            StartCoroutine(DeactivateBoolTimer(5f, "ghost_dash_warning")); // Will disappear after 5 seconds
+            
         }
 
         //-------------------------------------------------------------------------------------------
@@ -429,6 +426,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         if (TutorialProgress.tutorial_bools["ghost_dash"] && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_objective"] == false)
         {
             ActivateOverlay(0, 0, "Find the <color=green>Robber</color> and <color=red>Dash</color> into him to catch him.", "ghost_objective", 7);
+                
         }
 
         if (TutorialProgress.has_this_activated["ghost_objective"] == true && robber_life_lost)
@@ -443,7 +441,8 @@ public class RuntimeTutorialManager : MonoBehaviour
         //ghost teleport
         if (teleported && TutorialProgress.Ghost && TutorialProgress.tutorial_bools["ghost_teleport"] == false)
         {
-            ActivateOverlay(0,0, "You will be teleported away after catching the <color=green>Robber.</color> Catch him <color=yellow>twice more</color> to win!", "ghost_teleport", 1);
+            ActivateOverlay(0, 0, "You will be teleported away after catching the <color=green>Robber.</color> Catch him <color=yellow>twice more</color> to win!", "ghost_teleport", 1);
+
         }
 
         if (TutorialProgress.has_this_activated["ghost_teleport"] == true)
@@ -526,7 +525,7 @@ public class RuntimeTutorialManager : MonoBehaviour
         return true;
     }
 
-    void WipeTutorial()
+    public void WipeTutorial()
     {
         foreach (var key in TutorialProgress.tutorial_bools.Keys.ToList())
         {
@@ -537,6 +536,9 @@ public class RuntimeTutorialManager : MonoBehaviour
         {
             TutorialProgress.tutorial_bools[key] = false;
         }
+
+        TutorialProgress.Robber = false;
+        TutorialProgress.Ghost = false;
     }
 
     void DeactivateBool(string bool_name)
