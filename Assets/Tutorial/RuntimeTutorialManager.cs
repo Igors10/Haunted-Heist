@@ -493,18 +493,14 @@ public class RuntimeTutorialManager : MonoBehaviour
         DeactivateBool(bool_to_deactivate);
     }
 
-    IEnumerator DeactivateDictionary(float delay_in_seconds, string bool_to_deactivate)
-    {
-        yield return new WaitForSeconds(delay_in_seconds);
-
-        TutorialProgress.has_this_activated[bool_to_deactivate] = true;
-    }
-
     public bool ActivateOverlay(float x_pos, float y_pos, string text, string type, float priority)
     {
         RuntimeOverlayScript overlay_script = overlay.GetComponent<RuntimeOverlayScript>();
 
         if (overlay_script.type == type || overlay_script.priority < priority || GameData.are_hints_on == false) return false; // do nothing if it's already the desired overlay or priority is lower
+
+        if (TutorialProgress.has_this_activated.ContainsKey(type))
+            TutorialProgress.has_this_activated[type] = true;
 
         // Activating the overlay
         overlay_script.gameObject.SetActive(true);
@@ -513,8 +509,6 @@ public class RuntimeTutorialManager : MonoBehaviour
 
         // Debugging (bacause it doenst work sukaaa((((((  )
         Debug.Log("RT_Tutorial: activated type: " + type + " with text: " + text);
-
-        StartCoroutine(DeactivateDictionary(3f, type)); // will disappear in 3 seconds
 
         if (overlay.activeSelf)
         {
@@ -534,7 +528,7 @@ public class RuntimeTutorialManager : MonoBehaviour
 
         foreach (var key in TutorialProgress.has_this_activated.Keys.ToList())
         {
-            TutorialProgress.tutorial_bools[key] = false;
+            TutorialProgress.has_this_activated[key] = false;
         }
 
         TutorialProgress.Robber = false;
