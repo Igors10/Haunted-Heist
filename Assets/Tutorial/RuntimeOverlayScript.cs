@@ -18,6 +18,7 @@ public class RuntimeOverlayScript : MonoBehaviour
     {
         //transform.position = changed_position;   It appears in the center of the screen
         textbox.text = new_text;
+        Debug.Log($"Overlay activated: {type}, priority: {priority}");
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class RuntimeOverlayScript : MonoBehaviour
         if (TutorialProgress.tutorial_bools[type])
         {
             Delete();
+            Debug.Log($"Overlay deleted: {type}");
         }
     }
 
