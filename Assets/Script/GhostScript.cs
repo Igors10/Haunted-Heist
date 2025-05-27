@@ -408,7 +408,7 @@ public class GhostScript : NetworkBehaviour
         is_dash_ready = false;
 
         // Check for rt_tutorial
-        if (Game.Instance.rt_tutorial.ghost_dashed == false) Game.Instance.rt_tutorial.ghost_dashed = true;
+        if (Game.Instance.rt_tutorial != null && Game.Instance.rt_tutorial.ghost_dashed == false) Game.Instance.rt_tutorial.ghost_dashed = true;
 
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
@@ -654,7 +654,7 @@ public class GhostScript : NetworkBehaviour
             if (new_distance > old_distance) chosen_point = i;
         }
 
-        Game.Instance.rt_tutorial.teleported = true;
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.teleported = true;
 
         return teleportation_locations[chosen_point];
     }
@@ -718,7 +718,8 @@ public class GhostScript : NetworkBehaviour
         if (collision.gameObject.tag == "Vent")
         {
             // check for rt_tutorial vent_near_ghost
-            Game.Instance.rt_tutorial.vent_near_ghost = true;
+            if (Game.Instance.rt_tutorial != null)
+                Game.Instance.rt_tutorial.vent_near_ghost = true;
         }
     }
 }

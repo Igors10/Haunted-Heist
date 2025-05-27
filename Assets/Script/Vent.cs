@@ -88,7 +88,7 @@ public class Vent : NetworkBehaviour
         Debug.Log("VENT Opened:" + open);
 
         // Check for rt_tutorial
-        Game.Instance.rt_tutorial.vent_near = is_open;
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.vent_near = is_open;
     }
 
     bool CheckToBlock()
@@ -203,7 +203,7 @@ public class Vent : NetworkBehaviour
         sprite.sprite = vent_sprites[1];
 
         // Check for rt_tutorial
-        Game.Instance.rt_tutorial.robber_vented = true;
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.robber_vented = true;
 
         while (current_block_timer < full_block_timer) {
             current_block_timer++;

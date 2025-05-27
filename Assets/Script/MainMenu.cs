@@ -126,6 +126,12 @@ public class MainMenu : MonoBehaviour
             input_field.text = "192.168.195.36";
         }
 
+        //Turning logo on and off
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            logo.SetActive(!logo.activeSelf);
+        }
+
         CheckForBackToMainMenu();
     }
 
