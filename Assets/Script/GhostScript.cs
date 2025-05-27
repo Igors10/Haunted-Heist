@@ -66,6 +66,8 @@ public class GhostScript : NetworkBehaviour
 
     private Vector3 dashDirection;
 
+    Animator ghostAnimator;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -80,6 +82,8 @@ public class GhostScript : NetworkBehaviour
         FindTeleportationPoint(GameObject.Find("teleportation_point_2"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_3"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_4"));
+
+        ghostAnimator = ghost_hiding.GetComponent<Animator>();
 
         hiding_sprite = ghost_hiding.GetComponent<SpriteRenderer>();
         hiding_color = hiding_sprite.color;
@@ -132,6 +136,9 @@ public class GhostScript : NetworkBehaviour
 
         Vector2 targetPosition;
 
+        //animation set to aim the idle - flipping through the sprites
+
+
         if (usingJoystick)
         {
             // Joystick
@@ -177,6 +184,11 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         // Charging up the dash
+
+
+        //animation set to aim the idle - flipping through the sprites
+        ghostAnimator.SetBool("isLoading", true);
+        ghostAnimator.SetBool("isWalking", false);
 
         if (full_aiming_arrow.fillAmount < 1f)
         {
@@ -365,6 +377,8 @@ public class GhostScript : NetworkBehaviour
 
     IEnumerator StartCharge()
     {
+        //animation set to start the charge
+
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
 
@@ -402,6 +416,9 @@ public class GhostScript : NetworkBehaviour
 
     void EndCharge()
     {
+        //animation set to finish the dash
+
+
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
