@@ -67,6 +67,7 @@ public class GhostScript : NetworkBehaviour
     private Vector3 dashDirection;
 
     Animator ghostAnimator;
+    Animator ghostAttackingAnimator;
 
     public override void OnStartClient()
     {
@@ -84,6 +85,7 @@ public class GhostScript : NetworkBehaviour
         FindTeleportationPoint(GameObject.Find("teleportation_point_4"));
 
         ghostAnimator = ghost_hiding.GetComponent<Animator>();
+        ghostAttackingAnimator = ghost_attacking.GetComponent<Animator>();
 
         hiding_sprite = ghost_hiding.GetComponent<SpriteRenderer>();
         hiding_color = hiding_sprite.color;
@@ -184,7 +186,6 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         // Charging up the dash
-
 
         //animation set to aim the idle - flipping through the sprites
         ghostAnimator.SetBool("isLoading", true);
@@ -378,6 +379,7 @@ public class GhostScript : NetworkBehaviour
     IEnumerator StartCharge()
     {
         //animation set to start the charge
+        ghostAttackingAnimator.SetBool("attackEnded", false);
 
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
@@ -417,7 +419,7 @@ public class GhostScript : NetworkBehaviour
     void EndCharge()
     {
         //animation set to finish the dash
-
+        ghostAttackingAnimator.SetBool("attackEnded", true);
 
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
@@ -662,6 +664,9 @@ public class GhostScript : NetworkBehaviour
     {
         Debug.Log("TeleportsAway");
 
+        //animation
+        ghostAttackingAnimator.SetBool("isLaughing", false);
+
         int chosen_point = 0;
 
         for (int i = 0; i < teleportation_locations.Count; i++)
@@ -679,6 +684,9 @@ public class GhostScript : NetworkBehaviour
     public IEnumerator Catch()
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
+
+        //animation
+        ghostAttackingAnimator.SetBool("isLaughing", true);
 
         //SFX
         AudioManager.instance.PlaySFX("GhostLaugh");

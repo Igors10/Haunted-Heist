@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5724c11888c88444d9cf8b88c7f78df6
+guid: 82446e7a3535cb043ab2f54d3199477d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2506546924721147842
-    second: dash1_0
+      213: 1339271090436632135
+    second: ghost_laugh2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dash1_0
+      name: ghost_laugh2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 67
-        height: 67
+        y: 0
+        width: 60
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2cf0ad4d52b09c220800000000000000
-      internalID: 2506546924721147842
+      spriteID: 74eec6306fb069210800000000000000
+      internalID: 1339271090436632135
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dash1_0: 2506546924721147842
+      ghost_laugh2_0: 1339271090436632135
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
