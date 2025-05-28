@@ -6,7 +6,7 @@ public class TextJuice : MonoBehaviour
 {
     public TextMeshProUGUI counterText;
     public int maxValue = 6;
-    private int currentValue = 0;
+    private int currentValue = 6;
 
     private Vector3 originalScale;
     private Coroutine animationCoroutine;
@@ -20,27 +20,27 @@ public class TextJuice : MonoBehaviour
     private void Update()
     {
         // To enable keyboard input for testing: Only for debugging
-        /*if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (currentValue < maxValue)
+            if (currentValue != 0)
+            {
+                currentValue--;
+                UpdateCounterTextWithJuice();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (currentValue != maxValue)
             {
                 currentValue++;
                 UpdateCounterTextWithJuice();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (currentValue > 0)
-            {
-                currentValue--;
-                UpdateCounterTextWithJuice();
-            }
-        }*/
     }
 
     private void UpdateCounterTextValue()
     {
-        currentValue++; // Im increasing it here
+        currentValue--; // Decrese the value by 1 
         counterText.text = $"{currentValue} / {maxValue}";
     }
 
@@ -63,7 +63,7 @@ public class TextJuice : MonoBehaviour
         float elapsed = 0f;
 
         Color originalColor = Color.white;
-        Color highlightColor = new Color(1f, 0.84f, 0f); // This is gold/yellow colour
+        Color highlightColor = new Color(1f, 0f, 0f); // This is red colour
 
         while (elapsed < duration)
         {
