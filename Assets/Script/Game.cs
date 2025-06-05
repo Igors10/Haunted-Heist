@@ -70,6 +70,14 @@ public class Game : NetworkBehaviour
             is_robber_connected = true;
             is_ghost_connected = true;
         }
+        if (Input.GetKeyDown(KeyCode.O)) // shortcut key for making stopping the client be considered a server in gamedata
+        {
+            GameData.is_server = false;
+        }
+        if (Input.GetKeyDown(KeyCode.R) && GameData.is_restarting == false) 
+        {
+            game_over.RestartButton();
+        }
 
         // Debug to see if robber and ghost variables are in ===================
 
