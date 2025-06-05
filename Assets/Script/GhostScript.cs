@@ -551,6 +551,10 @@ public class GhostScript : NetworkBehaviour
         is_aiming = is_on;
         aiming_arrow.SetActive(is_aiming);
 
+        // Stopping the aiming animation
+        ghostAnimator.SetBool("isLoading", false);
+        ghostAnimator.SetBool("isWalking", true);
+
         if (is_on == false && Vector2.Distance(mouse_position, transform.position) > 0f && is_dash_ready)
         {
             StartCoroutine(StartCharge());
@@ -615,7 +619,11 @@ public class GhostScript : NetworkBehaviour
         ghost_hiding.SetActive(is_hiding);
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
-        if (Game.Instance.robber.Value != null)
+
+        //Flipping the ghost while dashing
+        ghost_attacking.GetComponent<SpriteRenderer>().flipX = ghost_hiding.GetComponent<SpriteRenderer>().flipX;
+
+        //if (Game.Instance.robber.Value != null)
 
             //ghost particle effects for charging
             if (is_hiding)
