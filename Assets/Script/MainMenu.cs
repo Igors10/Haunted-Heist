@@ -1,14 +1,11 @@
 using FishNet.Managing;
-using FishNet.Managing.Server;
-using FishNet.Object;
 using FishNet.Transporting.Tugboat;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 //using FishNet.Managing.Scened;
-using FishNet;
-using Unity.Mathematics;
 
 public class MainMenu : MonoBehaviour
 {
@@ -19,6 +16,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Color server_text_color;
     [SerializeField] GameObject tutorial_window;
     [SerializeField] GameObject credits_window;
+    [SerializeField] GameObject[] miasma;
+    [SerializeField] GameObject[] miasma_border;
+    [SerializeField] float miasma_speed;
+    [SerializeField] float logo_acceler;
+    [SerializeField] bool is_logo_moving;
+    float logo_speed = 0;
+    [SerializeField] GameObject logo;
+
+    public Button nextButton;
+    public GameObject helpPanel;
+
     bool server_created = false;
 
     private void Start()
@@ -33,6 +41,9 @@ public class MainMenu : MonoBehaviour
 
         tutorial_window.SetActive(!is_tutorial_open);
         tutorial_window.GetComponent<Tutorial>().EnableTutorial(!is_tutorial_open);
+
+        EventSystem.current.SetSelectedGameObject(null); // Clear first
+        EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
 
         // closing credits in case they are open
         credits_window.SetActive(false);
@@ -114,5 +125,67 @@ public class MainMenu : MonoBehaviour
         {
             input_field.text = "192.168.195.36";
         }
+
+        //Turning logo on and off
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            logo.SetActive(!logo.activeSelf);
+        }
+
+        CheckForBackToMainMenu();
+    }
+
+    private void FixedUpdate()
+    {
+        MiasmaUpdate();
+        LogoUpdate();
+    }
+
+    void LogoUpdate() // Logo moving up and down
+    {
+        if (!is_logo_moving) return;
+
+        logo.transform.Translate(0f, logo_speed, 0f);
+        logo_speed += logo_acceler;
+
+        if (logo_speed > 0.01f || logo_speed < -0.01f) logo_acceler *= -1;
+    }
+
+    void MiasmaUpdate() // Background miasma moving
+    {
+        if (miasma[0] == null) return;
+
+        for (int a = 0; a < miasma.Length; a++)
+        {
+            if (miasma[a].transform.position.x > miasma_border[1].transform.position.x) miasma[a].transform.position = miasma_border[0].transform.position;
+            miasma[a].transform.Translate(miasma_speed, 0, 0);
+            
+        }
+    }
+
+    public void LoadPlayScene()
+    {
+        SceneManager.LoadScene("Play");
+    }
+
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
+    // If on Play or Tutorial scene, and "B" or "Circle" is pressed on controller, go back to main menu
+    public void CheckForBackToMainMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.JoystickButton2))
+        {
+            Debug.Log("Back to main menu");
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    public void LoadHelpPanel()
+    {
+        helpPanel.SetActive(!helpPanel.activeSelf);
     }
 }

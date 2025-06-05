@@ -13,6 +13,9 @@ TagManager:
   - Pusher
   - Robber
   - spawnPointTutorial
+  - GhostDummy
+  - RobberDummy
+  - Footstep
   layers:
   - Default
   - TransparentFX

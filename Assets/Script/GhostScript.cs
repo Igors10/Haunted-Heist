@@ -2,6 +2,7 @@ using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GhostScript : NetworkBehaviour
 {
@@ -15,13 +16,16 @@ public class GhostScript : NetworkBehaviour
     [HideInInspector] public float default_speed;
 
     // GhostUI
-    GhostUI ghostUI;
+    [HideInInspector] public GhostUI ghostUI;
     [SerializeField] float dash_cooldown;
     [SerializeField] float stepvision_cooldown;
 
     // Dashing Variables
-    bool is_aiming;
-    bool is_dashing;
+    [HideInInspector] public bool is_aiming;
+    [HideInInspector] public bool is_dashing;
+    bool is_dash_ready;
+
+
     Vector2 mouse_position;
     Vector2 charge_target_position = Vector2.zero;
     float charge_time;
@@ -30,6 +34,11 @@ public class GhostScript : NetworkBehaviour
     [SerializeField] float dash_delay_time;
     Vector3 charge_starting_position;
     Vector3 last_valid_position;
+
+    [SerializeField] float dash_prep_speed;
+    [SerializeField] Image full_aiming_arrow;
+    Color aiming_arrow_default_color;
+    Vector2 last_aiming_position = new Vector2(0f, 0f);
 
     // Boundary checking
     [SerializeField] LayerMask boundaryLayer;
@@ -51,6 +60,15 @@ public class GhostScript : NetworkBehaviour
 
     [SerializeField] float joystickDeadZone = 0.2f;
 
+    // Ghost's wild
+    [HideInInspector] public bool wild_mode_on;
+    [SerializeField] float wild_mode_speed_mod;
+
+    private Vector3 dashDirection;
+
+    Animator ghostAnimator;
+    Animator ghostAttackingAnimator;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -66,8 +84,12 @@ public class GhostScript : NetworkBehaviour
         FindTeleportationPoint(GameObject.Find("teleportation_point_3"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_4"));
 
+        ghostAnimator = ghost_hiding.GetComponent<Animator>();
+        ghostAttackingAnimator = ghost_attacking.GetComponent<Animator>();
+
         hiding_sprite = ghost_hiding.GetComponent<SpriteRenderer>();
         hiding_color = hiding_sprite.color;
+        aiming_arrow_default_color = full_aiming_arrow.color;
 
         if (IsOwner)
         {
@@ -75,6 +97,7 @@ public class GhostScript : NetworkBehaviour
             if (ghostUI == null) Debug.Log("Couldnt find ghost UI");
             else ghostUI.EnableUI();
         }
+
     }
 
     void FindTeleportationPoint(GameObject teleport_point)
@@ -89,25 +112,8 @@ public class GhostScript : NetworkBehaviour
     {
         if (IsOwner)
         {
-            Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-            bool usingJoystick = joystickInput.magnitude > joystickDeadZone;
-
-            Vector2 targetPosition;
-
-            if (usingJoystick)
-            {
-                // Joystick
-                Vector2 direction = joystickInput.normalized;
-                targetPosition = (Vector2)transform.position + direction * 3f; // Scalar distance, can be increased.
-            }
-            else
-            {
-                // Mouse fallback
-                Vector3 screen_mouse_position = Input.mousePosition;
-                targetPosition = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
-            }
+            // Different aiming logic depending on if gamepad is used or not
+            Vector2 targetPosition = (GameData.is_gamepad_used) ? JoystickAimInput() : MouseAimInput();
 
             if (is_aiming) AimForCharge(targetPosition);
             if (charge_target_position != Vector2.zero) Charging();
@@ -116,7 +122,60 @@ public class GhostScript : NetworkBehaviour
             {
                 last_valid_position = transform.position;
             }
+
+
+            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
         }
+    }
+
+
+    Vector2 JoystickAimInput()
+    {
+        Vector2 aimInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        bool usingJoystick = joystickInput.magnitude > joystickDeadZone;
+
+        Vector2 targetPosition;
+
+        //animation set to aim the idle - flipping through the sprites
+
+
+        if (usingJoystick)
+        {
+            // Joystick
+            Vector2 direction = joystickInput.normalized;
+            targetPosition = (Vector2)transform.position + direction * 3f; // Scalar distance, can be increased.
+            last_aiming_position = targetPosition;
+        }
+        else
+        {
+            targetPosition = last_aiming_position;
+        }
+
+        return targetPosition;
+    }
+
+    Vector2 MouseAimInput()
+    {
+        Vector3 screen_mouse_position = Input.mousePosition;
+        Vector2 targetPosition = player.main_camera.ScreenToWorldPoint(screen_mouse_position);
+
+        return targetPosition;
+    }
+
+    public IEnumerator WildMode()
+    {
+        SyncHideServerRpc(false);
+
+        GameData.is_ghost_wild = true;
+
+        yield return new WaitForSeconds(0.3f);
+
+        player.frozen = false;
+
+        default_speed *= wild_mode_speed_mod;
+        player.speed *= wild_mode_speed_mod;
     }
 
     void AimForCharge(Vector2 target_position)
@@ -125,6 +184,29 @@ public class GhostScript : NetworkBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         aiming_arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        // Charging up the dash
+
+        //animation set to aim the idle - flipping through the sprites
+        ghostAnimator.SetBool("isLoading", true);
+        ghostAnimator.SetBool("isWalking", false);
+
+        if (full_aiming_arrow.fillAmount < 1f)
+        {
+            full_aiming_arrow.fillAmount += Time.deltaTime * dash_prep_speed;
+            full_aiming_arrow.color = ghostUI.charged_color_dash;
+        }
+        else
+        {
+            // Dash is ready
+            //ghostUI.DashReady();
+            full_aiming_arrow.fillAmount = 1f;
+            is_dash_ready = true;
+            full_aiming_arrow.color = aiming_arrow_default_color;
+        }
+
+        //full_aiming_arrow.fillAmount = ghostUI.dash_fill.fillAmount;
+
     }
 
     void Charging()
@@ -136,50 +218,134 @@ public class GhostScript : NetworkBehaviour
         // Calculating the next position 
         Vector3 nextPosition = Vector3.Lerp(charge_starting_position, charge_target_position, coolT);
 
-        // Check if the next position would be inside a map boundary
-        if (IsPositionValid(nextPosition))
+        // Before moving, check if the path is clear
+        float distanceToMove = Vector3.Distance(transform.position, nextPosition);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDirection, distanceToMove, boundaryLayer);
+
+        // Also check for pushers, but only if we want to stop at them
+        RaycastHit2D pusherHit = Physics2D.Raycast(transform.position, dashDirection, distanceToMove);
+        if (pusherHit.collider != null && pusherHit.collider.CompareTag("Pusher"))
         {
-            // If it's valid, move to that position
-            player.transform.position = nextPosition;
-        }
-        else
-        {
-            // If it's not valid, find the closest valid position
-            Vector3 direction = (nextPosition - charge_starting_position).normalized;
-            float distance = Vector3.Distance(charge_starting_position, nextPosition);
-
-            // Searching for the closest valid position
-            float minDistance = 0;
-            float maxDistance = distance;
-            float currentDistance = maxDistance;
-            Vector3 validPosition = charge_starting_position;
-
-            for (int i = 0; i < 10; i++)
-            {
-                currentDistance = (minDistance + maxDistance) / 2;
-                Vector3 testPosition = charge_starting_position + direction * currentDistance;
-
-                if (IsPositionValid(testPosition))
-                {
-                    validPosition = testPosition;
-                    minDistance = currentDistance;
-                }
-                else
-                {
-                    maxDistance = currentDistance;
-                }
-            }
-
-            // Move to the valid position
-            player.transform.position = validPosition;
-
-            // End the dash since we hit map boundary
+            // Stop just before the pusher
+            Vector3 stopPosition = transform.position + dashDirection * (pusherHit.distance - boundaryOffset);
+            player.transform.position = stopPosition;
             EndCharge();
             return;
         }
 
+        if (hit.collider != null)
+        {
+            // If we hit a boundary, stop just before it
+            Vector3 stopPosition = transform.position + dashDirection * (hit.distance - boundaryOffset);
+            player.transform.position = stopPosition;
+            EndCharge();
+            return;
+        }
+
+        // If the path is clear, move to the next position
+        player.transform.position = nextPosition;
+
+        // If we've reached the end of the dash, end it
         if (progress >= 1) EndCharge();
     }
+
+    void CheckAndResolvePusherCollision()
+    {
+        if (!IsOwner) return;
+
+        // Check if the ghost is inside a pusher
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        bool insidePusher = false;
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Pusher"))
+            {
+                insidePusher = true;
+                break;
+            }
+        }
+
+        // If inside a pusher, we need to find a safe position
+        if (insidePusher)
+        {
+            // Attempt to find a safe position along the dash path
+            FindSafePositionAlongDashPath();
+        }
+    }
+
+    void FindSafePositionAlongDashPath()
+    {
+        // Get the dash direction
+        Vector3 direction = -dashDirection; // Try going backward along the dash path first
+
+        // Try different distances to find a safe spot
+        float[] distances = { 0.5f, 1.0f, 1.5f, 2.0f };
+
+        foreach (float distance in distances)
+        {
+            Vector3 testPosition = transform.position + direction * distance;
+
+            // Check if this position is safe (not inside a pusher)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(testPosition, 0.1f);
+            bool positionSafe = true;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Pusher"))
+                {
+                    positionSafe = false;
+                    break;
+                }
+            }
+
+            if (positionSafe)
+            {
+                // Found a safe position, move there
+                transform.position = testPosition;
+                Debug.Log("Found safe position at distance: " + distance);
+                return;
+            }
+        }
+        Vector2[] cardinalDirections = {
+        Vector2.up,
+        Vector2.right,
+        Vector2.down,
+        Vector2.left
+    };
+
+        foreach (Vector2 dir in cardinalDirections)
+        {
+            // Try a reasonable escape distance
+            Vector3 testPosition = transform.position + new Vector3(dir.x, dir.y, 0) * 0.5f;
+
+            // Check if this position is safe
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(testPosition, 0.1f);
+            bool positionSafe = true;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Pusher"))
+                {
+                    positionSafe = false;
+                    break;
+                }
+            }
+
+            if (positionSafe)
+            {
+                // Found a safe position, move there
+                transform.position = testPosition;
+                Debug.Log("Found safe position in cardinal direction: " + dir);
+                return;
+            }
+        }
+
+        // As a last resort, use the last valid position
+        transform.position = last_valid_position;
+        Debug.Log("No safe position found, using last valid position");
+    }
+
 
     // Check if a position is valid (not inside a boundary)
     bool IsPositionValid(Vector3 position)
@@ -212,9 +378,11 @@ public class GhostScript : NetworkBehaviour
 
     IEnumerator StartCharge()
     {
+        //animation set to start the charge
+        ghostAttackingAnimator.SetBool("attackEnded", false);
+
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
-
 
         SyncHideServerRpc(false);
         is_aiming = false;
@@ -230,8 +398,8 @@ public class GhostScript : NetworkBehaviour
         // Dash start soundeffect
         AudioManager.instance.PlaySFXGlobal("Dash");
 
-        // Calculate initial dash target
-        Vector3 dashDirection = aiming_arrow.transform.up;
+        // Calculate initial dash target and save the direction
+        dashDirection = aiming_arrow.transform.up;
         Vector3 initialTargetPosition = transform.position + dashDirection * dash_length;
 
         charge_target_position = initialTargetPosition;
@@ -242,16 +410,24 @@ public class GhostScript : NetworkBehaviour
 
         // Cooldown
         StartCoroutine(ghostUI.Cooldown(dash_cooldown, true));
+        //ghostUI.DashUsed();
 
         Debug.Log("Charge Started");
     }
 
+
     void EndCharge()
     {
+        //animation set to finish the dash
+        ghostAttackingAnimator.SetBool("attackEnded", true);
+
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
+        is_dash_ready = false;
 
+        // Check for rt_tutorial
+        if (Game.Instance.rt_tutorial != null && Game.Instance.rt_tutorial.ghost_dashed == false) Game.Instance.rt_tutorial.ghost_dashed = true;
 
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
@@ -260,27 +436,71 @@ public class GhostScript : NetworkBehaviour
         Debug.Log("Charge Ended");
     }
 
-    void CheckAndResolvePusherCollision()
+
+    void HandleTilemapCollision()
     {
-        if (!IsOwner) return;
-
-        // Get all colliders at the current position
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
-
-        foreach (Collider2D collider in colliders)
+        // Cast rays in 8 directions to find the nearest exit
+        Vector2[] directions = new Vector2[]
         {
-            if (collider.CompareTag("Pusher"))
+        Vector2.up,
+        Vector2.right,
+        Vector2.down,
+        Vector2.left,
+        new Vector2(1, 1).normalized,
+        new Vector2(1, -1).normalized,
+        new Vector2(-1, -1).normalized,
+        new Vector2(-1, 1).normalized
+        };
+
+        float maxRayDistance = 2f; // Maximum distance to check
+        float shortestDistance = maxRayDistance;
+        Vector2 bestDirection = Vector2.zero;
+        bool foundExit = false;
+
+        // Try to find the nearest exit point
+        foreach (Vector2 direction in directions)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxRayDistance, boundaryLayer);
+            if (hit.collider == null) // No boundary in this direction
             {
-                // Calculate the nearest edge point
-                Vector2 direction = GetNearestExitDirection(collider);
-
-                // Push the ghost out in that direction
-                float pushDistance = 0.5f;
-                transform.position += new Vector3(direction.x, direction.y, 0) * pushDistance;
-
-                // Stop the loop after the first pusher is found
-                break;
+                // Cast another ray but this time looking for pushers
+                RaycastHit2D pusherHit = Physics2D.Raycast(transform.position, direction, maxRayDistance);
+                if (pusherHit.collider != null && pusherHit.collider.CompareTag("Pusher"))
+                {
+                    // Found the edge of the pusher
+                    if (pusherHit.distance < shortestDistance)
+                    {
+                        shortestDistance = pusherHit.distance;
+                        bestDirection = direction;
+                        foundExit = true;
+                    }
+                }
+                else
+                {
+                    // Open direction with no obstacles
+                    float distance = 0.5f; // Default push distance
+                    if (distance < shortestDistance)
+                    {
+                        shortestDistance = distance;
+                        bestDirection = direction;
+                        foundExit = true;
+                    }
+                }
             }
+        }
+
+        if (foundExit)
+        {
+            // Push in the best direction with a little extra to ensure we're outside
+            float pushDistance = shortestDistance + 0.3f;
+            transform.position += new Vector3(bestDirection.x, bestDirection.y, 0) * pushDistance;
+            Debug.Log("Pushed out of tilemap in direction: " + bestDirection);
+        }
+        else
+        {
+            // If no clear exit found, try teleporting to last valid position
+            transform.position = last_valid_position;
+            Debug.Log("No clear exit found, teleported to last valid position");
         }
     }
 
@@ -319,20 +539,34 @@ public class GhostScript : NetworkBehaviour
 
     public void ChargeAttack(bool is_on)
     {
-        if (ghostUI.dash_fill.fillAmount < 1 || is_dashing) return;
+        if (is_dashing || ghostUI.dash_fill.fillAmount < 1f) return;
+
+        // updating the indicator
+        DashIndicatorServerRpc(is_on);
+
+        // making the ghost slower while aiming
+        player.speed = (is_on) ? stepvision_speed : default_speed;
+        full_aiming_arrow.fillAmount = 0f;
 
         is_aiming = is_on;
         aiming_arrow.SetActive(is_aiming);
 
-        if (is_on == false && Vector2.Distance(mouse_position, transform.position) > 0f)
+        // Stopping the aiming animation
+        ghostAnimator.SetBool("isLoading", false);
+        ghostAnimator.SetBool("isWalking", true);
+
+        if (is_on == false && Vector2.Distance(mouse_position, transform.position) > 0f && is_dash_ready)
         {
             StartCoroutine(StartCharge());
         }
+        //else if (is_on == false) ghostUI.DashUsed();
     }
 
     public void StepVision(bool is_on)
     {
         if (ghostUI.stepvision_fill.fillAmount < 1) return;
+
+        ghostUI.StepVisionFilter(is_on);
 
         // Cooldown
         if (!is_on) StartCoroutine(ghostUI.Cooldown(stepvision_cooldown, false));
@@ -342,7 +576,34 @@ public class GhostScript : NetworkBehaviour
         player.speed = (is_on) ? stepvision_speed : default_speed;
     }
 
+    // Updating the dash indicatior for the robber over network
+
+    [ServerRpc(RequireOwnership = false)]
+    public void DashIndicatorServerRpc(bool is_on)
+    {
+        DashIndicatorObserversRpc(is_on);
+
+    }
+
+    [ObserversRpc]
+    public void DashIndicatorObserversRpc(bool is_on)
+    {
+        if (Game.Instance.robber.Value != null) Game.Instance.robber.Value.GetComponent<Player>().Indication(is_on);
+    }
     // Changing states HIDING - ATTACKING ======================================
+
+    [ServerRpc(RequireOwnership = false)]
+    public void CollecteItemCounterUpdateServerRpc()
+    {
+        CollectedItemCounterUpdateObserversRpc();
+
+    }
+
+    [ObserversRpc]
+    void CollectedItemCounterUpdateObserversRpc()
+    {
+        Game.Instance.item_lottery.gameObject.GetComponent<TextJuice>().UpdateCounterTextWithJuice();
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void SyncHideServerRpc(bool is_hiding)
@@ -358,33 +619,37 @@ public class GhostScript : NetworkBehaviour
         ghost_hiding.SetActive(is_hiding);
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
-        Game.Instance.robber.Value.GetComponent<Player>().Indication(!is_hiding);
 
-        //ghost particle effects for charging
-        if (is_hiding)
-        {
-            if (ghostParticleZoomIn.isEmitting)
-            {
-                ghostParticleZoomIn.Clear();
-                Debug.Log("ZoomIn cleared");
-            }
+        //Flipping the ghost while dashing
+        ghost_attacking.GetComponent<SpriteRenderer>().flipX = ghost_hiding.GetComponent<SpriteRenderer>().flipX;
 
-            ghostParticleZoomOut.Stop();
-            if (ghostParticleZoomOut.isStopped)
+        //if (Game.Instance.robber.Value != null)
+
+            //ghost particle effects for charging
+            if (is_hiding)
             {
-                ghostParticleZoomOut.Play();
-                Debug.Log("ZoomOut activated");
+                if (ghostParticleZoomIn.isEmitting)
+                {
+                    ghostParticleZoomIn.Clear();
+                    Debug.Log("ZoomIn cleared");
+                }
+
+                ghostParticleZoomOut.Stop();
+                if (ghostParticleZoomOut.isStopped)
+                {
+                    ghostParticleZoomOut.Play();
+                    Debug.Log("ZoomOut activated");
+                }
             }
-        }
-        else
-        {
-            ghostParticleZoomIn.Stop();
-            if (ghostParticleZoomIn.isStopped)
+            else
             {
-                ghostParticleZoomIn.Play();
-                Debug.Log("ZoomIn activated");
+                ghostParticleZoomIn.Stop();
+                if (ghostParticleZoomIn.isStopped)
+                {
+                    ghostParticleZoomIn.Play();
+                    Debug.Log("ZoomIn activated");
+                }
             }
-        }
 
     }
 
@@ -407,6 +672,9 @@ public class GhostScript : NetworkBehaviour
     {
         Debug.Log("TeleportsAway");
 
+        //animation
+        ghostAttackingAnimator.SetBool("isLaughing", false);
+
         int chosen_point = 0;
 
         for (int i = 0; i < teleportation_locations.Count; i++)
@@ -416,12 +684,17 @@ public class GhostScript : NetworkBehaviour
             if (new_distance > old_distance) chosen_point = i;
         }
 
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.teleported = true;
+
         return teleportation_locations[chosen_point];
     }
 
-    IEnumerator Catch()
+    public IEnumerator Catch()
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
+
+        //animation
+        ghostAttackingAnimator.SetBool("isLaughing", true);
 
         //SFX
         AudioManager.instance.PlaySFX("GhostLaugh");
@@ -441,7 +714,7 @@ public class GhostScript : NetworkBehaviour
             current_alpha = current_laughing_duration / laughing_duration;
 
             current_laughing_duration--;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         hiding_sprite.color = hiding_color;
@@ -473,6 +746,13 @@ public class GhostScript : NetworkBehaviour
             direction.Normalize();
 
             transform.position += new Vector3(direction.x, direction.y, 0) * 0.3f;
+        }
+
+        if (collision.gameObject.tag == "Vent")
+        {
+            // check for rt_tutorial vent_near_ghost
+            if (Game.Instance.rt_tutorial != null)
+                Game.Instance.rt_tutorial.vent_near_ghost = true;
         }
     }
 }

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 75868a5e2c71a4f499c1f8ba5f12c667
   - enabled: 1
+    path: Assets/Scenes/Play.unity
+    guid: 706e168732d16a44ca464af156939981
+  - enabled: 1
     path: Assets/Scenes/Lvl_Tilemap.unity
     guid: c9c3bcc0bf8003c4bb76241d57635f00
   - enabled: 1
@@ -20,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PauseTempScene.unity
     guid: 24c62350b27e0344face0013abc43881
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial/Lvl_Tutorial_Ghost.unity
     guid: 207b89bd4feb52a4bb5fd3a6bca2b26f
   - enabled: 1
@@ -29,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tutorial/Choose_Tutorial.unity
     guid: f6227b8f309a9a64491128159b5a81d6
+  - enabled: 0
+    path: Assets/Scenes/Help.unity
+    guid: d1604b67694bf9b4b8c214fb98391975
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

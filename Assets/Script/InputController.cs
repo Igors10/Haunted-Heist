@@ -6,6 +6,11 @@ public class InputController : NetworkBehaviour
 {
     Player player;
     Animator animator;
+
+
+
+    bool wasRTPressedLastFrame = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,15 +64,17 @@ public class InputController : NetworkBehaviour
     private void Update()
     {
         AbilitiesInput();
+        // Log value of RT axis
+        //Debug.Log("RT axis value: " + Input.GetAxis("RT"));
     }
     void AbilitiesInput()
     {
         if (TryGetComponent(out RobberScript robber))
         {
             // Flashlight on left mouse
-            if (Input.GetButtonDown("Fire2") && !IsMouseOverButton()) robber.NightVision(true);
+            if (Input.GetButtonDown("Fire2")) robber.NightVision(true); //  && !IsMouseOverButton()
             if (Input.GetButtonUp("Fire2")) robber.NightVision(false);
-            
+
             // Nightvision on right mouse
             if (Input.GetButtonDown("Fire1")) robber.Flashlight(true);
             if (Input.GetButtonUp("Fire1")) robber.Flashlight(false);
@@ -75,7 +82,17 @@ public class InputController : NetworkBehaviour
             // to do:add picking up items on SPACE_BAR
             if (Input.GetButtonDown("Jump")) robber.item_pick_up_aura.GetComponent<ItemPickUp>().StartPicking(true);
             if (Input.GetButtonUp("Jump")) robber.item_pick_up_aura.GetComponent<ItemPickUp>().StartPicking(false);
+
+            // RT logic
+            float rtValue = Input.GetAxis("RT");
+            bool isRTPressed = rtValue > 0.5f;
+
+            if (isRTPressed && !wasRTPressedLastFrame) robber.item_pick_up_aura.GetComponent<ItemPickUp>().StartPicking(true);
+            if (!isRTPressed && wasRTPressedLastFrame) robber.item_pick_up_aura.GetComponent<ItemPickUp>().StartPicking(false);
+
+            wasRTPressedLastFrame = isRTPressed;
         }
+
         else if (TryGetComponent(out GhostScript ghost))
         {
             // Dash on left mouse
@@ -93,4 +110,6 @@ public class InputController : NetworkBehaviour
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
+
+
 }

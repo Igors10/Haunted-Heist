@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8720306769111871892}
   m_Layer: 10
   m_Name: footstep
-  m_TagString: Untagged
+  m_TagString: Footstep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1753927435
-  m_SortingLayer: 4
+  m_SortingLayerID: -773714959
+  m_SortingLayer: 2
   m_SortingOrder: 20
   m_Sprite: {fileID: -3212571589903026162, guid: 1a7bf7c5d823c754a963b515450c66d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

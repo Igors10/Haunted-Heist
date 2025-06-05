@@ -1,8 +1,6 @@
 using FishNet.Managing;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
-using Newtonsoft.Json.Bson;
-using TMPro;
 using UnityEngine;
 public enum character
 {
@@ -29,7 +27,7 @@ public class Game : NetworkBehaviour
 
         //connection fails
         network_manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
-    
+
     }
     //public static GameObject robber;
     public readonly SyncVar<GameObject> robber = new SyncVar<GameObject>();
@@ -41,6 +39,8 @@ public class Game : NetworkBehaviour
     public NetworkManager network_manager;
     public GameObject loading_screen;
     public ItemLottery item_lottery;
+    public RuntimeTutorialManager rt_tutorial;
+    public TimerUI timer;
 
     public bool is_robber_connected = false;
     public bool is_ghost_connected = false;
@@ -50,9 +50,22 @@ public class Game : NetworkBehaviour
         //network_manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
     }
 
+    public bool IsRobber()
+    {
+        bool is_robber = (player == robber.Value) ? true : false;
+
+        return is_robber;
+    }
+
+    public bool IsGhost()
+    {
+        bool is_ghost = (player == ghost.Value) ? true : false;
+        return is_ghost;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             is_robber_connected = true;
             is_ghost_connected = true;

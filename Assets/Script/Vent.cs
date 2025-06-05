@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 // TO FIX: script is being disabled when you start the game (because its network behaviour)
@@ -11,6 +12,7 @@ public class Vent : NetworkBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Vent[] connected_vents;
+    GameObject[] all_vents;
     Button[] vent_buttons = new Button[3];
     [SerializeField] Color closed_color;
     [SerializeField] Color blocked_color;
@@ -18,11 +20,15 @@ public class Vent : NetworkBehaviour
     Color open_color;
     [SerializeField] SpriteRenderer sprite;
     [HideInInspector] public bool blocked;
-    GameObject[] key_UI = new GameObject[2];
     VentArrows ventUI;
     bool open = false;
     [SerializeField] Sprite[] vent_sprites;
     [SerializeField] GameObject open_aura;
+    public float use_distance;
+    [SerializeField] float full_block_timer;
+    float current_block_timer = 0;
+    [SerializeField] Image cooldown_overlay;
+    [SerializeField] TextMeshProUGUI cooldown_text;
 
     public override void OnStartClient()
     {
@@ -38,9 +44,6 @@ public class Vent : NetworkBehaviour
             vent_buttons[i] = vent_button_gameObjects[i].GetComponent<Button>();
         }
 
-        key_UI[0] = GameObject.Find("QKeyText");
-        key_UI[1] = GameObject.Find("EKeyText");
-
         ventUI = GameObject.Find("NewVentUI").GetComponent<VentArrows>(); // Add this object with arrows into the scene
     }
 
@@ -54,6 +57,8 @@ public class Vent : NetworkBehaviour
                 vent_buttons[i].gameObject.SetActive(false);
             }
         }
+
+        all_vents = GameObject.FindGameObjectsWithTag("Vent");
     }
 
     public void OpenVent(bool is_open)
@@ -65,9 +70,15 @@ public class Vent : NetworkBehaviour
 
         open = is_open;
 
-        // Enabling/disabling arrows
+        //  * Enabling/disabling arrows *
+        // Setting the correct input icons
+        bool is_lb_icon_on = (GameData.is_gamepad_used) ? true : false;
+        ventUI.lb_icon.SetActive(is_lb_icon_on);
+        bool is_rb_icon_on = (GameData.is_gamepad_used) ? true : false;
+        ventUI.rb_icon.SetActive(is_rb_icon_on);
+
         bool left_arrow_active = (is_open && !connected_vents[0].blocked) ? true : false;
-        bool right_arrow_active = (is_open && !connected_vents[1].blocked) ? true : false;
+        bool right_arrow_active = ((connected_vents.Length > 1) && is_open && !connected_vents[1].blocked) ? true : false;
         ventUI.left_arrow.SetActive(left_arrow_active);
         ventUI.right_arrow.SetActive(right_arrow_active);
 
@@ -76,37 +87,8 @@ public class Vent : NetworkBehaviour
 
         Debug.Log("VENT Opened:" + open);
 
-        /*            OLD CODE FOR DYNAMIC BUTTON ALLOCATION
-        for (int a = 0; a < connected_vents.Length; a++)
-        {
-            if (a >= vent_buttons.Length) continue;
-
-            vent_buttons[a].gameObject.SetActive(is_open);
-
-            if (!is_open) continue; // we dont need to go further if we simply close vents
-
-            // if the target vent is blocked there's no reason to make an arrow for it
-            else if (connected_vents[a].blocked)
-            {
-                vent_buttons[a].gameObject.SetActive(false);
-                continue;
-            }
-
-            // setting positions and rotations of the buttons
-            vent_buttons[a].transform.position = transform.position;
-
-            Vector3 vent_direction = (connected_vents[a].transform.position - transform.position).normalized;
-            vent_buttons[a].transform.rotation = Quaternion.FromToRotation(Vector3.up, vent_direction);
-
-            vent_buttons[a].transform.position += vent_buttons[a].transform.up * 1.5f;
-            key_UI[a].transform.position = vent_buttons[a].transform.position;
-
-
-            // Adding functionality to buttons
-            vent_buttons[a].onClick.RemoveAllListeners();
-            Vent target_vent = connected_vents[a];
-            vent_buttons[a].onClick.AddListener(() => StartCoroutine(MoveToVent(target_vent))); 
-        }*/
+        // Check for rt_tutorial
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.vent_near = is_open;
     }
 
     bool CheckToBlock()
@@ -193,17 +175,57 @@ public class Vent : NetworkBehaviour
         AudioManager.instance.PlaySFX("Vent");
 
         //Game.Instance.robber.Value.SetActive(true); // Reactivating the robber
-        
-        // block the vent you just moved to
-        vent_to_move_to.BlockVentServerRpc();
+
+        // block all vents for some time
+        BlockAllVents();
 
         // we need to block this vent if both vents it goes to were blocked
-        if (CheckToBlock()) BlockVentServerRpc();
+        //if (CheckToBlock()) BlockVentServerRpc();
 
         Game.Instance.robber.Value.GetComponent<RobberScript>().EnableServerRpc(true);
         Debug.Log("VENT: finished_moving");
 
         // to do: the above can happen when you interact with another vent so make sure to account for that
+    }
+
+    void BlockAllVents()
+    {
+        for (int a = 0; a < all_vents.Length; a++)
+        {
+            all_vents[a].GetComponent<Vent>().BlockVentServerRpc();
+        }
+    }
+
+    public IEnumerator Block()
+    {
+        blocked = true;
+        //this.gameObject.tag = "Untagged";
+        sprite.sprite = vent_sprites[1];
+
+        // Check for rt_tutorial
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.robber_vented = true;
+
+        while (current_block_timer < full_block_timer) {
+            current_block_timer++;
+
+            // setting the timer text
+            float time_to_showcase = full_block_timer - current_block_timer;
+            cooldown_text.text = time_to_showcase.ToString();
+
+            // setting the overlay look
+            float cooldown_fillAmount = (full_block_timer - current_block_timer) / full_block_timer;
+            cooldown_overlay.fillAmount = cooldown_fillAmount;
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        
+
+        current_block_timer = 0;
+        cooldown_overlay.fillAmount = 0;
+        cooldown_text.text = "";
+        sprite.sprite = vent_sprites[0];
+        blocked = false;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -215,8 +237,6 @@ public class Vent : NetworkBehaviour
     [ObserversRpc]
     public void BlockVentObserverRpc()
     {
-        blocked = true;
-        //this.gameObject.tag = "Untagged";
-        sprite.sprite = vent_sprites[1];
+        if (blocked == false) StartCoroutine(Block());
     }
 }

@@ -11,8 +11,13 @@ public class ItemLottery : MonoBehaviour
     [SerializeField] int total_item_number;
     int[] item_coupon_ids = new int[6];
     [SerializeField] Image[] item_coupon_sprites = new Image[6];
+    [SerializeField] Image[] item_coupon_frames = new Image[6];
+    [SerializeField] Sprite green_frame;
+    //[SerializeField] Color dimmed_frame_color;
     [SerializeField] GameObject items_collected_message;
     [SerializeField] GameObject[] escape_zone = new GameObject[2];
+    public bool all_items_collected = false;
+    public bool item_picked = false;
 
     private void Awake()
     {
@@ -66,28 +71,52 @@ public class ItemLottery : MonoBehaviour
     {
         for (int i = 0; i < item_coupon_ids.Length; i++)
         {
-            if (item_coupon_sprites[i].color.a != 0) return false;
+            if (item_coupon_sprites[i].color.r == 0) return false;
         }
-
-        items_collected_message.SetActive(true);
 
         for (int a = 0; a < escape_zone.Count(); a++)
         {
             escape_zone[a].SetActive(true);
+            Game.Instance.robber.Value.GetComponent<RobberScript>().exit_pointer[a].gameObject.SetActive(true);
+            GameObject.Find("ObjectPointer").transform.position = escape_zone[1].transform.position;
         }
 
+        all_items_collected = true;
         return true;
     }
+
+    public GameObject GetRandomItem()
+    {
+        GameObject random_item;
+        float while_stop = 0;
+
+        GameObject[] all_items = GameObject.FindGameObjectsWithTag("Item");
+
+        do
+        {
+            random_item = all_items[Random.Range(0, all_items.Length)];
+            while_stop++;
+
+
+        } while (random_item.GetComponent<SpriteRenderer>().color.r == 1f && while_stop < 5);
+
+
+        return random_item;
+    }
+
     public void ItemPicked(Sprite item_sprite)
     {
+        // Updates the robbers Item coupon
         for (int i = 0; i < item_coupon_ids.Length; i++)
         {
             if (item_coupon_sprites[i].sprite == null) continue;
 
             else if (item_coupon_sprites[i].sprite == item_sprite)
             {
-                item_coupon_sprites[i].color = new Color(0, 0, 0, 0);
-
+                item_coupon_sprites[i].color = new Color(1f, 1f, 1f, 1f);
+                //item_coupon_frames[i].sprite = green_frame;
+                item_coupon_frames[i].color = new Color(1f, 1f, 1f, 1f);
+                Game.Instance.robber.Value.GetComponent<RobberScript>().ResetItemRadar();
                 // if all the items are collected, it will set correcsponding robber's boolean to true.
                 Game.Instance.robber.Value.GetComponent<RobberScript>().items_collected = AllItemsCollectedCheck();
                 break;
@@ -95,6 +124,13 @@ public class ItemLottery : MonoBehaviour
 
         }
 
+        item_picked = true;
+
+        // Updates the ghosts collected_item_counter
+        if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<GhostScript>().CollecteItemCounterUpdateServerRpc();
+
     }
+
+    
 
 }
