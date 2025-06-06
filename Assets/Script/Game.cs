@@ -104,7 +104,7 @@ public class Game : NetworkBehaviour
 
     public void PlayerReadyToRestartServerRPC(bool force_restart)
     {
-        bool should_restart = (players_ready_to_restart + 1 >= ServerManager.Clients.Count) || force_restart ? true : false;
+        bool should_restart = (players_ready_to_restart + 1 >= 0) || force_restart ? true : false;
 
         PlayerReadyToRestartObserverRPC(should_restart);
     }

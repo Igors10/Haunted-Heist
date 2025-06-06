@@ -32,10 +32,6 @@ public class Spawner : NetworkBehaviour
     {
         base.OnStartClient();
 
-        // Put the character select screen under existing UI
-        //SetRendererMode();
-        HideBehindTitle();
-
         // Only allow the owner to see and interact with the character selection screen
 
         if (!base.IsOwner)
@@ -56,6 +52,10 @@ public class Spawner : NetworkBehaviour
 
         ghost_button.onClick.AddListener(() => RequestSpawnGhost());
         robber_button.onClick.AddListener(() => RequestSpawnRobber());
+
+        // Put the character select screen under existing UI
+        //SetRendererMode();
+        if (base.IsOwner) HideBehindTitle();
     }
 
     void HideBehindTitle()
@@ -67,6 +67,7 @@ public class Spawner : NetworkBehaviour
 
     public void EnableUI(bool is_enabled)
     {
+        if (!base.IsOwner) return;
         for (int a = 0; a < elements_UI.Length; a++)
         {
             elements_UI[a].SetActive(is_enabled);
@@ -104,14 +105,15 @@ public class Spawner : NetworkBehaviour
     void SetChoiceObserverRpc(bool is_robber)
     {
         TextMeshProUGUI text = (is_robber) ? robber_taken_text : ghost_taken_text;
-        text.gameObject.SetActive(true);
-
+     
         if (IsOwner)
         {
             text.text = "You";
-            choice_made = true;
+            
         }
         else text.text = "Opponent";
+
+        choice_made = true;
     }
     private Vector3 FindSpawnPoint(string spawnpointName)
     {

@@ -100,6 +100,7 @@ public class GameOverUI : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 
         GameData.is_game_over = false;
+        //GameData.is_looping = false;
 
         Debug.Log("<color=blue>RESTART</color> Finished Disconnecting");
         //Game.Instance.network_manager.SceneManager.LoadConnectionScenes(Game.Instance.player.LocalConnection, new SceneLoadData("MainMenu"));
