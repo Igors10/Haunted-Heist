@@ -53,7 +53,7 @@ public class StartText : MonoBehaviour
         {
             title_screen.SetActive(false);
 
-            character_select.EnableUI(true);
+            if (character_select != null) character_select.EnableUI(true);
         }
     }
 
