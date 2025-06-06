@@ -26,6 +26,8 @@ public class GameOverUI : MonoBehaviour
     public void GameOverUIOn(bool won, bool is_host)
     {
         GameData.is_game_over = true;
+        //GameData.are_hints_on = false; we need to showcase the hints for the other role too
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.WipeTutorial(); // resetting the tutorial
         // disconnect button
         //disconnect_button.gameObject.SetActive(true);         should always be somewhere and available
 
@@ -34,8 +36,8 @@ public class GameOverUI : MonoBehaviour
         else lose_text.gameObject.SetActive(true);
 
         // wait for host / restart
-        //if (is_host) restart_button.gameObject.SetActive(true);
-        //else client_wait_text.gameObject.SetActive(true);
+        if (is_host) restart_button.gameObject.SetActive(true);
+        else client_wait_text.gameObject.SetActive(true);
     }
 
     public void DisconnectClient() // when the host disconnects the clients should also disconnect
@@ -80,7 +82,18 @@ public class GameOverUI : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 
         GameData.is_game_over = false;
+
+        Debug.Log("<color=blue>RESTART</color> Finished Disconnecting");
         //Game.Instance.network_manager.SceneManager.LoadConnectionScenes(Game.Instance.player.LocalConnection, new SceneLoadData("MainMenu"));
+    }
+
+    public void RestartButton()
+    {
+        Debug.Log("<color=blue>RESTART</color> Restart activated");
+        GameData.is_looping = true;
+        GameData.is_restarting = true;
+
+        DisconnectClient();
     }
 }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 //using FishNet.Managing.Scened;
 
 public class MainMenu : MonoBehaviour
@@ -16,6 +17,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Color server_text_color;
     [SerializeField] GameObject tutorial_window;
     [SerializeField] GameObject credits_window;
+    [SerializeField] GameObject loading_screen;
+    [SerializeField] GameObject[] miasma;
+    [SerializeField] GameObject[] miasma_border;
+    [SerializeField] float miasma_speed;
+    [SerializeField] float logo_acceler;
+    [SerializeField] bool is_logo_moving;
+    float logo_speed = 0;
+    [SerializeField] GameObject logo;
 
     public Button nextButton;
     public GameObject helpPanel;
@@ -26,6 +35,12 @@ public class MainMenu : MonoBehaviour
     {
         network = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         tugboat = network.gameObject.GetComponent<Tugboat>();
+
+        if (GameData.is_looping)
+        {
+            loading_screen.SetActive(true);
+            StartCoroutine(Restart(1f, GameData.is_server));
+        }
     }
 
     public void OpenTutorial()
@@ -72,6 +87,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Server button works");
         network.ServerManager.StartConnection();
 
+        GameData.is_server = true;
         server_created = true;
 
         if (server_created)
@@ -98,12 +114,15 @@ public class MainMenu : MonoBehaviour
         if (input_field.text == "")
         {
             tugboat.SetClientAddress("localhost");
+            GameData.current_ip = "localhost"; // saving the ip gamedata
         }
         else
         {
             tugboat.SetClientAddress(input_field.text);
+            GameData.current_ip = input_field.text; // saving the ip gamedata
         }
 
+        
         Debug.Log(tugboat.GetClientAddress());
     }
 
@@ -119,7 +138,41 @@ public class MainMenu : MonoBehaviour
             input_field.text = "192.168.195.36";
         }
 
+        //Turning logo on and off
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            logo.SetActive(!logo.activeSelf);
+        }
+
         CheckForBackToMainMenu();
+    }
+
+    private void FixedUpdate()
+    {
+        MiasmaUpdate();
+        LogoUpdate();
+    }
+
+    void LogoUpdate() // Logo moving up and down
+    {
+        if (!is_logo_moving) return;
+
+        logo.transform.Translate(0f, logo_speed, 0f);
+        logo_speed += logo_acceler;
+
+        if (logo_speed > 0.01f || logo_speed < -0.01f) logo_acceler *= -1;
+    }
+
+    void MiasmaUpdate() // Background miasma moving
+    {
+        if (miasma[0] == null) return;
+
+        for (int a = 0; a < miasma.Length; a++)
+        {
+            if (miasma[a].transform.position.x > miasma_border[1].transform.position.x) miasma[a].transform.position = miasma_border[0].transform.position;
+            miasma[a].transform.Translate(miasma_speed, 0, 0);
+            
+        }
     }
 
     public void LoadPlayScene()
@@ -146,5 +199,35 @@ public class MainMenu : MonoBehaviour
     public void LoadHelpPanel()
     {
         helpPanel.SetActive(!helpPanel.activeSelf);
+    }
+
+
+    //  ***** GGC restarting logic *****
+
+    public IEnumerator Restart(float starting_delay, bool is_server)
+    {
+        GameData.is_restarting = false;
+
+        Debug.Log("<color=blue>RESTART</color> Reconnection from main menu set on delay");
+        yield return new WaitForSeconds(starting_delay);
+
+        Debug.Log("<color=blue>RESTART</color> Reconnection from main menu begins");
+        if (is_server)
+        {
+            Debug.Log("<color=blue>RESTART</color> creating server again");
+            ServerCreate();
+        }
+        else
+        {
+            Debug.Log("<color=blue>RESTART</color> this one is not the server, wait for a bit");
+            yield return new WaitForSeconds(0.2f); // host needs to join first
+        }
+
+        // Starting the client
+        tugboat.SetClientAddress(GameData.current_ip);
+        Debug.Log("<color=blue>RESTART</color> join as client with this ip -> " + GameData.current_ip);
+        network.ClientManager.StartConnection();
+        SceneManager.LoadScene("Lvl_Tilemap", LoadSceneMode.Single);
+
     }
 }

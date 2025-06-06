@@ -718,6 +718,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &34595637 stripped
 Transform:
@@ -1320,6 +1321,123 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5482856626175650443, guid: 53907ae0147e8454ab0693a7be36a5f1, type: 3}
   m_PrefabInstance: {fileID: 54626413}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &55876810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 784870205}
+    m_Modifications:
+    - target: {fileID: 554014305833762453, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_Name
+      value: SmokeAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 789.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 243.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -442.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1092.3401
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+--- !u!224 &55876811 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2728844980892579988, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+  m_PrefabInstance: {fileID: 55876810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &55876812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2590667543033462828, guid: 36b0c1a89ba81824e97c19a323db0be3, type: 3}
+  m_PrefabInstance: {fileID: 55876810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d2f4708b2a6374f9b67ab7d4825b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &57088884
 GameObject:
   m_ObjectHideFlags: 0
@@ -5783,6 +5901,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &95607885 stripped
 Transform:
@@ -8452,6 +8571,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &303853096
 PrefabInstance:
@@ -9546,6 +9666,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &352415850
 GameObject:
@@ -10910,6 +11031,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &416867940 stripped
 Transform:
@@ -10973,6 +11095,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 1
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &421154883
 PrefabInstance:
@@ -11097,6 +11220,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &430979043
 GameObject:
@@ -12714,7 +12838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &471202916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12755,6 +12879,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &472825092
 GameObject:
@@ -14101,6 +14226,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &567511530
 GameObject:
@@ -15362,6 +15488,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &632301212
 GameObject:
@@ -15521,9 +15648,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_text
-      value: Congratulations, you have <color=green>completed the tutorial</color>.
-        Exit by pressing <color=red>disconnect</color> in the top <color=yellow>right
-        corner</color>.
+      value: Congratulations! You have completed the tutorial. Exit by pressing the
+        <color=yellow>Disconnect</color> button in the top right corner.
       objectReference: {fileID: 0}
     - target: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
       propertyPath: m_margin.x
@@ -15861,6 +15987,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &661117866
 PrefabInstance:
@@ -18325,6 +18452,8 @@ MonoBehaviour:
   escape_zone:
   - {fileID: 1485461201}
   - {fileID: 719079358}
+  all_items_collected: 0
+  item_picked: 0
 --- !u!1 &767938004
 GameObject:
   m_ObjectHideFlags: 0
@@ -18874,6 +19003,7 @@ RectTransform:
   - {fileID: 1338972822}
   - {fileID: 2068628910}
   - {fileID: 417617334}
+  - {fileID: 55876811}
   m_Father: {fileID: 1652395867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -18893,6 +19023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe2f7f4acde43543be360712324afa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoke: {fileID: 55876812}
 --- !u!1 &790889939
 GameObject:
   m_ObjectHideFlags: 0
@@ -19104,6 +19235,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &796668731
 PrefabInstance:
@@ -22339,6 +22471,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &990422085
 PrefabInstance:
@@ -23357,6 +23490,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1047028826
 GameObject:
@@ -23593,6 +23727,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1060595355
 GameObject:
@@ -24174,6 +24309,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1075997593
 GameObject:
@@ -24719,6 +24855,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &1097442996 stripped
 Transform:
@@ -27406,6 +27543,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &1163941180
 PrefabInstance:
@@ -27627,6 +27765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimerInSeconds: 300
   timerInMinutesAndSeconds: {fileID: 744267348}
+  current_time: 0
 --- !u!1 &1191813999
 GameObject:
   m_ObjectHideFlags: 0
@@ -29437,6 +29576,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &1286589954
 PrefabInstance:
@@ -30536,6 +30676,7 @@ MonoBehaviour:
   tutorial_part_5: 1
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1346083872
 GameObject:
@@ -31230,6 +31371,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1389764689
 GameObject:
@@ -53411,6 +53553,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1748559407
 GameObject:
@@ -57805,6 +57948,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &1933135771 stripped
 Transform:
@@ -58209,6 +58353,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &1937729221
 PrefabInstance:
@@ -59148,6 +59293,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1981058198
 GameObject:
@@ -59375,6 +59521,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &1989342391
 GameObject:
@@ -60118,6 +60265,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &2032156091
 GameObject:
@@ -60362,6 +60510,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1 &2045350585
 GameObject:
@@ -60785,6 +60934,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 1
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!1001 &2072363295
 PrefabInstance:
@@ -62257,6 +62407,7 @@ MonoBehaviour:
   tutorial_part_5: 0
   tutorial_part_6: 0
   tutorial_part_7: 0
+  tutorial_part_8: 0
   show: 1
 --- !u!4 &2140740483 stripped
 Transform:

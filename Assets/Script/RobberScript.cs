@@ -14,6 +14,8 @@ public class RobberScript : NetworkBehaviour
     [HideInInspector] public RobberUI robberUI;
     public ArrowPointer[] exit_pointer;
 
+    Animator animator;
+
     // Shake variables
     [SerializeField] public float radar_range;
     [SerializeField] public float white_noise_range;
@@ -58,6 +60,7 @@ public class RobberScript : NetworkBehaviour
     }
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         item_radar_timer = time_before_item_help;
         level_light = GameObject.Find("Candels");
         exit_pointer[0].target = GameObject.Find("FrontDoor_Close").transform.position;
@@ -96,8 +99,8 @@ public class RobberScript : NetworkBehaviour
     public void EnableObseverRpc(bool is_enabled)
     {
         // prevent the bug when robber has light on when venting, and also has night vision on when venting
-        SyncFlashlightServerRpc(false);
-        NightVision(false);
+        //SyncFlashlightServerRpc(false);
+        //NightVision(false);
 
         item_pick_up_aura.SetActive(is_enabled);
         GetComponent<SpriteRenderer>().enabled = is_enabled;
@@ -107,6 +110,9 @@ public class RobberScript : NetworkBehaviour
     }
     public void NightVision(bool is_on)
     {
+        //animator
+        animator.SetBool("isVision", true);
+
         // Energy bar UI code (if its too low it wont work)
         if (!robberUI.UseEnergy(is_on)) is_on = false;
 
@@ -119,6 +125,7 @@ public class RobberScript : NetworkBehaviour
         if (IsOwner) player.narrow_dark_filter.SetActive(!is_on);
 
         if (is_on) NightVisionOn();
+        else animator.SetBool("isVision", false);
     }
 
     void NightVisionOn()

@@ -141,6 +141,8 @@ public class ItemPickUp : MonoBehaviour
 
         if (closest_item == null)
         {
+            if (Game.Instance.rt_tutorial != null)
+                Game.Instance.rt_tutorial.item_near = true;     //item tutorial check
             LockOnItem(collision.gameObject);
         }
         else if (Vector2.Distance(transform.position, closest_item.transform.position) > Vector2.Distance(transform.position, collision.transform.position))
@@ -157,6 +159,7 @@ public class ItemPickUp : MonoBehaviour
 
         if (closest_item != null && closest_item == collision.gameObject)
         {
+            if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.item_near = false;    //rt tutorial check
             LockOnItem(null);
             closest_item = null;
         }

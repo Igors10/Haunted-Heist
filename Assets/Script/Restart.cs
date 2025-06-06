@@ -7,19 +7,8 @@ using FishNet;
 public class Restart : MonoBehaviour
 {
     [SerializeField] float restart_time;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        StartCoroutine(BackToLevel());
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    IEnumerator BackToLevel()
+    IEnumerator BackToLevel() // previously this was just called on start
     {
         GameData.is_game_over = false;
         GameData.is_ghost_wild = false;
@@ -31,4 +20,6 @@ public class Restart : MonoBehaviour
         //InstanceFinder.SceneManager.LoadGlobalScenes(sld);
         //InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
+
+    
 }

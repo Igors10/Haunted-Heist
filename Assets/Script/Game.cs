@@ -39,6 +39,8 @@ public class Game : NetworkBehaviour
     public NetworkManager network_manager;
     public GameObject loading_screen;
     public ItemLottery item_lottery;
+    public RuntimeTutorialManager rt_tutorial;
+    public TimerUI timer;
 
     public bool is_robber_connected = false;
     public bool is_ghost_connected = false;
@@ -67,6 +69,14 @@ public class Game : NetworkBehaviour
         {
             is_robber_connected = true;
             is_ghost_connected = true;
+        }
+        if (Input.GetKeyDown(KeyCode.O)) // shortcut key for making stopping the client be considered a server in gamedata
+        {
+            GameData.is_server = false;
+        }
+        if (Input.GetKeyDown(KeyCode.R) && GameData.is_restarting == false) 
+        {
+            game_over.RestartButton();
         }
 
         // Debug to see if robber and ghost variables are in ===================

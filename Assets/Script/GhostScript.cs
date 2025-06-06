@@ -16,12 +16,12 @@ public class GhostScript : NetworkBehaviour
     [HideInInspector] public float default_speed;
 
     // GhostUI
-    GhostUI ghostUI;
+    [HideInInspector] public GhostUI ghostUI;
     [SerializeField] float dash_cooldown;
     [SerializeField] float stepvision_cooldown;
 
     // Dashing Variables
-    bool is_aiming;
+    [HideInInspector] public bool is_aiming;
     [HideInInspector] public bool is_dashing;
     bool is_dash_ready;
 
@@ -66,6 +66,9 @@ public class GhostScript : NetworkBehaviour
 
     private Vector3 dashDirection;
 
+    Animator ghostAnimator;
+    Animator ghostAttackingAnimator;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -80,6 +83,9 @@ public class GhostScript : NetworkBehaviour
         FindTeleportationPoint(GameObject.Find("teleportation_point_2"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_3"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_4"));
+
+        ghostAnimator = ghost_hiding.GetComponent<Animator>();
+        ghostAttackingAnimator = ghost_attacking.GetComponent<Animator>();
 
         hiding_sprite = ghost_hiding.GetComponent<SpriteRenderer>();
         hiding_color = hiding_sprite.color;
@@ -132,6 +138,9 @@ public class GhostScript : NetworkBehaviour
 
         Vector2 targetPosition;
 
+        //animation set to aim the idle - flipping through the sprites
+
+
         if (usingJoystick)
         {
             // Joystick
@@ -177,6 +186,10 @@ public class GhostScript : NetworkBehaviour
         aiming_arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         // Charging up the dash
+
+        //animation set to aim the idle - flipping through the sprites
+        ghostAnimator.SetBool("isLoading", true);
+        ghostAnimator.SetBool("isWalking", false);
 
         if (full_aiming_arrow.fillAmount < 1f)
         {
@@ -365,6 +378,9 @@ public class GhostScript : NetworkBehaviour
 
     IEnumerator StartCharge()
     {
+        //animation set to start the charge
+        ghostAttackingAnimator.SetBool("attackEnded", false);
+
         //SFX
         AudioManager.instance.PlaySFXGlobal("GhostWarp");
 
@@ -402,10 +418,16 @@ public class GhostScript : NetworkBehaviour
 
     void EndCharge()
     {
+        //animation set to finish the dash
+        ghostAttackingAnimator.SetBool("attackEnded", true);
+
         aiming_arrow.SetActive(false);
         charge_target_position = Vector3.zero;
         is_dashing = false;
         is_dash_ready = false;
+
+        // Check for rt_tutorial
+        if (Game.Instance.rt_tutorial != null && Game.Instance.rt_tutorial.ghost_dashed == false) Game.Instance.rt_tutorial.ghost_dashed = true;
 
         // Check if ghost is inside a pusher object when dash ends
         CheckAndResolvePusherCollision();
@@ -529,6 +551,10 @@ public class GhostScript : NetworkBehaviour
         is_aiming = is_on;
         aiming_arrow.SetActive(is_aiming);
 
+        // Stopping the aiming animation
+        ghostAnimator.SetBool("isLoading", false);
+        ghostAnimator.SetBool("isWalking", true);
+
         if (is_on == false && Vector2.Distance(mouse_position, transform.position) > 0f && is_dash_ready)
         {
             StartCoroutine(StartCharge());
@@ -567,6 +593,19 @@ public class GhostScript : NetworkBehaviour
     // Changing states HIDING - ATTACKING ======================================
 
     [ServerRpc(RequireOwnership = false)]
+    public void CollecteItemCounterUpdateServerRpc()
+    {
+        CollectedItemCounterUpdateObserversRpc();
+
+    }
+
+    [ObserversRpc]
+    void CollectedItemCounterUpdateObserversRpc()
+    {
+        Game.Instance.item_lottery.gameObject.GetComponent<TextJuice>().UpdateCounterTextWithJuice();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
     public void SyncHideServerRpc(bool is_hiding)
     {
         SyncHideObserversRpc(is_hiding);
@@ -580,7 +619,11 @@ public class GhostScript : NetworkBehaviour
         ghost_hiding.SetActive(is_hiding);
         ghost_attacking.SetActive(!is_hiding);
         is_dashing = !is_hiding;
-        if (Game.Instance.robber.Value != null)
+
+        //Flipping the ghost while dashing
+        ghost_attacking.GetComponent<SpriteRenderer>().flipX = ghost_hiding.GetComponent<SpriteRenderer>().flipX;
+
+        //if (Game.Instance.robber.Value != null)
 
             //ghost particle effects for charging
             if (is_hiding)
@@ -629,6 +672,9 @@ public class GhostScript : NetworkBehaviour
     {
         Debug.Log("TeleportsAway");
 
+        //animation
+        ghostAttackingAnimator.SetBool("isLaughing", false);
+
         int chosen_point = 0;
 
         for (int i = 0; i < teleportation_locations.Count; i++)
@@ -638,12 +684,17 @@ public class GhostScript : NetworkBehaviour
             if (new_distance > old_distance) chosen_point = i;
         }
 
+        if (Game.Instance.rt_tutorial != null) Game.Instance.rt_tutorial.teleported = true;
+
         return teleportation_locations[chosen_point];
     }
 
     public IEnumerator Catch()
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
+
+        //animation
+        ghostAttackingAnimator.SetBool("isLaughing", true);
 
         //SFX
         AudioManager.instance.PlaySFX("GhostLaugh");
@@ -695,6 +746,13 @@ public class GhostScript : NetworkBehaviour
             direction.Normalize();
 
             transform.position += new Vector3(direction.x, direction.y, 0) * 0.3f;
+        }
+
+        if (collision.gameObject.tag == "Vent")
+        {
+            // check for rt_tutorial vent_near_ghost
+            if (Game.Instance.rt_tutorial != null)
+                Game.Instance.rt_tutorial.vent_near_ghost = true;
         }
     }
 }

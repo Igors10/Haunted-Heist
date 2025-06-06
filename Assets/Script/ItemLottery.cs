@@ -106,6 +106,7 @@ public class ItemLottery : MonoBehaviour
 
     public void ItemPicked(Sprite item_sprite)
     {
+        // Updates the robbers Item coupon
         for (int i = 0; i < item_coupon_ids.Length; i++)
         {
             if (item_coupon_sprites[i].sprite == null) continue;
@@ -125,6 +126,11 @@ public class ItemLottery : MonoBehaviour
 
         item_picked = true;
 
+        // Updates the ghosts collected_item_counter
+        if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<GhostScript>().CollecteItemCounterUpdateServerRpc();
+
     }
+
+    
 
 }
