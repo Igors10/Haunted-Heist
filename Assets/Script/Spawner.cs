@@ -13,10 +13,12 @@ public class Spawner : NetworkBehaviour
     GameObject new_player;
 
     // character select
-    [SerializeField] Button ghost_button;
-    [SerializeField] Button robber_button;
+    [SerializeField] Canvas canvas;
+    public Button ghost_button;
+    public Button robber_button;
     [SerializeField] TextMeshProUGUI ghost_taken_text;
     [SerializeField] TextMeshProUGUI robber_taken_text;
+    [SerializeField] GameObject[] elements_UI;
     bool choice_made = false;
 
 
@@ -29,6 +31,10 @@ public class Spawner : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+
+        // Put the character select screen under existing UI
+        //SetRendererMode();
+        HideBehindTitle();
 
         // Only allow the owner to see and interact with the character selection screen
 
@@ -50,6 +56,28 @@ public class Spawner : NetworkBehaviour
 
         ghost_button.onClick.AddListener(() => RequestSpawnGhost());
         robber_button.onClick.AddListener(() => RequestSpawnRobber());
+    }
+
+    void HideBehindTitle()
+    {
+        GameObject.Find("StartText").GetComponent<StartText>().character_select = this;
+
+        EnableUI(false);
+    }
+
+    public void EnableUI(bool is_enabled)
+    {
+        for (int a = 0; a < elements_UI.Length; a++)
+        {
+            elements_UI[a].SetActive(is_enabled);
+        }
+    }
+
+    void SetRendererMode() // Im not doing it rn, because then the pressing doenst work
+    {
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = Camera.main; // Assign the same camera used by your main canvas
+        canvas.sortingLayerName = "UI";
     }
 
     [ServerRpc(RequireOwnership = false)]
