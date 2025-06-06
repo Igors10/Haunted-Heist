@@ -497,7 +497,7 @@ public class RuntimeTutorialManager : MonoBehaviour
     {
         RuntimeOverlayScript overlay_script = overlay.GetComponent<RuntimeOverlayScript>();
 
-        if (overlay_script.type == type || overlay_script.priority < priority || GameData.are_hints_on == false) return false; // do nothing if it's already the desired overlay or priority is lower
+        if (overlay_script.type == type || overlay_script.priority < priority || GameData.are_hints_on == false || GameData.is_game_over) return false; // do nothing if it's already the desired overlay or priority is lower
 
         if (TutorialProgress.has_this_activated.ContainsKey(type))
             TutorialProgress.has_this_activated[type] = true;
