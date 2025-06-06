@@ -45,6 +45,8 @@ public class Game : NetworkBehaviour
     public bool is_robber_connected = false;
     public bool is_ghost_connected = false;
 
+    public int players_ready_to_restart = 0;
+
     void Start()
     {
         //network_manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
@@ -76,7 +78,7 @@ public class Game : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R) && GameData.is_restarting == false) 
         {
-            game_over.RestartButton();
+            PlayerReadyToRestartServerRPC(true);
         }
 
         // Debug to see if robber and ghost variables are in ===================
@@ -95,4 +97,24 @@ public class Game : NetworkBehaviour
 
         // ======================================================================
     }
+
+    // Restarting GGC logic
+
+    [ServerRpc(RequireOwnership = false)]
+
+    public void PlayerReadyToRestartServerRPC(bool force_restart)
+    {
+        bool should_restart = (players_ready_to_restart + 1 >= ServerManager.Clients.Count) || force_restart ? true : false;
+
+        PlayerReadyToRestartObserverRPC(should_restart);
+    }
+
+    [ObserversRpc]
+    public void PlayerReadyToRestartObserverRPC(bool should_restart)
+    {
+        players_ready_to_restart++;
+
+        game_over.Restart();
+    }
+
 }
