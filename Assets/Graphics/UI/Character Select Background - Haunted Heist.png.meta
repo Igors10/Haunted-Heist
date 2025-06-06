@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Character Select Background - Haunted Heist_0: -8393107017843452962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
