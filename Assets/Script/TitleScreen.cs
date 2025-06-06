@@ -2,19 +2,14 @@ using UnityEngine;
 
 public class TitleScreen : MonoBehaviour
 {
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] GameObject[] miasma;
+    [SerializeField] GameObject[] miasma_border;
+    [SerializeField] float miasma_speed;
+   
+    private void FixedUpdate()
     {
-        
+        MiasmaUpdate();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void MiasmaUpdate() // Background miasma moving
     {
         if (miasma[0] == null) return;
