@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.17735851, g: 0.17735851, b: 0.17735851, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1311,6 +1311,12 @@ MonoBehaviour:
   server_text_color: {r: 0.28124598, g: 0.87169814, b: 0.31041887, a: 1}
   tutorial_window: {fileID: 1525013077}
   credits_window: {fileID: 1525013077}
+  miasma: []
+  miasma_border: []
+  miasma_speed: 0
+  logo_acceler: 0
+  is_logo_moving: 0
+  logo: {fileID: 0}
   nextButton: {fileID: 0}
   helpPanel: {fileID: 173515654}
 --- !u!1001 &1422002106

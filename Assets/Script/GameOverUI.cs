@@ -13,16 +13,30 @@ public class GameOverUI : MonoBehaviour
 {
     public TextMeshProUGUI win_text;
     public TextMeshProUGUI lose_text;
-    public TextMeshProUGUI client_wait_text;
+    public TextMeshProUGUI restart_text;
     public Button restart_button;
     public Button disconnect_button;
+    bool restart_pressed = false;
     private void Start()
     {
         Game.game_over = this;
 
         //restart_button.onClick.AddListener(() => Restart());
         disconnect_button.onClick.AddListener(() => DisconnectClient());
+        restart_button.onClick.AddListener(() => RestartButton());
     }
+
+    private void Update()
+    {
+        RestartInput();
+    }
+    
+    void RestartInput()
+    {
+        if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Fire1") 
+            && restart_pressed == false && GameData.is_server == false) RestartButton(); 
+    }
+
     public void GameOverUIOn(bool won, bool is_host)
     {
         GameData.is_game_over = true;
@@ -35,9 +49,13 @@ public class GameOverUI : MonoBehaviour
         if (won) win_text.gameObject.SetActive(true);
         else lose_text.gameObject.SetActive(true);
 
-        // wait for host / restart
-        //if (is_host) restart_button.gameObject.SetActive(true);
-        //else client_wait_text.gameObject.SetActive(true);
+        // Removing current hint
+        Game.Instance.rt_tutorial.overlay.SetActive(false);
+
+        // displaying restart text
+        restart_text.gameObject.SetActive(true);
+        string restart_input_text = (GameData.is_gamepad_used) ? "Press <color=yellow>A</color> to restart the game" : "Click to restart the game";
+        restart_text.text = (GameData.is_server) ? "Waiting for the host to restart" : restart_input_text;
     }
 
     public void DisconnectClient() // when the host disconnects the clients should also disconnect
@@ -82,7 +100,28 @@ public class GameOverUI : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 
         GameData.is_game_over = false;
+
+        Debug.Log("<color=blue>RESTART</color> Finished Disconnecting");
         //Game.Instance.network_manager.SceneManager.LoadConnectionScenes(Game.Instance.player.LocalConnection, new SceneLoadData("MainMenu"));
+    }
+
+    public void RestartButton()
+    {
+        Game.Instance.PlayerReadyToRestartServerRPC(false);
+
+        restart_text.text = "Waiting for the other player";
+        restart_pressed = true;
+
+        Debug.Log("<color=blue>RESTART</color> Restart button pressed");
+    }
+
+    public void Restart()
+    {
+        Debug.Log("<color=blue>RESTART</color> Restart activated");
+        GameData.is_looping = true;
+        GameData.is_restarting = true;
+
+        DisconnectClient();
     }
 }
 
