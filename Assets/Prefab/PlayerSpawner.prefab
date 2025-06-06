@@ -625,10 +625,14 @@ MonoBehaviour:
   robber_prefab: {fileID: 6926702910527820004, guid: 1f685780162001e41a4a41f4d187ca3e, type: 3}
   ghost_prefab: {fileID: 3238304887432459600, guid: ba8f49d2415e72844976a304369ff3c4, type: 3}
   starting_character: 0
+  canvas: {fileID: 7172069575018237400}
   ghost_button: {fileID: 4631730253012101023}
   robber_button: {fileID: 5710367499187295147}
   ghost_taken_text: {fileID: 8790488935759549396}
   robber_taken_text: {fileID: 6197954861246200999}
+  elements_UI:
+  - {fileID: 8275838316479929950}
+  - {fileID: 3880848949829418627}
   countdown: 3
   time_between_countdown: 1
   countdown_text: {fileID: 3598131186650508360}

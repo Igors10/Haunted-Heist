@@ -6,6 +6,7 @@ public class StartText : MonoBehaviour
 {
     TextMeshProUGUI text;
     [SerializeField] GameObject title_screen;
+    public Spawner character_select;
     public float fade_duration = 1f;
     public float wait_between_fades = 0.5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +52,8 @@ public class StartText : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             title_screen.SetActive(false);
+
+            character_select.EnableUI(true);
         }
     }
 

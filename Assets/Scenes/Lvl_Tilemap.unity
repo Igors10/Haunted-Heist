@@ -41112,6 +41112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_screen: {fileID: 285153209}
+  character_select: {fileID: 0}
   fade_duration: 1
   wait_between_fades: 0.5
 --- !u!114 &1658970575
