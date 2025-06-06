@@ -18,9 +18,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject tutorial_window;
     [SerializeField] GameObject credits_window;
     [SerializeField] GameObject loading_screen;
-    [SerializeField] GameObject[] miasma;
-    [SerializeField] GameObject[] miasma_border;
-    [SerializeField] float miasma_speed;
     [SerializeField] float logo_acceler;
     [SerializeField] bool is_logo_moving;
     float logo_speed = 0;
@@ -122,7 +119,6 @@ public class MainMenu : MonoBehaviour
             GameData.current_ip = input_field.text; // saving the ip gamedata
         }
 
-        
         Debug.Log(tugboat.GetClientAddress());
     }
 
@@ -149,7 +145,6 @@ public class MainMenu : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MiasmaUpdate();
         LogoUpdate();
     }
 
@@ -161,18 +156,6 @@ public class MainMenu : MonoBehaviour
         logo_speed += logo_acceler;
 
         if (logo_speed > 0.01f || logo_speed < -0.01f) logo_acceler *= -1;
-    }
-
-    void MiasmaUpdate() // Background miasma moving
-    {
-        if (miasma[0] == null) return;
-
-        for (int a = 0; a < miasma.Length; a++)
-        {
-            if (miasma[a].transform.position.x > miasma_border[1].transform.position.x) miasma[a].transform.position = miasma_border[0].transform.position;
-            miasma[a].transform.Translate(miasma_speed, 0, 0);
-            
-        }
     }
 
     public void LoadPlayScene()
