@@ -121,8 +121,9 @@ public class GhostScript : NetworkBehaviour
                 last_valid_position = transform.position;
             }
 
-
-            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
+            // laughing animation
+            ghostAnimator.SetBool("isLaughing", is_laughing);
+            // if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(WildMode());
         }
     }
 
@@ -670,8 +671,8 @@ public class GhostScript : NetworkBehaviour
     {
         Debug.Log("TeleportsAway");
 
-        //animation
-        ghostAttackingAnimator.SetBool("isLaughing", false);
+        // stop animation
+        ghostAnimator.SetBool("isLaughing", false);
 
         int chosen_point = 0;
 
@@ -691,8 +692,7 @@ public class GhostScript : NetworkBehaviour
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
 
-        // animation
-        ghostAnimator.SetBool("isLaughing", true);
+        
 
         //SFX
         AudioManager.instance.PlaySFX("GhostLaugh");
@@ -714,9 +714,6 @@ public class GhostScript : NetworkBehaviour
             current_laughing_duration--;
             yield return new WaitForSeconds(0.05f);
         }
-
-        // stop animation
-        ghostAnimator.SetBool("isLaughing", false);
 
         hiding_sprite.color = hiding_color;
         if (player != null) player.frozen = false;
