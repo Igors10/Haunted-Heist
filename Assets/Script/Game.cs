@@ -41,6 +41,7 @@ public class Game : NetworkBehaviour
     public ItemLottery item_lottery;
     public RuntimeTutorialManager rt_tutorial;
     public TimerUI timer;
+    public GameObject opponent_text;
 
     public bool is_robber_connected = false;
     public bool is_ghost_connected = false;
@@ -49,7 +50,8 @@ public class Game : NetworkBehaviour
 
     void Start()
     {
-        //network_manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
+        // Turning off the music for server
+        if (!IsServer) AudioManager.instance.musicSource.gameObject.SetActive(false);
     }
 
     public bool IsRobber()

@@ -20,6 +20,7 @@ public class Spawner : NetworkBehaviour
     [SerializeField] TextMeshProUGUI robber_taken_text;
     [SerializeField] GameObject[] elements_UI;
     bool choice_made = false;
+    StartText start_text;
 
 
     //Count down
@@ -55,12 +56,13 @@ public class Spawner : NetworkBehaviour
 
         // Put the character select screen under existing UI
         //SetRendererMode();
+        start_text = GameObject.Find("StartText").GetComponent<StartText>();
         if (base.IsOwner) HideBehindTitle();
     }
 
     void HideBehindTitle()
     {
-        GameObject.Find("StartText").GetComponent<StartText>().character_select = this;
+        start_text.character_select = this;
 
         EnableUI(false);
     }
@@ -105,7 +107,14 @@ public class Spawner : NetworkBehaviour
     void SetChoiceObserverRpc(bool is_robber)
     {
         TextMeshProUGUI text = (is_robber) ? robber_taken_text : ghost_taken_text;
-     
+        if (!IsOwner)
+        {
+            if (GameObject.Find("StartText") != null)
+                Game.Instance.opponent_text = text.gameObject;
+
+            else text.gameObject.SetActive(true);
+        }
+
         if (IsOwner)
         {
             text.text = "You";

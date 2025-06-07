@@ -9,6 +9,7 @@ public class StartText : MonoBehaviour
     public Spawner character_select;
     public float fade_duration = 1f;
     public float wait_between_fades = 0.5f;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,6 +53,7 @@ public class StartText : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             title_screen.SetActive(false);
+            if (Game.Instance.opponent_text != null) Game.Instance.opponent_text.SetActive(true); // enabling the "opponent" text if that exists
 
             if (character_select != null) character_select.EnableUI(true);
         }

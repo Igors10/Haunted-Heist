@@ -1287,6 +1287,7 @@ GameObject:
   - component: {fileID: 9166455767772184633}
   - component: {fileID: 7031867219321844573}
   - component: {fileID: 3636603183015293186}
+  - component: {fileID: 3964653348167807889}
   m_Layer: 0
   m_Name: Robber
   m_TagString: Robber
@@ -1452,6 +1453,7 @@ MonoBehaviour:
   natural_light: {fileID: 6766929211065091428}
   items_collected: 0
   item_pick_up_aura: {fileID: 1851567907971040859}
+  robberUI: {fileID: 0}
   exit_pointer:
   - {fileID: 4161032654984907058}
   - {fileID: 6033671332161947166}
@@ -1780,6 +1782,7 @@ MonoBehaviour:
   goDown: 0
   goLeft: 0
   goRight: 0
+  escaped: 0
   moveRoom: 0
   moveLight: 0
   flashlight: 0
@@ -1823,6 +1826,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0020273877, y: -0.31328082}
   m_Size: {x: 0.7607322, y: 0.46621418}
   m_Direction: 1
+--- !u!114 &3964653348167807889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6926702910527820004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 6780872986741511376}
+  _networkObjectCache: {fileID: 0}
+  IgnoredParameters: []
+  _animator: {fileID: 9166455767772184633}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &8149528738269290541
 GameObject:
   m_ObjectHideFlags: 0
