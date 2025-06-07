@@ -8,11 +8,15 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private GameObject[] heartObjects;
     [SerializeField] private GameObject[] emptyHearts;
+    bool on_cooldown = false;
 
     // -----------Health Methods-----------
 
     public void UpdateHealth(int newHealth)
     {
+        if (on_cooldown) return;
+
+        StartCoroutine(HPcooldown());
         currentHealth = Mathf.Clamp(newHealth, 0, maxHealth);
         UpdateHeartDisplay();
     }
@@ -31,12 +35,6 @@ public class HealthBar : MonoBehaviour
         UpdateHeartDisplay();
     }
 
-    private void Update()
-    {
-        // For debugging purposes only - Can remove once the player health is properly implemented
-        ControlHealth();
-    }
-
     // -----------Debugging Methods-----------
 
     public void DecreaseHealth()
@@ -53,23 +51,20 @@ public class HealthBar : MonoBehaviour
 
     }
 
-    public void ControlHealth()
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            DecreaseHealth();
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            IncreaseHealth();
-        }
-    }
-
     // -----------Blinking Hearts-----------
 
     public void BlinkTheHearts()
     {
         StartCoroutine(BlinkingHearts());
+    }
+
+    IEnumerator HPcooldown() // preventing bug with robber being hit 2 times
+    {
+        on_cooldown = true;
+
+        yield return new WaitForSeconds(1f);
+
+        on_cooldown = false;
     }
 
     private IEnumerator BlinkingHearts()

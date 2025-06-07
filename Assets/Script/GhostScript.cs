@@ -77,8 +77,6 @@ public class GhostScript : NetworkBehaviour
         // Initializing the boundary layer
         boundaryLayer = LayerMask.GetMask("MapBoundary");
 
-        if (IsOwner) AudioManager.instance.musicSource.gameObject.SetActive(false);
-
         FindTeleportationPoint(GameObject.Find("teleportation_point_1"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_2"));
         FindTeleportationPoint(GameObject.Find("teleportation_point_3"));
