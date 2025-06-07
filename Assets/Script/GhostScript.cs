@@ -691,8 +691,8 @@ public class GhostScript : NetworkBehaviour
     {
         Debug.Log("CATCHING: I caught the robber (Observer)");
 
-        //animation
-        ghostAttackingAnimator.SetBool("isLaughing", true);
+        // animation
+        ghostAnimator.SetBool("isLaughing", true);
 
         //SFX
         AudioManager.instance.PlaySFX("GhostLaugh");
@@ -714,6 +714,9 @@ public class GhostScript : NetworkBehaviour
             current_laughing_duration--;
             yield return new WaitForSeconds(0.05f);
         }
+
+        // stop animation
+        ghostAnimator.SetBool("isLaughing", false);
 
         hiding_sprite.color = hiding_color;
         if (player != null) player.frozen = false;

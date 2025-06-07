@@ -73,6 +73,9 @@ public class RobberScript : NetworkBehaviour
         SyncFlashlightServerRpc(is_on);
         if (IsOwner) player.narrow_dark_filter.SetActive(!is_on);
 
+        //animator
+        animator.SetBool("isLantern", is_on);
+
         if (is_on)
         {
             //SFX
@@ -111,7 +114,7 @@ public class RobberScript : NetworkBehaviour
     public void NightVision(bool is_on)
     {
         //animator
-        animator.SetBool("isVision", true);
+        animator.SetBool("isVision", is_on);
 
         // Energy bar UI code (if its too low it wont work)
         if (!robberUI.UseEnergy(is_on)) is_on = false;
@@ -125,7 +128,6 @@ public class RobberScript : NetworkBehaviour
         if (IsOwner) player.narrow_dark_filter.SetActive(!is_on);
 
         if (is_on) NightVisionOn();
-        else animator.SetBool("isVision", false);
     }
 
     void NightVisionOn()
