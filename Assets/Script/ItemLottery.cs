@@ -81,6 +81,7 @@ public class ItemLottery : MonoBehaviour
             GameObject.Find("ObjectPointer").transform.position = escape_zone[1].transform.position;
         }
 
+        AudioManager.instance.PlaySFXGlobal("Door");
         all_items_collected = true;
         return true;
     }
