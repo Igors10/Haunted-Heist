@@ -82,6 +82,11 @@ public class Game : NetworkBehaviour
         {
             PlayerReadyToRestartServerRPC(true);
         }
+        /*
+        if (Input.GetButtonDown("Restart") && GameData.is_restarting == false && GameData.is_game_over)
+        {
+            PlayerReadyToRestartServerRPC(true);
+        }*/
 
         // Debug to see if robber and ghost variables are in ===================
 

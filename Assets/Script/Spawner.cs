@@ -20,6 +20,7 @@ public class Spawner : NetworkBehaviour
     [SerializeField] TextMeshProUGUI robber_taken_text;
     [SerializeField] GameObject[] elements_UI;
     bool choice_made = false;
+    bool choice_open = false;
     StartText start_text;
 
 
@@ -70,9 +71,26 @@ public class Spawner : NetworkBehaviour
     public void EnableUI(bool is_enabled)
     {
         if (!base.IsOwner) return;
+        if (is_enabled == false)
+        {
+            for (int a = 0; a < elements_UI.Length; a++)
+            {
+                elements_UI[a].SetActive(is_enabled);
+            }
+        }
+        else
+        {
+            StartCoroutine(DelayedUI());
+        }
+        
+    }
+
+    IEnumerator DelayedUI() //temp 
+    {
+        yield return new WaitForSeconds(0.05f);
         for (int a = 0; a < elements_UI.Length; a++)
         {
-            elements_UI[a].SetActive(is_enabled);
+            elements_UI[a].SetActive(true);
         }
     }
 
@@ -82,6 +100,18 @@ public class Spawner : NetworkBehaviour
         canvas.worldCamera = Camera.main; // Assign the same camera used by your main canvas
         canvas.sortingLayerName = "UI";
     }
+
+    /*
+    private void Update()
+    {
+        if (Input.GetButtonDown("Fire1")) StartCoroutine(EnableChoice());
+    }
+
+    IEnumerator EnableChoice()
+    {
+        yield return new WaitForSeconds(0.4f);
+        choice_open = true;
+    }*/
 
     [ServerRpc(RequireOwnership = false)]
     private void RequestSpawnGhost(NetworkConnection sender = null)

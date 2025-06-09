@@ -33,7 +33,7 @@ public class GameOverUI : MonoBehaviour
     
     void RestartInput()
     {
-        if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Fire1") 
+        if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Restart") 
             && restart_pressed == false && GameData.is_server == false) RestartButton(); 
     }
 
@@ -54,7 +54,7 @@ public class GameOverUI : MonoBehaviour
 
         // displaying restart text
         restart_text.gameObject.SetActive(true);
-        string restart_input_text = (GameData.is_gamepad_used) ? "Press <color=yellow>A</color> to restart the game" : "Click to restart the game";
+        string restart_input_text = (GameData.is_gamepad_used) ? "Press <color=yellow>X</color> to restart the game" : "Click to restart the game";
         restart_text.text = (GameData.is_server) ? "Waiting for the host to restart" : restart_input_text;
     }
 
