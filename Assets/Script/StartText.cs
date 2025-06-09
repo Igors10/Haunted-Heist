@@ -5,7 +5,7 @@ using System.Collections;
 public class StartText : MonoBehaviour
 {
     TextMeshProUGUI text;
-    [SerializeField] GameObject title_screen;
+    public GameObject title_screen;
     public Spawner character_select;
     public float fade_duration = 1f;
     public float wait_between_fades = 0.5f;
