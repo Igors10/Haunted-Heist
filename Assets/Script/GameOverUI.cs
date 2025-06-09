@@ -33,7 +33,7 @@ public class GameOverUI : MonoBehaviour
     
     void RestartInput()
     {
-        if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Reset") 
+        if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Restart") 
             && restart_pressed == false && GameData.is_server == false) RestartButton(); 
     }
 
