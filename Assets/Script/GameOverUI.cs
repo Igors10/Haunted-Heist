@@ -28,13 +28,13 @@ public class GameOverUI : MonoBehaviour
 
     private void Update()
     {
-        RestartInput();
+        //RestartInput();
     }
     
     void RestartInput()
     {
         if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Restart") 
-            && restart_pressed == false && GameData.is_server == false) RestartButton(); 
+            && restart_pressed == false && GameData.is_server) RestartButton(); 
     }
 
     public void GameOverUIOn(bool won, bool is_host)
@@ -55,7 +55,7 @@ public class GameOverUI : MonoBehaviour
         // displaying restart text
         restart_text.gameObject.SetActive(true);
         string restart_input_text = (GameData.is_gamepad_used) ? "Press <color=yellow>X</color> to restart the game" : "Click to restart the game";
-        restart_text.text = (GameData.is_server) ? "Waiting for the host to restart" : restart_input_text;
+        restart_text.text = (!GameData.is_server) ? "Waiting for the host to restart" : restart_input_text;
     }
 
     public void DisconnectClient() // when the host disconnects the clients should also disconnect
@@ -119,10 +119,10 @@ public class GameOverUI : MonoBehaviour
     public void Restart()
     {
         Debug.Log("<color=blue>RESTART</color> Restart activated");
-        GameData.is_looping = true;
+        //GameData.is_looping = true;
         GameData.is_restarting = true;
 
-        DisconnectClient();
+        //DisconnectClient(); << uncomment this for old restart logic
     }
 }
 
