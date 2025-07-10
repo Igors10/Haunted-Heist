@@ -7,6 +7,7 @@ public class RobberUI : MonoBehaviour
     // UI elements
     [SerializeField] GameObject elements_UI;
     [SerializeField] GameObject timer;
+    [SerializeField] GameObject hint_text;
     public HealthBar hp;
 
     [SerializeField] GameObject item_coupon;
@@ -24,6 +25,7 @@ public class RobberUI : MonoBehaviour
     [SerializeField] float energy_regeneration;
     bool recharging = false;
     [SerializeField] bool timer_on;
+    [HideInInspector] public bool is_active = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,10 +36,12 @@ public class RobberUI : MonoBehaviour
         energy_bar_sprite.color = full_energy_color;
     }
 
-    public void EnableUI()
+    public void EnableUI(bool is_enabled)
     {
-        elements_UI.SetActive(true);
-        if (timer_on) timer.SetActive(true);
+        is_active = is_enabled;
+        elements_UI.SetActive(is_enabled);
+        hint_text.SetActive(is_enabled);
+        if (timer_on) timer.SetActive(is_enabled);
     }
 
     private void FixedUpdate()

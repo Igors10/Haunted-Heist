@@ -55,7 +55,7 @@ public class RobberScript : NetworkBehaviour
         {
             robberUI = GameObject.Find("RobberUI").GetComponent<RobberUI>();
             if (robberUI == null) Debug.Log("Couldnt find ghost UI");
-            else robberUI.EnableUI();
+            else robberUI.EnableUI(true);
         }
     }
     private void Start()
@@ -159,6 +159,12 @@ public class RobberScript : NetworkBehaviour
     {
         GhostRadar();
         ItemRadar();
+        AnimationFlipUpdate();
+    }
+
+    void AnimationFlipUpdate() 
+    {
+        animator.SetBool("FlipX", player.sprite.flipX);
     }
 
     public void ResetItemRadar()

@@ -83,6 +83,9 @@ public class InputController : NetworkBehaviour
             if (Input.GetButtonDown("Jump")) robber.item_pick_up_aura.GetComponent<ItemPickUp>().StartPicking(true);
             if (Input.GetButtonUp("Jump")) robber.item_pick_up_aura.GetComponent<ItemPickUp>().StartPicking(false);
 
+            // Disabling UI
+            if (Input.GetKeyDown(KeyCode.U)) robber.robberUI.EnableUI(!robber.robberUI.is_active);
+
             // RT logic
             float rtValue = Input.GetAxis("RT");
             bool isRTPressed = rtValue > 0.5f;
@@ -103,6 +106,8 @@ public class InputController : NetworkBehaviour
             if (Input.GetButtonDown("Fire2")) ghost.StepVision(true);
             if (Input.GetButtonUp("Fire2")) ghost.StepVision(false);
 
+            // Disabling UI
+            if (Input.GetKeyDown(KeyCode.U)) ghost.ghostUI.EnableUI(!ghost.ghostUI.is_active);
         }
     }
 
