@@ -8,6 +8,9 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI loading_text;
     void Start()
     {
+        // Check if we even need a loading screen (aka is the game is launched first time)
+        if (GameData.is_looping) this.gameObject.SetActive(false);
+    
         StartCoroutine(LoadingAnim(loading_animation_interval));
     }
 
@@ -28,5 +31,4 @@ public class LoadingScreen : MonoBehaviour
             loading_text.text = "Loading...";
         }
     }
-    
 }

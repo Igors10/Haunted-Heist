@@ -1,7 +1,6 @@
 using FishNet;
 using FishNet.Managing;
 using FishNet.Managing.Client;
-//using FishNet.Managing.Scened;
 using FishNet.Object;
 using System.Collections.Generic;
 using TMPro;
@@ -21,20 +20,7 @@ public class GameOverUI : MonoBehaviour
     {
         Game.game_over = this;
 
-        //restart_button.onClick.AddListener(() => Restart());
         disconnect_button.onClick.AddListener(() => DisconnectClient());
-        restart_button.onClick.AddListener(() => RestartButton());
-    }
-
-    private void Update()
-    {
-        RestartInput();
-    }
-    
-    void RestartInput()
-    {
-        if (restart_text.gameObject.activeSelf && Input.GetButtonDown("Restart") 
-            && restart_pressed == false && GameData.is_server == false) RestartButton(); 
     }
 
     public void GameOverUIOn(bool won, bool is_host)
@@ -55,7 +41,7 @@ public class GameOverUI : MonoBehaviour
         // displaying restart text
         restart_text.gameObject.SetActive(true);
         string restart_input_text = (GameData.is_gamepad_used) ? "Press <color=yellow>X</color> to restart the game" : "Click to restart the game";
-        restart_text.text = (GameData.is_server) ? "Waiting for the host to restart" : restart_input_text;
+        restart_text.text = (!GameData.is_server) ? "Waiting for the host to restart" : restart_input_text;
     }
 
     public void DisconnectClient() // when the host disconnects the clients should also disconnect
@@ -105,44 +91,4 @@ public class GameOverUI : MonoBehaviour
         Debug.Log("<color=blue>RESTART</color> Finished Disconnecting");
         //Game.Instance.network_manager.SceneManager.LoadConnectionScenes(Game.Instance.player.LocalConnection, new SceneLoadData("MainMenu"));
     }
-
-    public void RestartButton()
-    {
-        Game.Instance.PlayerReadyToRestartServerRPC(false);
-
-        restart_text.text = "Waiting for the other player";
-        restart_pressed = true;
-
-        Debug.Log("<color=blue>RESTART</color> Restart button pressed");
-    }
-
-    public void Restart()
-    {
-        Debug.Log("<color=blue>RESTART</color> Restart activated");
-        GameData.is_looping = true;
-        GameData.is_restarting = true;
-
-        DisconnectClient();
-    }
 }
-
-
-
-/*
- * if (Game.Instance.network_manager != null)
-        {
-            // both client and server can shut down the server upon pressing disconnect
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-            Game.Instance.network_manager.ClientManager.StopConnection();
-
-            // Despawn all network objects.
-            foreach (NetworkObject obj in Game.Instance.network_manager.ServerManager.Spawned)
-            {
-                obj.Despawn();
-            }
-
-            Game.Instance.network_manager.ServerManager.StopConnection(true);
-            
-        }
-        else Debug.Log("Network manager was not found");
- */

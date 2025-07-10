@@ -1,5 +1,6 @@
 using FishNet;
 using FishNet.Connection;
+using FishNet.Managing.Scened;
 using FishNet.Object;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class PlayerInitializer : MonoBehaviour
         if (Game.Instance.network_manager != null)
         {
             Game.Instance.network_manager.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
-            if (GameData.is_game_over == true) RespawnExistingPlayers();
+            if (GameData.is_looping) RespawnExistingPlayers();
         }
         else Debug.Log("Network manager not assigned");
     }
@@ -60,3 +61,38 @@ public class PlayerInitializer : MonoBehaviour
         }
     }
 }
+
+/*
+ [SerializeField] private GameObject playerPrefab;
+
+    private void Awake()
+    {
+        if (Application.isPlaying)
+            InstanceFinder.SceneManager.OnLoadEnd += OnSceneLoadEnd;
+    }
+    /*
+    private void OnDestroy()
+    {
+        if (Application.isPlaying)
+            InstanceFinder.SceneManager.OnLoadEnd -= OnSceneLoadEnd;
+    }
+
+private void OnSceneLoadEnd(SceneLoadEndEventArgs args)
+{
+    //if (!InstanceFinder.IsServer) return;
+
+    Debug.Log("Scene load complete — respawning players.");
+
+    foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
+    {
+        if (conn.IsActive)
+        {
+            // Spawn the player prefab at a position
+            GameObject playerObj = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity);
+
+            // Spawn for this connection
+            InstanceFinder.ServerManager.Spawn(playerObj, conn);
+        }
+    }
+}
+*/

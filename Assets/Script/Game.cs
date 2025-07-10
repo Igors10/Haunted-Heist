@@ -37,6 +37,7 @@ public class Game : NetworkBehaviour
     public static Level level;
     public static GameOverUI game_over;
     public NetworkManager network_manager;
+    public RestartScript restart_manager;
     public GameObject loading_screen;
     public ItemLottery item_lottery;
     public RuntimeTutorialManager rt_tutorial;
@@ -121,7 +122,8 @@ public class Game : NetworkBehaviour
     {
         players_ready_to_restart++;
 
-        game_over.Restart();
+        //game_over.Restart(); << uncomment this for old restart function
+        restart_manager.Restart();
     }
 
 }
