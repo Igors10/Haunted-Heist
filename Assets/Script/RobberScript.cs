@@ -55,7 +55,7 @@ public class RobberScript : NetworkBehaviour
         {
             robberUI = GameObject.Find("RobberUI").GetComponent<RobberUI>();
             if (robberUI == null) Debug.Log("Couldnt find ghost UI");
-            else robberUI.EnableUI();
+            else robberUI.EnableUI(true);
         }
     }
     private void Start()

@@ -7,6 +7,7 @@ public class GhostUI : MonoBehaviour
 {
     [SerializeField] GameObject elements_UI;
     [SerializeField] GameObject timer;
+    [SerializeField] GameObject hint_text;
     public HealthBar souls;
 
     // Ghost vision filter variables
@@ -29,6 +30,7 @@ public class GhostUI : MonoBehaviour
     [HideInInspector] public bool is_dash_ready = true;
     [HideInInspector] public bool is_stepvision_ready = true;
     [SerializeField] bool timer_on;
+    [HideInInspector] public bool is_active = false;
     void Start()
     {
         default_filter_intensity = ghostVision.GetComponent<Light2D>().intensity;
@@ -95,10 +97,12 @@ public class GhostUI : MonoBehaviour
         ghostVision.GetComponent<Light2D>().color = (is_filter_on) ? stepvision_filter_color : default_filter_color;
     }
 
-    public void EnableUI()
+    public void EnableUI(bool is_enabled)
     {
-        elements_UI.SetActive(true);
-        if (timer_on) timer.SetActive(true);
-        ghostVision.SetActive(true);
+        is_active = is_enabled; 
+        elements_UI.SetActive(is_enabled);
+        if (timer_on) timer.SetActive(is_enabled);
+        hint_text.SetActive(is_enabled);
+        ghostVision.SetActive(true); // this is always on if you are a ghost
     }
 }

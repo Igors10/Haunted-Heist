@@ -12655,7 +12655,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1320460311782135910, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 617376223}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 617376226}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -12664,6 +12664,11 @@ MonoBehaviour:
 --- !u!224 &617376225 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4780237162663079393, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
+  m_PrefabInstance: {fileID: 617376223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &617376226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 381568572837992373, guid: ddf1d33731ea2c941ab3af76b5060fb3, type: 3}
   m_PrefabInstance: {fileID: 617376223}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &618228315
@@ -13841,6 +13846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements_UI: {fileID: 166061084}
   timer: {fileID: 631129097}
+  hint_text: {fileID: 617376226}
   souls: {fileID: 1387436448}
   ghostVision: {fileID: 528786809}
   stepvision_filter_intensity: 0.85
@@ -13861,6 +13867,7 @@ MonoBehaviour:
   is_dash_ready: 0
   is_stepvision_ready: 0
   timer_on: 1
+  is_active: 0
 --- !u!1 &704851736
 GameObject:
   m_ObjectHideFlags: 0
@@ -39856,6 +39863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements_UI: {fileID: 2069475551}
   timer: {fileID: 631129097}
+  hint_text: {fileID: 617376226}
   hp: {fileID: 1101106162}
   item_coupon: {fileID: 544600156}
   energy_bar: {fileID: 1347821992}
@@ -39866,6 +39874,7 @@ MonoBehaviour:
   energy_decrease: 0.003
   energy_regeneration: 0.002
   timer_on: 1
+  is_active: 0
 --- !u!1001 &1534259440
 PrefabInstance:
   m_ObjectHideFlags: 0

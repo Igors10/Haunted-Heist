@@ -93,7 +93,7 @@ public class GhostScript : NetworkBehaviour
         {
             ghostUI = GameObject.Find("GhostUI").GetComponent<GhostUI>();
             if (ghostUI == null) Debug.Log("Couldnt find ghost UI");
-            else ghostUI.EnableUI();
+            else ghostUI.EnableUI(true);
         }
 
     }
