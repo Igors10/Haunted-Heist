@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 707fad3bb8e0623439b865e09ec24ae9
+guid: 6619d646d02601540b7967b832677da0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8393107017843452962
-    second: Character Select Background - Haunted Heist_0
+      213: 257142899495441338
+    second: robber_idle_left 1_0
+  - first:
+      213: 5515369413141614062
+    second: robber_idle_left 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character Select Background - Haunted Heist_0
+      name: robber_idle_left 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 500
-        height: 700
+        width: 33
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed35a97c2a1b58b80800000000000000
-      internalID: -8393107017843452962
+      spriteID: ab390fcca1e819300800000000000000
+      internalID: 257142899495441338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robber_idle_left 1_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eed4c5372478a8c40800000000000000
+      internalID: 5515369413141614062
       vertices: []
       indices: 
       edges: []
@@ -147,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Character Select Background - Haunted Heist_0: -8393107017843452962
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
