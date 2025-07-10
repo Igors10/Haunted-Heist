@@ -54,11 +54,6 @@ public class Spawner : NetworkBehaviour
 
         ghost_button.onClick.AddListener(() => RequestSpawnGhost());
         robber_button.onClick.AddListener(() => RequestSpawnRobber());
-
-        // Put the character select screen under existing UI
-        //SetRendererMode();
-        start_text = GameObject.Find("StartText").GetComponent<StartText>();
-        if (base.IsOwner) HideBehindTitle();
     }
 
     void HideBehindTitle()
@@ -93,25 +88,6 @@ public class Spawner : NetworkBehaviour
             elements_UI[a].SetActive(true);
         }
     }
-
-    void SetRendererMode() // Im not doing it rn, because then the pressing doenst work
-    {
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main; // Assign the same camera used by your main canvas
-        canvas.sortingLayerName = "UI";
-    }
-
-    /*
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1")) StartCoroutine(EnableChoice());
-    }
-
-    IEnumerator EnableChoice()
-    {
-        yield return new WaitForSeconds(0.4f);
-        choice_open = true;
-    }*/
 
     [ServerRpc(RequireOwnership = false)]
     private void RequestSpawnGhost(NetworkConnection sender = null)
