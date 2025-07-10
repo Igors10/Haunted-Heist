@@ -159,6 +159,12 @@ public class RobberScript : NetworkBehaviour
     {
         GhostRadar();
         ItemRadar();
+        AnimationFlipUpdate();
+    }
+
+    void AnimationFlipUpdate() 
+    {
+        animator.SetBool("FlipX", player.sprite.flipX);
     }
 
     public void ResetItemRadar()
