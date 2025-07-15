@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] bool is_logo_moving;
     float logo_speed = 0;
     [SerializeField] GameObject logo;
+    public GameObject settingsMenu;
+    public GameObject playButton;
+    public GameObject creditsButton;
+    public GameObject logoArt;
+    public GameObject settingsButton;
 
     public Button nextButton;
     public GameObject helpPanel;
@@ -182,6 +187,25 @@ public class MainMenu : MonoBehaviour
     public void LoadHelpPanel()
     {
         helpPanel.SetActive(!helpPanel.activeSelf);
+    }
+
+    public void LoadSettingsPanel()
+    {
+        settingsMenu.SetActive(!settingsMenu.activeSelf);
+        // Disable play button and credits button
+        playButton.SetActive(!playButton.activeSelf);
+        creditsButton.SetActive(!creditsButton.activeSelf);
+        logo.SetActive(!logo.activeSelf);
+        settingsButton.SetActive(!settingsButton.activeSelf);
+    }
+
+    public void LoadMainMenu()
+    {
+        settingsMenu.SetActive(false);
+        playButton.SetActive(true);
+        creditsButton.SetActive(true);
+        logo.SetActive(true);
+        settingsButton.SetActive(true);
     }
 
 
