@@ -13,6 +13,8 @@ public class RobberScript : NetworkBehaviour
     public GameObject item_pick_up_aura;
     [HideInInspector] public RobberUI robberUI;
     public ArrowPointer[] exit_pointer;
+    private float lastVibrationUpdate = 0f;
+    private float vibrationUpdateInterval = 0.1f;
 
     Animator animator;
 
@@ -216,23 +218,28 @@ public class RobberScript : NetworkBehaviour
 
     void HandleVibration(float distance)
     {
-        if (Gamepad.current == null)
-            return;
+        if (Gamepad.current == null) return;
 
-        // No rumble outside of white noise range
+        if (Time.time - lastVibrationUpdate < vibrationUpdateInterval) return;
+        lastVibrationUpdate = Time.time;
+
         if (distance > white_noise_range)
         {
             Gamepad.current.SetMotorSpeeds(0f, 0f);
             return;
         }
 
-        // Intensity
         float proximity = (white_noise_range - distance) / white_noise_range;
-        float intensityScale = 0.1f; // Overall
 
-        float lowFreq = proximity * 0.3f * intensityScale;
-        float highFreq = proximity * 0.6f * intensityScale;
+        // INTENSITY SCALE
+        float intensityScale = 0.5f;
 
+        float proximityPower = Mathf.Pow(proximity, 0.5f);
+
+        float lowFreq = proximityPower * 0.7f * intensityScale;
+        float highFreq = proximityPower * 1.0f * intensityScale;
+
+        Debug.Log($"Setting vibration: Low={lowFreq}, High={highFreq}, Distance={distance}, Proximity={proximity}");
         Gamepad.current.SetMotorSpeeds(lowFreq, highFreq);
     }
 
