@@ -144,6 +144,7 @@ public class Player : NetworkBehaviour
         // Flip state 
         if (sprite.flipX != lastFlipXState)
         {
+            //sprite.flipX = !lastFlipXState;
             SyncFlipXServerRpc(sprite.flipX);
             lastFlipXState = sprite.flipX;
         }
@@ -158,6 +159,7 @@ public class Player : NetworkBehaviour
     [ObserversRpc]
     void SyncFlipXObserversRpc(bool flipX)
     {
+        if (IsOwner) return;
         sprite.flipX = flipX;
         if (aura_sprite != null) aura_sprite.flipX = flipX;
     }
