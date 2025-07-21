@@ -315,6 +315,7 @@ public class RobberScript : NetworkBehaviour
     [ObserversRpc]
     void SyncFlashlightObserversRpc(bool is_on)
     {
+        animator.SetBool("isLantern", is_on);
         flashlight.SetActive(is_on);
         if (Game.Instance.ghost.Value != null) Game.Instance.ghost.Value.GetComponent<Player>().Indication(is_on);
     }

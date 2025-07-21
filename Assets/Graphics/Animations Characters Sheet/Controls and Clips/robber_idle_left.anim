@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: robber_idle
+  m_Name: robber_idle_left
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2030771380, guid: 81a059b39ebcef341b357f3a6b024ed3, type: 3}
+      value: {fileID: 4132737067730404076, guid: 84cecdc71b2fe1c469b6acb4b847fe0e, type: 3}
     - time: 0.016666668
-      value: {fileID: 108965153, guid: 81a059b39ebcef341b357f3a6b024ed3, type: 3}
+      value: {fileID: -7166876095010377108, guid: 84cecdc71b2fe1c469b6acb4b847fe0e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2030771380, guid: 81a059b39ebcef341b357f3a6b024ed3, type: 3}
-    - {fileID: 108965153, guid: 81a059b39ebcef341b357f3a6b024ed3, type: 3}
+    - {fileID: 4132737067730404076, guid: 84cecdc71b2fe1c469b6acb4b847fe0e, type: 3}
+    - {fileID: -7166876095010377108, guid: 84cecdc71b2fe1c469b6acb4b847fe0e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

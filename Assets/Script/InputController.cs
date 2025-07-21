@@ -7,7 +7,7 @@ public class InputController : NetworkBehaviour
     Player player;
     Animator animator;
 
-
+    Vector3 last_frame_movement = new Vector3(0,0,0);
 
     bool wasRTPressedLastFrame = false;
 
@@ -28,12 +28,19 @@ public class InputController : NetworkBehaviour
     {
         Vector3 movement = MovementInput();
         player.transform.position += MovementInput();
+    }
+
+    void WalkingCheck()
+    {
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
         if (animator != null)
         {
-            bool isWalking = movement.x != 0f || movement.y != 0f;
+            bool isWalking = (movement.x != 0f || last_frame_movement.x != 0f) || (movement.y != 0f || last_frame_movement.y != 0);
             animator.SetBool("isWalking", isWalking);  // Set the 'isWalking' parameter in the Animator
         }
+
+        last_frame_movement = movement;
     }
 
     Vector3 MovementInput()
@@ -64,6 +71,7 @@ public class InputController : NetworkBehaviour
     private void Update()
     {
         AbilitiesInput();
+        WalkingCheck();
         // Log value of RT axis
         //Debug.Log("RT axis value: " + Input.GetAxis("RT"));
     }
