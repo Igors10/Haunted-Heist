@@ -74,7 +74,7 @@ public static class TutorialProgress
         { "robber_movement", false },
         { "robber_lantern", false },
         { "robber_pickup", false },
-         { "robber_pickup_done", false },
+        { "robber_pickup_done", false },
         { "robber_light_warning", false },
         {"robber_life_lost", false },
         { "robber_radar", false },
