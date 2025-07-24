@@ -50,7 +50,7 @@ public class RuntimeOverlayScript : MonoBehaviour
             }
             else
             {
-                approrpiate_text = "Left Mouse Button";
+                approrpiate_text = "(Left Mouse Button)";
             }
         }
 
@@ -62,7 +62,7 @@ public class RuntimeOverlayScript : MonoBehaviour
             }
             else
             {
-                approrpiate_text = "Righ Mouse Button";
+                approrpiate_text = "(Right Mouse Button)";
             }
         }
 
