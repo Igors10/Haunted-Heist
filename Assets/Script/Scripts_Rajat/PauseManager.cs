@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     public GameObject pausePanel;
     public GameObject settingsPanel;
+    public GameObject hints;
 
     // Reference to control if we should check for controller input
     [Header("Input Settings")]
@@ -47,6 +48,7 @@ public class PauseManager : MonoBehaviour
 
         // Toggle pause panel
         pausePanel.SetActive(isPaused);
+        hints.SetActive(isPaused);
 
         // Select the resume button when pause menu is opened
         if (isPaused && resumeButton != null && eventSystem != null)

@@ -22991,6 +22991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1581152273}
   settingsPanel: {fileID: 1964176648}
+  hints: {fileID: 617376226}
   checkForControllerInput: 1
   startButtonKeyCode: 357
   resumeButton: {fileID: 982699525}
