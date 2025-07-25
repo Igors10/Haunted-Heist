@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29, y: -361}
+  m_AnchoredPosition: {x: 280, y: 320}
   m_SizeDelta: {x: 1536.7521, y: 151.1596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5496349996370685013
@@ -65,8 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use  <color=yellow>"Left Joystick"</color> and <color=yellow>"A"</color>
-    to select a character
+  m_text: Use the <color=yellow>Left Joystick</color> to switch between characters
+    and <color=yellow>A</color> to select.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1cc681bfc16ecec4082b48bbe6bd2766, type: 2}
   m_sharedMaterial: {fileID: 6058894021461514745, guid: 1cc681bfc16ecec4082b48bbe6bd2766, type: 2}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -4.5637207, w: 0}
+  m_margin: {x: -97.54248, y: 0, z: 381.177, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
