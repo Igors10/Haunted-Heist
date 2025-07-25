@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using FishNet.Object;
+using UnityEngine.UI;
 
 public class AudioManager : NetworkBehaviour
 {
@@ -11,6 +12,8 @@ public class AudioManager : NetworkBehaviour
 
     public AudioClip[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
+    [SerializeField] Slider music_slider;
+    [SerializeField] Slider sfx_slider;
 
     private void Awake()
     {
@@ -18,10 +21,10 @@ public class AudioManager : NetworkBehaviour
         {
             instance = this;
         }
-        else
-        {
-            //Destroy(gameObject);
-        }
+
+        // Hooking up sound to sliders
+        music_slider.onValueChanged.AddListener((new_value) => { musicSource.volume = new_value; });
+        sfx_slider.onValueChanged.AddListener((new_value) => { sfxSource.volume = new_value; });
     }
 
     public void PlayMusic(string name)
