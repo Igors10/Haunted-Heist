@@ -498,6 +498,44 @@ MonoBehaviour:
   fadeDuration: 0.5
   startAlpha: 0.1
   endAlpha: 1
+  enableScale: 1
+  hoverScale: 1.1
+  selectedScale: 1.15
+  scaleDuration: 0.3
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableRotatingRing: 1
+  ringColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0.34117648}
+  ringRotationSpeed: 45
+  ringSize: 8
+  ringThickness: 8
+  enablePulseWaves: 1
+  waveColor: {r: 1, g: 1, b: 1, a: 0.21176471}
+  waveSpeed: 0.5
+  waveCount: 3
+  maxWaveSize: 9
 --- !u!1 &4023615632167038006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +1896,44 @@ MonoBehaviour:
   fadeDuration: 0.5
   startAlpha: 0.1
   endAlpha: 1
+  enableScale: 1
+  hoverScale: 1.1
+  selectedScale: 1.15
+  scaleDuration: 0.3
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enableRotatingRing: 1
+  ringColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0.34117648}
+  ringRotationSpeed: 45
+  ringSize: 8
+  ringThickness: 8
+  enablePulseWaves: 1
+  waveColor: {r: 1, g: 1, b: 1, a: 0.21176471}
+  waveSpeed: 0.5
+  waveCount: 3
+  maxWaveSize: 9
 --- !u!1001 &2574958274453992494
 PrefabInstance:
   m_ObjectHideFlags: 0
