@@ -19033,6 +19033,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c22d3b02a49148e439ca2a061e42d057, type: 3}
   musicSource: {fileID: 2068006972}
   sfxSource: {fileID: 1021322026}
+  music_slider: {fileID: 1850670301}
+  sfx_slider: {fileID: 659064372}
 --- !u!1 &1028410370
 GameObject:
   m_ObjectHideFlags: 0
