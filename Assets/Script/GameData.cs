@@ -8,6 +8,7 @@ public static class GameData
     public static bool is_server = false;
     public static bool is_looping = false;
     public static bool is_restarting = false;
+    public static string nickname = "nameless";
 
     public static bool disableCreateServerButton = false;
     public static bool disableInputField = false;
