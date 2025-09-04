@@ -53,12 +53,12 @@ public class RestartScript : MonoBehaviour
         if (!loadedIntermediate)
             return;
 
-        Debug.Log("RESTART: RestartScene loaded, reloading Lvl_Tilemap");
+        Debug.Log("RESTART: RestartScene loaded, reloading Lobby");
 
         // Unsubscribe to avoid firing again
         InstanceFinder.SceneManager.OnLoadEnd -= OnIntermediateSceneLoaded;
 
-        SceneLoadData mainSceneLoad = new SceneLoadData("Lvl_Tilemap")
+        SceneLoadData mainSceneLoad = new SceneLoadData("Lobby")
         {
             ReplaceScenes = ReplaceOption.All
         };

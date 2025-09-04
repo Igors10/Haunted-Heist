@@ -9,6 +9,8 @@ public static class GameData
     public static bool is_looping = false;
     public static bool is_restarting = false;
     public static string nickname = "nameless";
+    public static int nextID = 0;
+    public static character character_selected;
 
     public static bool disableCreateServerButton = false;
     public static bool disableInputField = false;

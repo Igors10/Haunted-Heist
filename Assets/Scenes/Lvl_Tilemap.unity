@@ -54962,6 +54962,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 8366278993591538756, guid: 0ba0240062c9a3241a4d4e85f017a68a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -54983,6 +54987,10 @@ PrefabInstance:
       propertyPath: <SceneId>k__BackingField
       value: 4227546111
       objectReference: {fileID: 0}
+    - target: {fileID: 7123932562602084245, guid: c8bf07af3967af24bb52d33ca31f4255, type: 3}
+      propertyPath: character_select_prefab
+      value: 
+      objectReference: {fileID: 3709444415009005983, guid: 3a6ff10dce86c3b44bb3960b0fdd1c4b, type: 3}
     - target: {fileID: 8137609173145935184, guid: c8bf07af3967af24bb52d33ca31f4255, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.9938364

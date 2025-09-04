@@ -2,14 +2,13 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using TMPro;
+using FishNet.Managing.Scened;
+using FishNet;
 
 public class LobbyClient : NetworkBehaviour   // Look into registering the client correctly
 {
-    //[HideInInspector] public int lobby_id;
-    //[HideInInspector] public bool ready = false;
     [HideInInspector] public bool is_host = false;
     public LobbyPanel client_panel;
-    
 
     public readonly SyncVar<string> nickname = new SyncVar<string>();
     public readonly SyncVar<bool> ready = new SyncVar<bool>();
@@ -55,6 +54,20 @@ public class LobbyClient : NetworkBehaviour   // Look into registering the clien
         return random_nickname[random_nr];
     }
 
+    [Server]
+    public void StartMatch()
+    {
+        if (!IsServer) return;
+
+        // Replace current (lobby) with gameplay for ALL connected clients
+        var sld = new SceneLoadData("Lvl_Tilemap")
+        {
+            ReplaceScenes = ReplaceOption.All
+        };
+
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    }
+
     public override void OnStartNetwork()
     {
         base.OnStartNetwork();
@@ -70,10 +83,13 @@ public class LobbyClient : NetworkBehaviour   // Look into registering the clien
     {
         if (!IsServer) return;
 
-        int id = ConnectionScript.connection_manager.nextID;
+        // making it 0 again if restarted
+        if (GameData.nextID == 2) GameData.nextID = 0;
+
+        int id = GameData.nextID;
         Debug.Log("LobbyClient: client with id " + id + " joined the lobby");
 
-        ConnectionScript.connection_manager.nextID++;
+        GameData.nextID++;
         client.lobby_id.Value = id;
     }
 

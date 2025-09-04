@@ -160,12 +160,14 @@ public class LobbyManager : MonoBehaviour
     {
         if (refreshing_toggles) return;
         lobby_client[owner_id].SetCharacter(lobby_client[owner_id], 0);
+        GameData.character_selected = character.ROBBER;
     }
 
     public void ToggleGhost()
     {
         if (refreshing_toggles) return;
         lobby_client[owner_id].SetCharacter(lobby_client[owner_id], 1);
+        GameData.character_selected = character.GHOST;
     }
 
     public void ButtonReady() // This happens when "Ready" button is being pressed
@@ -189,7 +191,9 @@ public class LobbyManager : MonoBehaviour
     {
         Debug.Log("LobbyManager: the game is starting");
 
-        // Logic for starting the game (probably will have to call a function in the lobby client so that the scene can be changed in Fishnet way)
+        // call start from both, whichever is the server will launch the game
+        lobby_client[0].StartMatch();
+        lobby_client[1].StartMatch();
     }
 
     public void RegisterClient(LobbyClient client, bool is_owner)
@@ -204,5 +208,11 @@ public class LobbyManager : MonoBehaviour
 
         // deciding on owner and opponent_id
         if (is_owner) owner_id = client.lobby_id.Value;
+
+        GameData.is_looping = true; // just a thing to make following spawning of player prefabs correct
+
+        //toggle the correct character
+        if (owner_id == 1) ToggleGhost();
+        else ToggleRobber();
     }
 }
