@@ -23,7 +23,7 @@ public class Game : NetworkBehaviour
         Instance = this;
 
         // activating loading screen
-        if (loading_screen != null) loading_screen.SetActive(true);
+        //if (loading_screen != null) loading_screen.SetActive(true);
 
         //connection fails
         network_manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();

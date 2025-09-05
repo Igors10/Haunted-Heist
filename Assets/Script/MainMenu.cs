@@ -108,7 +108,7 @@ public class MainMenu : MonoBehaviour
 
         // SceneLoadData sld = new SceneLoadData("Lvl_Tilemap");
         // InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-        SceneManager.LoadScene("Lvl_Tilemap", LoadSceneMode.Single);
+        SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
     }
 
     public void ChooseIP()
