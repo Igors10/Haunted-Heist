@@ -77,8 +77,8 @@ public class Player : NetworkBehaviour
             }
 
             // for testing game over screen
-            if (IsHost) GameOverServerRpc(false);
-            else GameOverServerRpc(true);
+            //if (IsHost) GameOverServerRpc(false);
+            //else GameOverServerRpc(true);
         }
         else
         {

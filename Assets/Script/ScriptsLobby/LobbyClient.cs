@@ -84,12 +84,12 @@ public class LobbyClient : NetworkBehaviour   // Look into registering the clien
         if (!IsServer) return;
 
         // making it 0 again if restarted
-        if (GameData.nextID == 2) GameData.nextID = 0;
+        //if (LobbyManager.instance.nextID == 2) LobbyManager.instance.nextID = 0;
 
-        int id = GameData.nextID;
+        int id = LobbyManager.instance.nextID;
         Debug.Log("LobbyClient: client with id " + id + " joined the lobby");
 
-        GameData.nextID++;
+        LobbyManager.instance.nextID++;
         client.lobby_id.Value = id;
     }
 

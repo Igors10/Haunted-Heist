@@ -13,6 +13,7 @@ public class LobbyManager : MonoBehaviour
     public List<LobbyClient> lobby_client = new List<LobbyClient>();
     public int owner_id;
     bool refreshing_toggles = false;
+    [HideInInspector] public int nextID = 0;
 
     [Header("ReadyButtton")]
     [SerializeField] Button ready_button;
@@ -135,6 +136,11 @@ public class LobbyManager : MonoBehaviour
             lobby_panel[id].toggle_images[1].gameObject.SetActive(true);
         }
 
+        // Making the characetrs facing each other 
+        lobby_panel[id].toggle_images[0].rectTransform.localScale = new Vector3((id == 0) ? -1f : 1f, 1f, 1f);
+        lobby_panel[id].toggle_images[1].rectTransform.localScale = new Vector3((id == 0) ? 1f : -1f, 1f, 1f);
+
+
         // Making the image the correct transparency
         if (lobby_client[id].ready.Value)
         {
@@ -143,8 +149,8 @@ public class LobbyManager : MonoBehaviour
         }
         else if (lobby_client[id].ready.Value == false)
         {
-            lobby_panel[id].toggle_images[0].color = new Color(1f, 1f, 1f, 0.3f);
-            lobby_panel[id].toggle_images[1].color = new Color(1f, 1f, 1f, 0.3f);
+            lobby_panel[id].toggle_images[0].color = new Color(1f, 1f, 1f, 0.5f);
+            lobby_panel[id].toggle_images[1].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         refreshing_toggles = false;

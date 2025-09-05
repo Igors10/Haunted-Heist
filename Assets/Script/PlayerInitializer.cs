@@ -4,6 +4,7 @@ using FishNet.Managing.Scened;
 using FishNet.Managing;
 using FishNet.Object;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerInitializer : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PlayerInitializer : MonoBehaviour
         if (network_manager != null)
         {
             network_manager.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
-            if (GameData.is_looping) RespawnExistingPlayers();
+            if (GameData.is_looping) StartCoroutine(RespawnExistingPlayers());
         }
         else Debug.Log("Network manager not assigned");
     }
@@ -46,8 +47,10 @@ public class PlayerInitializer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) RespawnExistingPlayers();
     }
 
-    private void RespawnExistingPlayers()
+    IEnumerator RespawnExistingPlayers()
     {
+        yield return new WaitForSeconds(1f);
+
         foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         {
             if (conn.IsActive)
