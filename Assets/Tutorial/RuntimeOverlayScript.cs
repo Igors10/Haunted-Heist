@@ -15,15 +15,9 @@ public class RuntimeOverlayScript : MonoBehaviour
     public string approrpiate_text; //text that switches the {key} to the appropriate key
     public Vector3 changed_position;
     public string type;
-    public float priority = 10f;
+    public float priority = 100f;
 
-    public float lastActivatedTime = -999f;
-    public float minIntervalBetweenActivations = 0.5f; // half a second
 
-    public bool CanActivate()
-    {
-        return Time.time - lastActivatedTime > minIntervalBetweenActivations;
-    }
 
     public void Activate(string new_text, string new_type, float new_priority)
     {
@@ -102,19 +96,4 @@ public class RuntimeOverlayScript : MonoBehaviour
         Debug.Log($"Overlay activated: {type}, priority: {priority}");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (TutorialProgress.tutorial_bools[type])
-        {
-            Delete();
-            Debug.Log($"Overlay deleted: {type}");
-        }
-    }
-
-    public void Delete()
-    {
-        this.gameObject.SetActive(false);         
-        priority = 10f;
-    }
 }

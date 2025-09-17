@@ -13,14 +13,14 @@ public static class TutorialProgress
     //TUTORIAL AT RUNTIME
     public static bool is_tutorial_active = true; //will the tutorial activate in the game
 
-    public static Dictionary<string, bool> tutorial_bools = new Dictionary<string, bool>()
+    public static Dictionary<string, bool> has_this_activated = new Dictionary<string, bool>()
     {
         { "robber_movement", false },
         { "robber_lantern", false },
         { "robber_pickup", false },
         { "robber_pickup_done", false },
         { "robber_light_warning", false },
-        {"robber_life_lost", false },
+        { "robber_life_lost", false },
         { "robber_radar", false },
         { "robber_vent", false },
         { "robber_vent_used", false },
@@ -69,7 +69,7 @@ public static class TutorialProgress
     */
 
 
-    public static Dictionary<string, bool> has_this_activated = new Dictionary<string, bool>()
+    public static Dictionary<string, bool> has_this_been_shown = new Dictionary<string, bool>()
     {
         { "robber_movement", false },
         { "robber_lantern", false },
